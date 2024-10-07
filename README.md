@@ -14,3 +14,4 @@ Check out the [Docs](./docs/) for more info. It also serves as a tutorial for be
 
 1. [Getting Started](./docs/1.GettingStarted.md)
 2. [Reactivity](./docs/2.Reactivity.md)
+3. [Animations](./docs/3.Animations.md)
