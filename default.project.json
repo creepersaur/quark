@@ -9,6 +9,12 @@
       }
     },
 
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      }
+    },
+
     "Workspace": {
       "$properties": {
         "FilteringEnabled": true

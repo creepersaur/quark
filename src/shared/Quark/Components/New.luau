@@ -1,6 +1,4 @@
-local ReplicatedStorage = game:GetService "ReplicatedStorage"
-
-local Reactive = require(ReplicatedStorage.Shared.Quark.Reactive)
+local Reactive = require(script.Parent.Parent.Reactive)
 local Created = {}
 
 local function AddChildren(self, list)

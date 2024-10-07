@@ -1,8 +1,7 @@
-local ReplicatedStorage = game:GetService "ReplicatedStorage"
 local RunService = game:GetService "RunService"
 
+local Reactive = require(script.Parent.Parent.Reactive)
 local ValueMath = require(script.Parent.ValueMath)
-local Reactive = require(ReplicatedStorage.Shared.Quark.Reactive)
 
 local SpringModule = {
 	Created = {},
