@@ -15,3 +15,8 @@ Check out the [Docs](./docs/) for more info. It also serves as a tutorial for be
 1. [Getting Started](./docs/1.GettingStarted.md)
 2. [Reactivity](./docs/2.Reactivity.md)
 3. [Animations](./docs/3.Animations.md)
+4. [StyleSheets](./docs/4.StyleSheets.md)
+5. [Stories](./docs//5.Stories.md)
+
+# Examples
+Examples for stories are given in the [examples](./src/examples/) folder. For smaller examples and info, check Documentation above.
