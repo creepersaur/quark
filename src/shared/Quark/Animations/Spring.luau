@@ -67,7 +67,7 @@ end
 
 function Spring:DisconnectAll()
 	for _, v: Reactive.Signal in self.Connections do
-		v.Disconnect()
+		v:Disconnect()
 	end
 
 	return self

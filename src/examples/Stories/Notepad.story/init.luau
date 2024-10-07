@@ -40,7 +40,7 @@ local story = function(props)
         controls.Title = infos.Title.__new
     end)
 	NewNoteButton.TextButton.MouseButton1Click:Connect(function()
-		AddNote(controls.Title)
+		AddNote(controls.Title .. ` | {#NoteHolder.Children - 1}`)
 	end)
 
 	return Quark.Cleanup

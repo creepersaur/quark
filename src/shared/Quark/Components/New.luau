@@ -9,6 +9,7 @@ local function AddChildren(self, list)
 			local new_object = (list.Object or list)
 			new_object.Parent = self.Object
 			table.insert(Created, new_object)
+			table.insert(self.Children, list)
 
 			if rawget(self, "Style") then
 				local style = rawget(self, "Style")

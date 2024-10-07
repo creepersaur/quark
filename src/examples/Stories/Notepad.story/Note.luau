@@ -10,8 +10,11 @@ return function(text: string?)
 	}
 
 	local Hovering = Quark.State(0)
+    local hover_spring = nil
 
-	local Note = New "Frame" {
+	local Note = New "TextButton" {
+		Text = "",
+        AutoButtonColor = false,
 		Size = UDim2.fromScale(0, 0),
 		BackgroundTransparency = 0.9,
 		AnchorPoint = Vector2.one * 0.5,
@@ -21,9 +24,20 @@ return function(text: string?)
         MouseEnter = Hovering.setLambda(1),
         MouseLeave = Hovering.setLambda(0),
         
+        MouseButton1Down = function(self)
+			self.BackgroundColor3 = Color3.new(1,0.1,0.2)
+			Hovering(0)
+		end,
+        MouseButton1Up = Hovering.setLambda(1),
+
+        MouseButton1Click = function(self)
+            Main.Object:Destroy()
+            hover_spring:DisconnectAll()
+        end,
+        
         children = {
             New "TextLabel" {
-                Text = text or "Note Title",
+				Text = text or "Note Title",
                 Size = UDim2.new(1, 0, 0, 20),
                 BackgroundTransparency = 1,
                 TextSize = 10,
@@ -45,9 +59,9 @@ return function(text: string?)
 		end)
 
         task.wait(0.5)
-        InitAnim:Pause()
+        InitAnim:DisconnectAll()
 
-        Quark.Animations.Spring(0, Hovering):BindAndPlay(function(value)
+        hover_spring = Quark.Animations.Spring(0, Hovering):BindAndPlay(function(value)
             Note.Size = UDim2.fromScale(1 + value/10, 1 + value/10)
             Note.BackgroundTransparency = 0.9 - value / 10
         end)
