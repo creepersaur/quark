@@ -53,9 +53,14 @@ export type New = {
 	PushClass: (class: string) -> (),
 }
 
-local New = function(ClassName: string): ({ [string]: any }) -> Instance & New
+local New = function(ClassName: string | Instance): ({ [string]: any }) -> Instance & New
+    local obj: any = ClassName
+    if typeof(obj) == "string" then
+        obj = Instance.new(ClassName::string)
+    end
+
 	local self = {
-		Object = Instance.new(ClassName),
+		Object = obj,
 		Children = {},
 		Style = nil,
 		Class = Reactive.State "",
