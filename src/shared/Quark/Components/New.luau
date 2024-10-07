@@ -120,7 +120,7 @@ local New = function(ClassName: string | Instance): ({ [string]: any }) -> Insta
 					self.Children = v
 					AddChildren(self, v)
 				elseif i == "Parent" then
-					self.Object.Parent = (typeof(v) == "table" and rawget(v, "Object")) or v
+					self.Object.Parent = (typeof(v) == "table" and v.Object) or v
 				elseif i == "class" then
 					rawget(self, "Class")(v)
 				elseif i == "style" then
