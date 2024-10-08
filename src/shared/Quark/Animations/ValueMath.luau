@@ -137,7 +137,7 @@ local function add(a, b)
 	if aType == "number" then
 		return a + b
 	elseif aType == "Color3" then
-		return Color3.new(math.clamp(a.R + b.R, 0, 1), math.clamp(a.G + b.G, 0, 1), math.clamp(a.B + b.B, 0, 1))
+		return Color3.new(a.R + b.R, a.G + b.G, a.B + b.B)
 	elseif aType == "Vector2" then
 		return a + b
 	elseif aType == "Vector3" then
@@ -154,7 +154,7 @@ local function add(a, b)
 end
 
 return {
-    Lerp = lerp,
-    Multiply = multiply,
-    Add = add
+	Lerp = lerp,
+	Multiply = multiply,
+	Add = add,
 }

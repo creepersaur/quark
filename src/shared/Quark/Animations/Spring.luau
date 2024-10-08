@@ -22,14 +22,14 @@ function SpringModule.new(start: any, target: any, elasticity: number?, stiffnes
 		Connections = {},
 		PlayConnection = nil,
 		AssignedProperties = {},
-        _is_spring = true
+		_is_spring = true,
 	}, Spring)
 
 	return self
 end
 
 function Spring:Play()
-    self:Pause()
+	self:Pause()
 	local start = self.Start
 	if typeof(start) == "table" and start._is_state then
 		start = start()
@@ -102,6 +102,11 @@ function Spring:Update(dt)
 	)
 	self.Velocity(ValueMath.Multiply(self.Velocity(), stiffness))
 	self.Value(ValueMath.Add(self.Value(), self.Velocity()))
+
+	if typeof(self.Value()) == "Color3" then
+		local color = self.Value()
+		self.Value(Color3.new(math.clamp(color.R, 0, 1), math.clamp(color.G, 0, 1), math.clamp(color.B, 0, 1)))
+	end
 
 	return self
 end
