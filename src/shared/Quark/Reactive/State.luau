@@ -1,5 +1,7 @@
 local Signal = require(script.Parent.Signal)
-local module = {}
+local module = {
+	Created = {}
+}
 
 export type State<T> = {
 	value: T,
@@ -42,7 +44,9 @@ function module.new<T>(default: T, strict: boolean?): State<T>
 	end
 
 	function self.connect(func): Signal.Signal
-		return Signal.new(self, func)
+		local connection = Signal.new(self, func)
+		table.insert(module.Created, connection)
+		return connection
 	end
 
 	return self

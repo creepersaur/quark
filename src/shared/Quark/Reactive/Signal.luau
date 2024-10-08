@@ -1,4 +1,6 @@
-local module = {}
+local module = {
+	Created = {}
+}
 
 type State<T> = {
 	value: T,
@@ -44,6 +46,8 @@ function module.new<T>(state:  | { State<T> }, func: (value: any) -> ()): Signal
 			state.connections[self.id] = func
 		end
 	end
+
+	table.insert(module.Created, self)
 
 	return self
 end
