@@ -35,7 +35,7 @@ return {
 		New "TextButton"
 			{
 				Parent = props.target,
-				Size = size_spring,
+				Size = size_spring:Play(),
 			}
 			-- Events
 			{
