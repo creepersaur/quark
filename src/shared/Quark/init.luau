@@ -10,7 +10,8 @@ Quark.New = New.New
 local Animations = require(script.Animations)
 Quark.Animations = Animations
 
-local StyleSheet = require(script.Styles)
+local Styles = require(script.Styles)
+local StyleSheet = Styles.StyleSheet
 Quark.StyleSheet = StyleSheet.new
 Quark.GetStyle = StyleSheet.GetStyle
 Quark.Class = StyleSheet.Class
@@ -19,5 +20,7 @@ local Cleanup = require(script.Components.Cleanup)
 Quark.Cleanup = Cleanup[1]
 Cleanup[2](New.Created, Animations._Created)
 
+-- TYPES
 export type Quark = typeof(Quark)
+
 return Quark
