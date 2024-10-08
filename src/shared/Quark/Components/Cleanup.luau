@@ -1,19 +1,26 @@
-local Created
+local Created = {}
 
 local Cleanup = function()
-    for _,v in Created do
-        if v:IsA("Instance") then
-            v:Destroy()
-        else
-            v:Disconnect()
+    for _,list in Created do
+        for _, v in list do
+			if typeof(v) == "Instance" then
+				v:Destroy()
+			elseif typeof(v) == "table" then
+				if v._is_spring then
+					v:DisconnectAll()
+				elseif v._is_signal then
+					v:Disconnect()
+				end
+			else
+				v:Disconnect()
+			end
         end
     end
 end
 
-local SetCreated = function(c: {}, a: {})
-    Created = c
-    for _, v in a do
-        table.insert(Created, a)
+local SetCreated = function(...)
+    for _, v in {...} do
+		table.insert(Created, v)
     end
 end
 

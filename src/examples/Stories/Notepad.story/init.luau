@@ -6,6 +6,8 @@ local New = Quark.New
 local NewNote = require(script.NewNote)
 local NoteHolder = require(script.NoteHolder)
 
+-- Slightly more advanced, I suggest you look into `Button_ToolTip.story` first.
+
 local controls = {
 	Title = "Hello World",
 }

@@ -85,13 +85,22 @@ function Spring:Update(dt)
 		target = target()
 	end
 
+	local elasticity = self.Elasticity
+	if typeof(elasticity) == "table" and elasticity._is_state then
+		elasticity = elasticity()
+	end
+	local stiffness = self.Stiffness
+	if typeof(stiffness) == "table" and stiffness._is_state then
+		stiffness = stiffness()
+	end
+
 	self.Velocity(
 		ValueMath.Add(
 			self.Velocity(),
-			ValueMath.Multiply(ValueMath.Add(target, ValueMath.Multiply(self.Value(), -1)), self.Elasticity * dt * 60)
+			ValueMath.Multiply(ValueMath.Add(target, ValueMath.Multiply(self.Value(), -1)), elasticity * dt * 60)
 		)
 	)
-	self.Velocity(ValueMath.Multiply(self.Velocity(), self.Stiffness))
+	self.Velocity(ValueMath.Multiply(self.Velocity(), stiffness))
 	self.Value(ValueMath.Add(self.Value(), self.Velocity()))
 
 	return self
@@ -117,8 +126,7 @@ function Spring:BindAndPlay(func: (value: any) -> ())
 	return self
 end
 
-function Spring:PlayAsProperty(Object: any, Property: string)
-	self:Play()
+function Spring:BindToProperty(Object: any, Property: string)
 	self:BindToUpdate(function(value)
 		Object[Property] = value
 	end)

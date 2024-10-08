@@ -139,9 +139,7 @@ local New = function(ClassName: string | Instance): ({ [string]: any }) -> Insta
 								self.Object[i] = value
 							end)
 						elseif v._is_spring then
-							v:BindAndPlay(function(value)
-								self.Object[i] = value
-							end)
+							v:BindToProperty(self.Object, i)
 						end
 					else
 						self.Object[i] = v

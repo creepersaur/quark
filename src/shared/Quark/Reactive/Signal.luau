@@ -32,6 +32,7 @@ function module.new<T>(state:  | { State<T> }, func: (value: any) -> ()): Signal
 	local self = setmetatable({
 		id = "signal_" .. math.random(0, 1000000),
 		state_object = state,
+		_is_signal = true,
 	}, Signal)
 
 	local state_object = state :: any

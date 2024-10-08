@@ -1,11 +1,13 @@
 local ReplicatedStorage = game:GetService "ReplicatedStorage"
 
 local Quark = require(ReplicatedStorage.Shared.Quark)
+local State = require(ReplicatedStorage.Shared.Quark.Reactive.State)
 local New = Quark.New
 
-return function(tool_text: string?)
+-- elements created by functions can take parameters
+-- Visible is a state that that tells the tooltip to show
+return function(tool_text: string?, Visible: State.State<number>)
     local text = tool_text or "ToolTip"
-    local Visible = Quark.State(0)
 
 	local Tip = New 'TextLabel' {
         Text = "",
@@ -36,5 +38,5 @@ return function(tool_text: string?)
 		Tip.Position = UDim2.fromScale(value * 1.1, 0.5)
 	end)
 
-	return Tip, Visible
+	return Tip
 end
