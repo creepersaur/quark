@@ -48,7 +48,7 @@ export type Spring<T> = {
     BindToRenderStep: (self: Spring<T>) -> RBXScriptConnection,
     BindToUpdate: (self: Spring<T>, func: (value: T) -> ()) -> Spring<T>,
     BindAndPlay: (self: Spring<T>, func: (value: T) -> ()) -> Spring<T>,
-    BindToProperty: (self: Spring<T>, Object: Instance | { [unknown]: unknown }, Property: string) -> Spring<T>
+    BindToProperty: (self: Spring<T>, Object: Instance | { [string]: unknown }, Property: string) -> Spring<T>
 }
 
 export type CanBeState<T> = T | State<T>
