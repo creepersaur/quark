@@ -7,10 +7,8 @@ local Reactive = {
 State.Created = Reactive.Created
 Signal.Created = Reactive.Created
 
-export type State<T> = State.State<T>
 Reactive.State = State.new
 
-export type Signal = Signal.Signal
 Reactive.Signal = Signal.new
 
 return Reactive

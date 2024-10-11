@@ -1,16 +1,7 @@
+local Types = require(script.Parent.Parent.Types)
+
 local module = {
 	Created = {}
-}
-
-type State<T> = {
-	value: T,
-	setLambda: (T) -> (),
-	connect: ((T) -> ()) -> (),
-	connections: { (value: any) -> () },
-}
-
-export type Signal = {
-	Disconnect: (any) -> (),
 }
 
 local Signal = {}
@@ -30,14 +21,14 @@ function Signal:Disconnect()
 	end
 end
 
-function module.new<T>(state:  | { State<T> }, func: (value: any) -> ()): Signal
+function module.new<T>(state:  | { Types.State<T> }, func: (value: T) -> ()): Types.Signal<T>
 	local self = setmetatable({
 		id = "signal_" .. math.random(0, 1000000),
 		state_object = state,
 		_is_signal = true,
 	}, Signal)
 
-	local state_object = state :: any
+	local state_object = state
 
 	if state_object._is_state then
 		state_object.connections[self.id] = func

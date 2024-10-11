@@ -1,3 +1,5 @@
+local Types = require(script.Parent.Parent.Types)
+
 local module = {
 	Created = {},
 	_class_id = "__class_",
@@ -19,16 +21,9 @@ local Style = {
 
 Style.__index = Style
 
-export type Style = {
-	ApplyRecursive: (obj: any) -> (),
-	ApplySingle: (obj: any) -> (),
-	Push: (name: string) -> (),
-	Properties: { [string]: { [string]: any } },
-}
-
 --[[ Create a new Style object ]]
 function module.new(name: string)
-	return function(Styles: { [string]: { [string]: any } }): Style
+	return function(Styles: { [string]: { [string]: any } }): Types.Style
 		local self = setmetatable({
 			Properties = Styles or {},
 		}, Style)

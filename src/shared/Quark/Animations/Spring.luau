@@ -1,5 +1,6 @@
 local RunService = game:GetService "RunService"
 
+local Types = require(script.Parent.Parent.Types)
 local Reactive = require(script.Parent.Parent.Reactive)
 local ValueMath = require(script.Parent.ValueMath)
 
@@ -10,7 +11,7 @@ local SpringModule = {
 local Spring = {}
 Spring.__index = Spring
 
-function SpringModule.new(start: any, target: any, elasticity: number?, stiffness: number?)
+function SpringModule.new<T>(start: Types.CanBeState<T>, target: Types.CanBeState<T>, elasticity: number?, stiffness: number?): Types.Spring<T>
 	local self = setmetatable({
 		Start = start or 0,
 		Value = Reactive.State(nil),
@@ -66,7 +67,7 @@ function Spring:Cancel()
 end
 
 function Spring:DisconnectAll()
-	for _, v: Reactive.Signal in self.Connections do
+	for _, v: Types.Signal in self.Connections do
 		v:Disconnect()
 	end
 

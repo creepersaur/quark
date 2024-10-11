@@ -21,6 +21,13 @@ Quark.Cleanup = Cleanup[1]
 Cleanup[2](New.Created, Animations._Created)
 
 -- TYPES
+local Types = require(script.Types)
+
 export type Quark = typeof(Quark)
+export type State<T> = Types.State<T>
+export type Signal<T = unknown> = Types.Signal<T>
+export type Style = Types.Style
+export type CanBeState<T> = Types.CanBeState<T>
+export type Spring<T> = Types.Spring<T>
 
 return Quark
