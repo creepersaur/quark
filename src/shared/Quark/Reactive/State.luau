@@ -1,7 +1,7 @@
 local Types = require(script.Parent.Parent.Types)
 local Signal = require(script.Parent.Signal)
 local module = {
-	Created = {}
+	Created = {},
 }
 
 function module.new<T>(default: T?, strict: boolean?): Types.State<T>
@@ -37,6 +37,21 @@ function module.new<T>(default: T?, strict: boolean?): Types.State<T>
 		local connection = Signal.new(self, func)
 		table.insert(module.Created, connection)
 		return connection
+	end
+
+	if typeof(default) == "function" then
+		local dependencies = {}
+		self.value = default(function(dependency: Types.State<any>)
+			table.insert(
+				dependencies,
+				dependency.connect(function(value)
+					self(default(function(d: Types.State<any>)
+						return d()
+					end))
+				end)
+			)
+			return dependency()
+		end)
 	end
 
 	return self
