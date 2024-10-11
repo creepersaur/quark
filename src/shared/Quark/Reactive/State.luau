@@ -4,7 +4,7 @@ local module = {
 	Created = {},
 }
 
-function module.new<T>(default: T?, strict: boolean?): Types.State<T>
+function module.new<T, R>(default: T? | (use: (Types.State<R>) -> R) -> T?, strict: boolean?): Types.State<T>
 	local self = setmetatable({
 		value = default,
 		strict = strict or false,
