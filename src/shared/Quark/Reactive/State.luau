@@ -1,20 +1,10 @@
+local Types = require(script.Parent.Parent.Types)
 local Signal = require(script.Parent.Signal)
 local module = {
 	Created = {}
 }
 
-export type State<T> = {
-	value: T,
-	setLambda: (T) -> (),
-	connect: ((T) -> ()) -> (),
-	connections: { (value: any) -> () },
-}
-
-type Signal = {
-	Disconnect: (any) -> (),
-}
-
-function module.new<T>(default: T, strict: boolean?): State<T>
+function module.new<T>(default: T, strict: boolean?): Types.State<T>
 	local self = setmetatable({
 		value = default,
 		strict = strict or false,

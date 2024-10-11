@@ -1,12 +1,11 @@
 local ReplicatedStorage = game:GetService "ReplicatedStorage"
 
 local Quark = require(ReplicatedStorage.Shared.Quark)
-local State = require(ReplicatedStorage.Shared.Quark.Reactive.State)
 local New = Quark.New
 
 -- elements created by functions can take parameters
 -- Visible is a state that that tells the tooltip to show
-return function(tool_text: string?, Visible: State.State<number>)
+return function(tool_text: string?, Visible: Quark.State<number>)
     local text = tool_text or "ToolTip"
 
 	local Tip = New 'TextLabel' {
