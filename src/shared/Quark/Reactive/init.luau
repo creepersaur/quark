@@ -8,7 +8,6 @@ State.Created = Reactive.Created
 Signal.Created = Reactive.Created
 
 Reactive.State = State.new
-
 Reactive.Signal = Signal.new
 
 return Reactive

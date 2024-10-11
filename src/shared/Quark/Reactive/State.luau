@@ -40,10 +40,9 @@ function module.new<T>(default: T?, strict: boolean?): Types.State<T>
 	end
 
 	if typeof(default) == "function" then
-		local dependencies = {}
 		self.value = default(function(dependency: Types.State<any>)
 			table.insert(
-				dependencies,
+				module.Created,
 				dependency.connect(function(value)
 					self(default(function(d: Types.State<any>)
 						return d()

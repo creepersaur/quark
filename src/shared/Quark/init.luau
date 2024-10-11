@@ -18,7 +18,7 @@ Quark.Class = StyleSheet.Class
 
 local Cleanup = require(script.Components.Cleanup)
 Quark.Cleanup = Cleanup[1]
-Cleanup[2](New.Created, Animations._Created)
+Cleanup[2](New.Created, Animations._Created, Reactive.Created)
 
 -- TYPES
 local Types = require(script.Types)
