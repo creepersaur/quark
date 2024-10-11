@@ -1,4 +1,4 @@
-![Quark](https://github.com/user-attachments/assets/cf6c359d-5ea0-4100-82c3-eab6ad8cca9c)
+![Quark](https://github.com/user-attachments/assets/d3ccb9e5-714c-450e-86c8-9ea9f7fc13c8)
 *A simple and easy to use reactive UI library for Roblox.*
 
 It's great for making UI quickly and easily. Still in development, bugs may occur. Especially useful in Stories/Storybooks, with UI Labs. Feel free to make a github Issue on it for bugs/improvements.
