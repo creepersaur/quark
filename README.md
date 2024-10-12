@@ -30,7 +30,7 @@ Check out the [Docs](./docs/) for more info. It also serves as a tutorial for be
 
 Examples for stories are given in the [examples](./src/examples/) folder. For smaller examples and info, check Documentation above.
 
-New:
+### New:
 
 ```lua
 local New = Quark.New
@@ -57,7 +57,7 @@ New "Frame" {
 }
 ```
 
-States:
+### States:
 
 ```lua
 local State = Quark.State
