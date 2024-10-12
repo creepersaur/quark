@@ -1,6 +1,7 @@
 <div align="center">
 
 <img width="400" alt="Quark" src="https://github.com/user-attachments/assets/2cc3f03e-4328-4106-9e38-70f731548862">
+
 </div>
 
 _A simple and easy to use reactive UI library for Roblox._
@@ -30,7 +31,7 @@ Check out the [Docs](./docs/) for more info. It also serves as a tutorial for be
 
 Examples for stories are given in the [examples](./src/examples/) folder. For smaller examples and info, check Documentation above.
 
-### New:
+## New:
 
 ```lua
 local New = Quark.New
@@ -57,7 +58,7 @@ New "Frame" {
 }
 ```
 
-### States:
+## States:
 
 ```lua
 local State = Quark.State
