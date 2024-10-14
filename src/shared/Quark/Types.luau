@@ -25,6 +25,12 @@ export type Style = {
 	Push: (self: Style, name: string) -> (Properties: { [string]: any }) -> (),
 }
 
+export type New = {
+	PushChildren: ({ any }) -> (),
+	Push: (child: any) -> (),
+	PushClass: (class: string) -> (),
+}
+
 export type Spring<T> = {
     Start: CanBeState<T>,
     Value: State<T?>,
