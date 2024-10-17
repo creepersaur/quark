@@ -1,6 +1,6 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ReplicatedStorage = game:GetService "ReplicatedStorage"
 
-local Types = require(ReplicatedStorage.Shared.Quark.Types)
+local Types = require(script.Parent.Parent.Types)
 local Reactive = require(script.Parent.Parent.Reactive)
 local Created = {}
 
@@ -50,10 +50,10 @@ local function AddChildren(self, list)
 end
 
 local New = function(ClassName: string | Instance): ({ [string]: any }) -> Instance & Types.New
-    local obj: any = ClassName
-    if typeof(obj) == "string" then
-        obj = Instance.new(ClassName::string)
-    end
+	local obj: any = ClassName
+	if typeof(obj) == "string" then
+		obj = Instance.new(ClassName :: string)
+	end
 
 	local self = {
 		Object = obj,
@@ -98,12 +98,21 @@ local New = function(ClassName: string | Instance): ({ [string]: any }) -> Insta
 	end
 
 	self = setmetatable(self, {
-		__index = function(self, idx)
-			local success, data = pcall(function()
-				return self.Object[idx]
+		__index = function(self, key)
+			local object = rawget(self, "Object")
+			local sucess, obj_value = pcall(function()
+				return object[key]
 			end)
+			local value = (sucess and obj_value) or rawget(self, key)
 
-			return (success and data) or rawget(self, idx)
+			if type(value) == "function" then
+				-- Wrap the function so it can be called with ':'
+				return function(_, ...)
+					return value(object, ...)
+				end
+			end
+
+			return value
 		end,
 		__newindex = function(self, idx, value)
 			self.Object[idx] = value

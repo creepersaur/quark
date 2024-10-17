@@ -42,6 +42,6 @@ export type Signal<T = unknown> = Types.Signal<T>
 export type Style = Types.Style
 export type CanBeState<T> = Types.CanBeState<T>
 export type Spring<T> = Types.Spring<T>
-export type New = Types.New
+export type New = Types.New & Instance
 
 return Quark
