@@ -1,5 +1,3 @@
-local ReplicatedStorage = game:GetService "ReplicatedStorage"
-
 local Types = require(script.Parent.Parent.Types)
 local Reactive = require(script.Parent.Parent.Reactive)
 local Created = {}
