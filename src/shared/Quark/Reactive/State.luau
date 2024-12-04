@@ -11,15 +11,16 @@ function module.new<T>(default: T? | (use: <R>(Types.State<R>) -> R) -> T?, stri
 		connections = {},
 		_is_state = true,
 	}, {
-		__call = function(self, new_value: T)
-			if new_value then
+		__call = function(self, new_value: T, force: boolean?)
+			if force or new_value ~= nil then
 				if self.strict and typeof(default) ~= typeof(new_value) then
 					error(`State does not accept type: '{typeof(new_value)}' [Strict type is enabled!]`)
 				end
-				self.value = new_value
 
+				local old_value = self.value
+				self.value = new_value
 				for _, v in self.connections do
-					v(self.value)
+					v(self.value, old_value)
 				end
 			end
 
@@ -27,9 +28,9 @@ function module.new<T>(default: T? | (use: <R>(Types.State<R>) -> R) -> T?, stri
 		end,
 	}) :: any
 
-	function self.setLambda(value: T)
+	function self.setLambda(value: T, force: boolean?)
 		return function()
-			self(value)
+			self(value, force)
 		end
 	end
 
@@ -43,8 +44,8 @@ function module.new<T>(default: T? | (use: <R>(Types.State<R>) -> R) -> T?, stri
 		self.value = default(function(dependency: Types.State<any>)
 			table.insert(
 				module.Created,
-				dependency.connect(function(value)
-					self(default(function(d: Types.State<any>)
+				dependency.connect(function(new)
+					self(default(function(d)
 						return d()
 					end))
 				end)

@@ -21,7 +21,7 @@ function Signal:Disconnect()
 	end
 end
 
-function module.new<T>(state:  | { Types.State<T> }, func: (value: T) -> ()): Types.Signal<T>
+function module.new<T>(state:  | { Types.State<T> }, func: (value: T, old: T) -> ()): Types.Signal<T>
 	local self = setmetatable({
 		id = "signal_" .. math.random(0, 1000000),
 		state_object = state,
