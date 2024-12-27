@@ -42,17 +42,19 @@ function Style:ApplyRecursive(obj: any)
 		return rawget(obj, "Children")
 	end)
 
-    if not child_table then return end
+	if not child_table then
+		return
+	end
 
-    for _, v in child_table do
-        if v[1] then
-            for _, p in v do
+	for _, v in child_table do
+		if v[1] then
+			for _, p in v do
 				self:ApplyRecursive(p)
-            end
-        else
+			end
+		else
 			self:ApplyRecursive(v)
-        end
-    end
+		end
+	end
 end
 
 --[[ Apply the style to the object. ]]
@@ -70,7 +72,9 @@ function Style:ApplySingle(obj: any)
 
 	local split = class():split " "
 	for _, v in split do
-        if #v < 1 then continue end
+		if #v < 1 then
+			continue
+		end
 
 		style_properties = self.Properties[`{module._class_id}{v}`]
 		if style_properties then

@@ -131,10 +131,16 @@ local New = function(ClassName: string | Instance): ({ [string]: any }) -> Insta
 				elseif i == "style" then
 					rawset(self, "Style", v)
 				elseif isSignal(self.Object, i) then
-					assert(typeof(v) == "function", "RBXScriptSignal requires a function for connection.")
-					self.Object[i]:Connect(function(...)
-						v(self, ...)
-					end)
+					assert(
+						typeof(v) == "function" or typeof(v) == "table" and v._is_state,
+						"RBXScriptSignal requires a function for connection."
+					)
+					table.insert(
+						Created,
+						self.Object[i]:Connect(function(...)
+							v(self, ...)
+						end)
+					)
 				else
 					if typeof(v) == "table" then
 						if v._is_state then

@@ -1,6 +1,9 @@
 local StyleSheet = require(script.StyleSheet)
-local Styles = {}
+local Styles = {
+	Created = {}
+}
 
 Styles.StyleSheet = StyleSheet
+Styles.Created = StyleSheet.Created
 
 return Styles

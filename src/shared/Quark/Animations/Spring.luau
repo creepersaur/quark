@@ -11,7 +11,12 @@ local SpringModule = {
 local Spring = {}
 Spring.__index = Spring
 
-function SpringModule.new<T>(start: Types.CanBeState<T>, target: Types.CanBeState<T>, elasticity: number?, stiffness: number?): Types.Spring<T>
+function SpringModule.new<T>(
+	start: Types.CanBeState<T>,
+	target: Types.CanBeState<T>,
+	elasticity: number?,
+	stiffness: number?
+): Types.Spring<T>
 	local self = setmetatable({
 		Start = start or 0,
 		Value = Reactive.State(nil),
@@ -95,14 +100,24 @@ function Spring:Update(dt)
 		stiffness = stiffness()
 	end
 
+	local SpeedMultiplier = 22
+
+	-- Update velocity based on spring force
 	self.Velocity(
 		ValueMath.Add(
 			self.Velocity(),
-			ValueMath.Multiply(ValueMath.Add(target, ValueMath.Multiply(self.Value(), -1)), elasticity * dt * 60)
+			ValueMath.Multiply(
+				ValueMath.Add(target, ValueMath.Multiply(self.Value(), -1)),
+				elasticity * 3 * dt * SpeedMultiplier
+			)
 		)
 	)
-	self.Velocity(ValueMath.Multiply(self.Velocity(), stiffness))
-	self.Value(ValueMath.Add(self.Value(), self.Velocity()))
+
+	-- Apply stiffness damping (frame-rate-independent)
+	self.Velocity(ValueMath.Multiply(self.Velocity(), math.pow(stiffness, dt * SpeedMultiplier)))
+
+	-- Update the spring value based on velocity
+	self.Value(ValueMath.Add(self.Value(), ValueMath.Multiply(self.Velocity(), dt * SpeedMultiplier)))
 
 	if typeof(self.Value()) == "Color3" then
 		local color = self.Value()
@@ -113,9 +128,12 @@ function Spring:Update(dt)
 end
 
 function Spring:BindToRenderStep()
-	return RunService.RenderStepped:Connect(function(dt: number)
+	local x = RunService.RenderStepped:Connect(function(dt: number)
 		self:Update(dt)
 	end)
+
+	table.insert(SpringModule.Created, x)
+	return x
 end
 
 function Spring:BindToUpdate(func: (value: any) -> ())
