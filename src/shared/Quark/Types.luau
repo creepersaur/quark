@@ -1,3 +1,4 @@
+local quicklist = require(script.Parent.quicklist)
 type StateMethods<T> = {
 	__call: (self: State<T>, T?) -> T,
 	__index: StateMethods<T>,
@@ -67,4 +68,18 @@ export type Entries = (
 
 export type CanBeState<T> = T | State<T>
 
-return { x = 10 }
+export type Quark = {
+	State: State<any>,
+	Signal: Signal<any>,
+	StyleSheet: Style,
+	CanBeState: CanBeState<any>,
+	Spring: Spring<any>,
+	New: New & Instance,
+	Entries: Entries,
+	QuickList: quicklist.QuickList,
+	Class: (name: string) -> string,
+	GetStyle: (name: string) -> {[string]: any},
+	Cleanup: () -> (),
+}
+
+return {}
