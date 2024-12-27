@@ -22,7 +22,7 @@ If you want a more "stable" release, download the `Quark.rbxm` file from the [Re
 Check out the [Docs](./docs/) for more info. It also serves as a tutorial for beginners.
 
 1. [Getting Started](./docs/1.GettingStarted.md)
-2. [New](./docs/2.GettingStarted.md)
+2. [New](./docs/2.New.md)
 3. [Reactivity](./docs/3.Reactivity.md)
 4. [Animations](./docs/4.Animations.md)
 5. [StyleSheets](./docs/5.StyleSheets.md)
