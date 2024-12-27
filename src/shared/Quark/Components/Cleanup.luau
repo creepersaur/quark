@@ -1,4 +1,5 @@
 local Created = {}
+local Scopes = {}
 
 local Cleanup = function()
 	for _, list in Created do
@@ -12,9 +13,15 @@ local Cleanup = function()
 					v:Disconnect()
 				end
 			else
-				v:Disconnect()
+				pcall(function()
+					v:Disconnect()
+				end)
 			end
 		end
+	end
+
+	for _, v in Scopes do
+		v.Cleanup()
 	end
 end
 
@@ -24,7 +31,12 @@ local SetCreated = function(...)
 	end
 end
 
+local SetScopes = function(ScopeList)
+	Scopes = ScopeList
+end
+
 return {
 	Cleanup,
 	SetCreated,
+	SetScopes,
 }

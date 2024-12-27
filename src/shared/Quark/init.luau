@@ -21,10 +21,16 @@ Quark.StyleSheet = StyleSheet.new
 Quark.GetStyle = StyleSheet.GetStyle
 Quark.Class = StyleSheet.Class
 
+--[[ SCOPES ]]
+local Scope = require(script.Components.Scope)
+Scope.QuarkModule = Quark
+Quark.Scope = Scope.new
+
 --[[ CLEANUP ]]
 local Cleanup = require(script.Components.Cleanup)
 Quark.Cleanup = Cleanup[1]
 Cleanup[2](New.Created, Animations._Created, Reactive.Created, Styles.Created)
+Cleanup[3](Scope.ScopeList)
 
 --[[ QUICKLIST ]]
 local QuickList = require(script.quicklist)
