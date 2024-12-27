@@ -40,12 +40,12 @@ Examples for stories are given in the [examples](./src/examples/) folder. For sm
 local New = Quark.New
 
 New "Frame" {
-	-- Set properties
+    -- Set properties
     Parent = script.parent,
     Size = UDim2.fromOffset(100, 100),
     BackgroundColor3 = Color3.new(1,0,0),
 
-	-- Set children
+    -- Set children
     children = {
         New "TextButton" {
             Size = UDim2.fromOffset(75, 30)
@@ -54,10 +54,10 @@ New "Frame" {
 }
 -- EVENTS
 {
-	-- Events are function callbacks
-	MouseEnter = function(self, ...)
-		
-	end,
+    -- Events are function callbacks
+    MouseEnter = function(self, ...)
+        
+    end,
 }
 ```
 
