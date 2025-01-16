@@ -45,7 +45,6 @@ export type Spring<T> = {
 	Stiffness: number,
 	Connections: { (T) -> () },
 	PlayConnection: RBXScriptConnection?,
-	AssignedProperties: {},
 	_is_spring: true,
 
 	Play: (self: Spring<T>) -> Spring<T>,
@@ -59,6 +58,33 @@ export type Spring<T> = {
 	BindToUpdate: (self: Spring<T>, func: (value: T) -> ()) -> Spring<T>,
 	BindAndPlay: (self: Spring<T>, func: (value: T) -> ()) -> Spring<T>,
 	BindToProperty: (self: Spring<T>, Object: Instance | { [string]: unknown }, Property: string) -> Spring<T>,
+}
+
+export type Tween<T> = {
+	Start: CanBeState<T>,
+	Value: State<T?>,
+	Target: CanBeState<T>,
+	Timer: number,
+	Info: TweenInfo,
+	Repeated: number,
+	Reversed: boolean,
+	Completed: boolean,
+	FixedStart: boolean,
+	Connections: { (T) -> () },
+	PlayConnection: RBXScriptConnection?,
+	_is_tween: true,
+
+	Play: (self: Tween<T>) -> Tween<T>,
+	Restart: (self: Tween<T>) -> Tween<T>,
+	Pause: (self: Tween<T>) -> Tween<T>,
+	Cancel: (self: Tween<T>) -> Tween<T>,
+	DisconnectAll: (self: Tween<T>) -> Tween<T>,
+	SetValue: (self: Tween<T>, value: T) -> Tween<T>,
+	Update: (self: Tween<T>, dt: number) -> Tween<T>,
+	BindToRenderStep: (self: Tween<T>) -> RBXScriptConnection,
+	BindToUpdate: (self: Tween<T>, func: (value: T) -> ()) -> Tween<T>,
+	BindAndPlay: (self: Tween<T>, func: (value: T) -> ()) -> Tween<T>,
+	BindToProperty: (self: Tween<T>, Object: Instance | { [string]: unknown }, Property: string) -> Tween<T>,
 }
 
 export type Entries = (

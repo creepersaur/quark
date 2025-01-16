@@ -148,7 +148,7 @@ local New = function(ClassName: string | Instance): ({ [string]: any }) -> Insta
 							v.connect(function(value)
 								self.Object[i] = value
 							end)
-						elseif v._is_spring then
+						elseif v._is_spring or v._is_tween then
 							v:BindToProperty(self.Object, i)
 						end
 					else

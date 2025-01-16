@@ -27,7 +27,6 @@ function SpringModule.new<T>(
 		Stiffness = stiffness or 0.7,
 		Connections = {},
 		PlayConnection = nil,
-		AssignedProperties = {},
 		_is_spring = true,
 	}, Spring)
 
