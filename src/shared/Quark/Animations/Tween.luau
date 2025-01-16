@@ -45,6 +45,7 @@ function Tween:Play()
 		self.Value(start)
 	end
 	self.PlayConnection = self:BindToRenderStep()
+	table.insert(TweenModule.Created, self.Connections)
 	table.insert(TweenModule.Created, self.PlayConnection)
 
 	return self
@@ -74,7 +75,9 @@ end
 
 function Tween:DisconnectAll()
 	for _, v: Types.Signal in self.Connections do
-		v:Disconnect()
+		if v then
+			v:Disconnect()
+		end
 	end
 
 	return self

@@ -1,9 +1,5 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local Quark = require(ReplicatedStorage.Shared.Quark)
-local New = Quark.New
-
-return function()
+return function(Scope)
+	local New = Scope.New
     local Main = New "Frame" {
         Size = UDim2.new(1, 0, 0, 30),
         BackgroundTransparency = 1

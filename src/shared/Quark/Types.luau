@@ -104,6 +104,10 @@ export type Quark = {
 	Entries: Entries,
 	QuickList: quicklist.QuickList,
 	Class: (name: string) -> string,
+	Animations: {
+		Spring: Spring<any>,
+		Tween: Spring<any>,
+	},
 	GetStyle: (name: string) -> {[string]: any},
 	Cleanup: () -> (),
 }

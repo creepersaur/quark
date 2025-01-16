@@ -1,15 +1,13 @@
-local ReplicatedStorage = game:GetService "ReplicatedStorage"
+return function(Scope, text: string?)
+	local New = Scope.New
+	local Spring = Scope.Animations.Spring
 
-local Quark = require(ReplicatedStorage.Shared.Quark)
-local New = Quark.New
-
-return function(text: string?)
 	local Main = New "Frame" {
 		Size = UDim2.new(1, -10, 0, 50),
 		BackgroundTransparency = 1,
 	}
 
-	local Hovering = Quark.State(0)
+	local Hovering = Scope.State(0)
     local hover_spring = nil
 
 	local Note = New "TextButton" {
@@ -53,16 +51,16 @@ return function(text: string?)
 	}
 
 	coroutine.wrap(function()
-		local InitAnim = Quark.Animations.Spring(0, 1, 0.2, 0.6)
+		local InitAnim = Spring(0, 1, 0.5, 0.4)
         InitAnim:BindAndPlay(function(value: number)
 			Note.Size = UDim2.fromScale(1, value)
 		end)
 
-        task.wait(0.5)
+        task.wait(0.2)
         InitAnim:DisconnectAll()
 
-        hover_spring = Quark.Animations.Spring(0, Hovering):BindAndPlay(function(value)
-            Note.Size = UDim2.fromScale(1 + value/10, 1 + value/10)
+        hover_spring = Spring(0, Hovering, 0.5, 0.5):BindAndPlay(function(value)
+            Note.Size = UDim2.fromScale(1 + value/15, 1 + value/10)
             Note.BackgroundTransparency = 0.9 - value / 10
         end)
 	end)()

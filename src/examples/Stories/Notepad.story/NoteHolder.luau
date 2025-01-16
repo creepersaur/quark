@@ -1,10 +1,7 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
 local Note = require(script.Parent.Note)
-local Quark = require(ReplicatedStorage.Shared.Quark)
-local New = Quark.New
 
-return function()
+return function(Scope)
+	local New = Scope.New
     local Main = New "Frame" {
         Size = UDim2.fromScale(1, 1),
         BackgroundColor3 = Color3.new(),
@@ -22,8 +19,9 @@ return function()
         }
     }
 
+	local NoteScope = Scope.Scope()
     local function AddNote(text: string?)
-        local note = Note(text)
+        local note = Note(NoteScope, text)
         Main:Push(note)
     end
 

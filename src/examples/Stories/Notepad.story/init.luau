@@ -30,8 +30,9 @@ local story = function(props)
 		},
 	}
 
-	local NewNoteButton = NewNote()
-	local NoteHolder, AddNote = NoteHolder()
+	local NoteScope = Quark.Scope()
+	local NewNoteButton = NewNote(NoteScope)
+	local NoteHolder, AddNote = NoteHolder(NoteScope)
 
 	Background:PushChildren {
 		NewNoteButton,

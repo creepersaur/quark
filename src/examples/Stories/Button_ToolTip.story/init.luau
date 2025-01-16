@@ -21,11 +21,14 @@ return function(Parent)
 		},
 	}
 
+	-- Scope to hold all the buttons
+	local ButtonScope = Quark.Scope()
+
 	-- Push children to the Frame (table)
 	Frame:PushChildren {
-        Button("Continue", "Continue the game"),
-        Button("New Game", "Start a new Adventure"),
-        Button("Quit", "Commit die!"),
+        Button(ButtonScope, "Continue", "Continue the game"),
+        Button(ButtonScope, "New Game", "Start a new Adventure"),
+        Button(ButtonScope, "Quit", "Commit die!"),
     }
     
 	-- CLEANUP
