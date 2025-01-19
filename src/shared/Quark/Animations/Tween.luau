@@ -37,12 +37,14 @@ end
 
 function Tween:Play()
 	self:Pause()
+	self.Completed = false
 	local start = self.Start
 	if typeof(start) == "table" and start._is_state then
 		start = start()
 	end
 	if self.Value() == nil then
 		self.Value(start)
+		self.Timer = 0
 	end
 	self.PlayConnection = self:BindToRenderStep()
 	table.insert(TweenModule.Created, self.Connections)
@@ -167,6 +169,7 @@ end
 function Tween:Update(dt)
 	local delayTime = self.Reversed and 0 or self.Info.DelayTime
 	if self.Completed then
+		self:Pause()
 		return self
 	end
 
@@ -242,8 +245,8 @@ function Tween:BindToUpdate(func: (value: any) -> ())
 			if not self.FixedStart then
 				self.Start = table.clone(self.Value)
 			end
-			self.Completed = false
 			self.Timer = 0
+			Tween:Play()
 		end)
 		table.insert(self.Connections, target_signal)
 		table.insert(TweenModule.Created, target_signal)
