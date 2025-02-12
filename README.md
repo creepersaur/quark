@@ -24,11 +24,12 @@ Check out the [Docs](./docs/) for more info. It also serves as a tutorial for be
 1. [Getting Started](./docs/1.GettingStarted.md)
 2. [New](./docs/2.New.md)
 3. [Reactivity](./docs/3.Reactivity.md)
-4. [Animations](./docs/4.Animations.md)
-5. [StyleSheets](./docs/5.StyleSheets.md)
-6. [Stories](./docs/6.Stories.md)
-7. [Scopes](./docs/7.Scopes.md)
-8. [Premade UI](./docs/8.PremadeUI.md)
+4. [Animations/Springs](./docs/4.Animations.Springs.md)
+4. [Animations/Tweens](./docs/5.Animations.Tweens.md)
+5. [StyleSheets](./docs/6.StyleSheets.md)
+6. [Stories](./docs/7.Stories.md)
+7. [Scopes](./docs/8.Scopes.md)
+8. [Premade UI](./docs/9.PremadeUI.md)
 
 # Examples
 
