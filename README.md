@@ -15,7 +15,7 @@ It's adviced to put the Quark module in ReplicatedStorage.
 
 If you want the latest code update, just clone this repository. If you cloned this repo, you can use Rojo (or another linker) to build the place file (or use it without building).
 
-If you want a more "stable" release, download the `Quark.rbxm` file from the [Releases](github.com/creepersaur/Quark/Releases). (Releases are more stable.)
+If you want a more "stable" release, download the `Quark.rbxm` file from the [Releases](https://github.com/creepersaur/Quark/releases/latest). (Releases are more stable.)
 
 # Documentation
 
