@@ -1,5 +1,7 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local State = require(ReplicatedStorage.Shared.Quark.Reactive.State)
 local Types = require(script.Parent.Parent.Types)
-local Reactive = require(script.Parent.Parent.Reactive)
 local all_instances = require(script.Parent.all_instances)
 local Created = {}
 
@@ -49,9 +51,9 @@ local function AddChildren(self, list)
 end
 
 type INSTANCE_X = all_instances.ALL_INSTANCES
-type New = Types.New
+type New<T> = Types.New<T>
 
-function New(ClassName: Instance | INSTANCE_X | string): ({ [string]: any }) -> New
+function New<T>(ClassName: Instance | INSTANCE_X | string): T | ({ [string]: any }) -> New<T> & T
 	local obj: any = ClassName
 	if typeof(obj) == "string" then
 		obj = Instance.new(ClassName :: string)
@@ -62,7 +64,7 @@ function New(ClassName: Instance | INSTANCE_X | string): ({ [string]: any }) -> 
 		Children = {},
 		__id = "x" .. math.random(0, math.huge),
 		Style = nil,
-		Class = Reactive.State "",
+		Class = State.new "",
 		_is_new = true,
 	}
 
@@ -126,7 +128,7 @@ function New(ClassName: Instance | INSTANCE_X | string): ({ [string]: any }) -> 
 		__newindex = function(self, idx, value)
 			self.Object[idx] = value
 		end,
-		__call = function(self, Properties: { [string]: any }): Instance & Types.New
+		__call = function(self, Properties: { [string]: any }): New<T>
 			for i, v in Properties do
 				if i == "children" then
 					if v._is_state then

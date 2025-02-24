@@ -8,7 +8,7 @@ local Reactive = {
 State.Created = Reactive.Created
 Signal.Created = Reactive.Created
 Entries.Created = Reactive.Created
-Entries.Scope = (Reactive::any).Scope
+Entries.Reactive = Reactive
 
 Reactive.State = State.new
 Reactive.Signal = Signal.new

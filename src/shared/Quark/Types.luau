@@ -32,11 +32,11 @@ export type Style = {
 	Push: (self: Style, name: string) -> (Properties: { [string]: any }) -> (),
 }
 
-export type New = {
-	PushChildren: ({ New }) -> New,
-	Push: (child: New) -> New,
-	PushClass: (class: string) -> New,
-} & Instance & (() -> New)
+export type New<T> = {
+	PushChildren: ({ New<T> }) -> New<T>,
+	Push: (child: New<T>) -> New<T>,
+	PushClass: (class: string) -> New<T>,
+} & T & (properties: { [string]: any }) -> New<T> & T
 
 export type Spring<T> = {
 	Start: CanBeState<T>,
@@ -92,8 +92,8 @@ export type Tween<T> = {
 
 export type Entries = (
 	n: number | { unknown },
-	func: (i: number, v: any?) -> State<Instance | New>
-) -> { State<Instance | New> }
+	func: (i: number, v: any?) -> State<Instance | New<any>>
+) -> { State<Instance | New<any>> }
 
 export type CanBeState<T> = T | State<T>
 
@@ -107,6 +107,7 @@ export type Quark = {
 	Entries: Entries,
 	QuickList: <T>({ T } | quicklist.QuickList<T>) -> quicklist.QuickList<T>,
 	Class: (name: string) -> string,
+	New: <T>(ClassName: Instance | all_instances.ALL_INSTANCES | string) -> New<T> & T,
 	Animations: {
 		Spring: <T>(
 			start: CanBeState<T>,
@@ -118,6 +119,7 @@ export type Quark = {
 	},
 	GetStyle: (name: string) -> { [string]: any },
 	Cleanup: () -> (),
+	Scope: () -> Quark,
 }
 
 -- Quark.StyleSheet = StyleSheet.new
