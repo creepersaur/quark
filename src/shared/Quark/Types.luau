@@ -107,7 +107,7 @@ export type Quark = {
 	Entries: Entries,
 	QuickList: <T>({ T } | quicklist.QuickList<T>) -> quicklist.QuickList<T>,
 	Class: (name: string) -> string,
-	New: <T>(ClassName: Instance | all_instances.ALL_INSTANCES | string) -> New<T> & T,
+	New: <T>(ClassName: Instance | all_instances.ALL_INSTANCES) -> New<T> & T & Instance,
 	Animations: {
 		Spring: <T>(
 			start: CanBeState<T>,

@@ -53,10 +53,10 @@ end
 type INSTANCE_X = all_instances.ALL_INSTANCES
 type New<T> = Types.New<T>
 
-function New<T>(ClassName: Instance | INSTANCE_X | string): T | ({ [string]: any }) -> New<T> & T
+function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any }) -> New<T> & T & Instance
 	local obj: any = ClassName
 	if typeof(obj) == "string" then
-		obj = Instance.new(ClassName :: string)
+		obj = Instance.new((ClassName :: any) :: string)
 	end
 
 	local self = {
