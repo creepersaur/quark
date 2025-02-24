@@ -1,3 +1,6 @@
+local ReplicatedStorage = game:GetService "ReplicatedStorage"
+
+local all_instances = require(ReplicatedStorage.Shared.Quark.Components.all_instances)
 local quicklist = require(script.Parent.quicklist)
 type StateMethods<T> = {
 	__call: (self: State<T>, T?) -> T,
@@ -30,10 +33,10 @@ export type Style = {
 }
 
 export type New = {
-	PushChildren: ({ any }) -> (),
-	Push: (child: any) -> (),
-	PushClass: (class: string) -> (),
-}
+	PushChildren: ({ New }) -> New,
+	Push: (child: New) -> New,
+	PushClass: (class: string) -> New,
+} & Instance & (() -> New)
 
 export type Spring<T> = {
 	Start: CanBeState<T>,
@@ -95,21 +98,33 @@ export type Entries = (
 export type CanBeState<T> = T | State<T>
 
 export type Quark = {
-	State: State<any>,
-	Signal: Signal<any>,
-	StyleSheet: Style,
+	State: <T>(default: T? | (use: <R>(State<R>) -> R) -> T?, strict: boolean?) -> State<T>,
+	Signal: <T>(state: | { State<T> }, func: (value: T, old: T) -> ()) -> Signal<T>,
+	StyleSheet: (name: string) -> (Styles: { [string]: { [string]: any } }) -> Style,
 	CanBeState: CanBeState<any>,
 	Spring: Spring<any>,
-	New: New & Instance,
+	Tween: Tween<any>,
 	Entries: Entries,
-	QuickList: quicklist.QuickList,
+	QuickList: <T>({ T } | quicklist.QuickList<T>) -> quicklist.QuickList<T>,
 	Class: (name: string) -> string,
 	Animations: {
-		Spring: Spring<any>,
-		Tween: Spring<any>,
+		Spring: <T>(
+			start: CanBeState<T>,
+			target: CanBeState<T>,
+			elasticity: number?,
+			stiffness: number?
+		) -> Spring<T>,
+		Tween: <T>(start: CanBeState<T>, target: CanBeState<T>, Info: TweenInfo, fixedStart: boolean?) -> Tween<T>,
 	},
-	GetStyle: (name: string) -> {[string]: any},
+	GetStyle: (name: string) -> { [string]: any },
 	Cleanup: () -> (),
 }
+
+-- Quark.StyleSheet = StyleSheet.new
+-- Quark.GetStyle = StyleSheet.GetStyle
+-- Quark.Class = StyleSheet.Class
+
+-- name: string)
+-- 	return function(Styles: { [string]: { [string]: any } }): Types.Style
 
 return {}

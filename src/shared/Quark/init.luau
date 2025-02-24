@@ -52,4 +52,5 @@ export type New = Types.New & Instance
 export type Entries = Types.Entries
 export type QuickList<T> = QuickList.QuickList<T>
 
-return Quark
+type FixedQuark = Quark & typeof(Quark)
+return Quark::FixedQuark

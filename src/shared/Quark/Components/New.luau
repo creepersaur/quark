@@ -49,8 +49,9 @@ local function AddChildren(self, list)
 end
 
 type INSTANCE_X = all_instances.ALL_INSTANCES
+type New = Types.New
 
-function New(ClassName: Instance | INSTANCE_X | string): ({ [string]: any }) -> Instance & Types.New
+function New(ClassName: Instance | INSTANCE_X | string): ({ [string]: any }) -> New
 	local obj: any = ClassName
 	if typeof(obj) == "string" then
 		obj = Instance.new(ClassName :: string)
@@ -81,6 +82,8 @@ function New(ClassName: Instance | INSTANCE_X | string): ({ [string]: any }) -> 
 			AddChildren(self, v)
 		end
 		table.insert(self.Children, children)
+
+		return self
 	end
 
 	function self:Push(child: any)
@@ -89,10 +92,14 @@ function New(ClassName: Instance | INSTANCE_X | string): ({ [string]: any }) -> 
 		end
 
 		AddChildren(self, child)
+
+		return self
 	end
 
 	function self:PushClass(class: string)
 		self.Class(`{self.Class()} {class}`)
+
+		return self
 	end
 
 	function self.GetObject(self)
