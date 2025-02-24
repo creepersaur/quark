@@ -1,5 +1,6 @@
 local Types = require(script.Parent.Parent.Types)
 local Reactive = require(script.Parent.Parent.Reactive)
+local all_instances = require(script.Parent.all_instances)
 local Created = {}
 
 local function AddChildren(self, list)
@@ -47,7 +48,9 @@ local function AddChildren(self, list)
 	end
 end
 
-local New = function(ClassName: string | Instance): ({ [string]: any }) -> Instance & Types.New
+type INSTANCE_X = all_instances.ALL_INSTANCES
+
+function New(ClassName: Instance | INSTANCE_X | string): ({ [string]: any }) -> Instance & Types.New
 	local obj: any = ClassName
 	if typeof(obj) == "string" then
 		obj = Instance.new(ClassName :: string)
@@ -56,6 +59,7 @@ local New = function(ClassName: string | Instance): ({ [string]: any }) -> Insta
 	local self = {
 		Object = obj,
 		Children = {},
+		__id = "x" .. math.random(0, math.huge),
 		Style = nil,
 		Class = Reactive.State "",
 		_is_new = true,

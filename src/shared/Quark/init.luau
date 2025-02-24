@@ -1,7 +1,14 @@
 local Quark = {}
 
+--[[ SCOPES ]]
+local Scope = require(script.Components.Scope)
+Scope.QuarkModule = Quark
+Quark.Scope = Scope.new
+
 --[[ REACTIVE ]]
 local Reactive = require(script.Reactive)
+Reactive.Scope = Quark.Scope
+
 Quark.State = Reactive.State
 Quark.Signal = Reactive.Signal
 Quark.Entries = Reactive.Entries
@@ -20,11 +27,6 @@ local StyleSheet = Styles.StyleSheet
 Quark.StyleSheet = StyleSheet.new
 Quark.GetStyle = StyleSheet.GetStyle
 Quark.Class = StyleSheet.Class
-
---[[ SCOPES ]]
-local Scope = require(script.Components.Scope)
-Scope.QuarkModule = Quark
-Quark.Scope = Scope.new
 
 --[[ CLEANUP ]]
 local Cleanup = require(script.Components.Cleanup)
@@ -48,6 +50,6 @@ export type CanBeState<T> = Types.CanBeState<T>
 export type Spring<T> = Types.Spring<T>
 export type New = Types.New & Instance
 export type Entries = Types.Entries
-export type QuickList = QuickList.QuickList
+export type QuickList<T> = QuickList.QuickList<T>
 
 return Quark

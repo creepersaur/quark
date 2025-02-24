@@ -19,7 +19,7 @@ function SpringModule.new<T>(
 ): Types.Spring<T>
 	local self = setmetatable({
 		Start = start or 0,
-		Value = Reactive.State(nil),
+		Value = Reactive.State(start or 0),
 		Alpha = Reactive.State(0),
 		Velocity = Reactive.State(ValueMath.Multiply((start or 0), 0)),
 		Target = target or 1,

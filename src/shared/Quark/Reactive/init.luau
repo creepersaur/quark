@@ -2,15 +2,16 @@ local State = require(script.State)
 local Signal = require(script.Signal)
 local Entries = require(script.Entries)
 local Reactive = {
-	Created = {}
+	Created = {},
 }
 
 State.Created = Reactive.Created
 Signal.Created = Reactive.Created
 Entries.Created = Reactive.Created
+Entries.Scope = (Reactive::any).Scope
 
 Reactive.State = State.new
 Reactive.Signal = Signal.new
 Reactive.Entries = Entries.new
 
-return Reactive
+return Reactive::any

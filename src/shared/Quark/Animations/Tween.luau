@@ -19,7 +19,7 @@ function TweenModule.new<T>(
 ): Types.Tween<T>
 	local self = setmetatable({
 		Start = start or 0,
-		Value = Reactive.State(nil),
+		Value = Reactive.State(start or 0),
 		Target = target or 1,
 		Timer = 0,
 		Info = Info or TweenInfo.new(1),
