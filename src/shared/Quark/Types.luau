@@ -89,23 +89,22 @@ export type Tween<T> = {
 	BindToProperty: (self: Tween<T>, Object: Instance | { [string]: unknown }, Property: string) -> Tween<T>,
 }
 
-export type Loop<T = any?> = {
-	Value: State<T>,
+export type Loop = {
+	Value: State<number>,
 	Connections: { (any) -> () },
 	PlayConnection: RBXScriptConnection?,
 	_is_loop: true,
 
-	Play: (self: Loop<T>) -> Loop<T>,
-	Restart: (self: Loop<T>) -> Loop<T>,
-	Pause: (self: Loop<T>) -> Loop<T>,
-	Cancel: (self: Loop<T>) -> Loop<T>,
-	DisconnectAll: (self: Loop<T>) -> Loop<T>,
-	SetValue: (self: Loop<T>, value: T) -> Loop<T>,
-	Update: (self: Loop<T>, dt: number) -> Loop<T>,
-	BindToRenderStep: (self: Loop<T>) -> RBXScriptConnection,
-	BindToUpdate: (self: Loop<T>, func: (value: T) -> ()) -> Loop<T>,
-	BindAndPlay: (self: Loop<T>, func: (value: T) -> ()) -> Loop<T>,
-	BindToProperty: (self: Loop<T>, Object: Instance | { [string]: unknown }, Property: string) -> Loop<T>,
+	Play: (self: Loop) -> Loop,
+	Restart: (self: Loop) -> Loop,
+	Pause: (self: Loop) -> Loop,
+	Cancel: (self: Loop) -> Loop,
+	DisconnectAll: (self: Loop) -> Loop,
+	Update: (self: Loop, dt: number) -> Loop,
+	BindToRenderStep: (self: Loop) -> RBXScriptConnection,
+	BindToUpdate: (self: Loop, func: (dt: number) -> ()) -> Loop,
+	BindAndPlay: (self: Loop, func: (dt: number) -> ()) -> Loop,
+	BindToProperty: (self: Loop, Object: Instance | { [string]: unknown }, Property: string) -> Loop,
 }
 
 export type Entries = typeof(setmetatable( {} :: {
@@ -131,7 +130,7 @@ export type Quark = {
 	CanBeState: CanBeState<any>,
 	Spring: Spring<any>,
 	Tween: Tween<any>,
-	Loop: Loop<any>,
+	Loop: Loop,
 	Entries: <I, V>(n: number|{[I]: V}, func: (Scope: Quark, i: number|I, v: V) -> New<any>|Instance?) -> Entries,
 	QuickList: <T>({ T } | quicklist.QuickList<T>) -> quicklist.QuickList<T>,
 	Class: (name: string) -> string,
@@ -144,7 +143,7 @@ export type Quark = {
 			stiffness: number?
 		) -> Spring<T>,
 		Tween: <T>(start: CanBeState<T>, target: CanBeState<T>, Info: TweenInfo, fixedStart: boolean?) -> Tween<T>,
-		Loop: <T>(value: T) -> Loop<T>,
+		Loop: () -> Loop,
 	},
 	GetStyle: (name: string) -> { [string]: any },
 	Cleanup: () -> (),

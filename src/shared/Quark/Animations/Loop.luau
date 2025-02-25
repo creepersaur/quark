@@ -10,10 +10,10 @@ local LoopModule = {
 local Loop = {}
 Loop.__index = Loop
 
-function LoopModule.new(value): Types.Loop
+function LoopModule.new(): Types.Loop
 	local self = setmetatable({
 		Connections = {},
-		Value = Reactive.State(value),
+		Value = Reactive.State(0),
 		PlayConnection = nil,
 		_is_loop = true,
 	}, Loop)
@@ -66,7 +66,7 @@ function Loop:SetValue(value)
 end
 
 function Loop:Update(dt)
-	self.Value(self.Value())
+	self.Value(dt)
 
 	return self
 end
@@ -80,7 +80,7 @@ function Loop:BindToRenderStep()
 	return x
 end
 
-function Loop:BindToUpdate(func: (value: any) -> ())
+function Loop:BindToUpdate(func: (dt: number) -> ())
 	local connect_signal = Reactive.Signal(self.Value, func)
 	table.insert(self.Connections, connect_signal)
 	table.insert(LoopModule.Created, connect_signal)
@@ -88,7 +88,7 @@ function Loop:BindToUpdate(func: (value: any) -> ())
 	return connect_signal
 end
 
-function Loop:BindAndPlay(func: (value: any) -> ())
+function Loop:BindAndPlay(func: (dt: number) -> ())
 	self:Play()
 
 	return self:BindToUpdate(func)
