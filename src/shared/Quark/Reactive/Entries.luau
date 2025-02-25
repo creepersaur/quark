@@ -21,7 +21,6 @@ function Entries.new(n, func)
 	}
 
 	-- Make the initial objects
-
 	if type(n) == "table" then
 		for i, v in n do
 			local x = func(entry.Scope, i, v)
@@ -42,15 +41,26 @@ function Entries.new(n, func)
 		error "First argument of `Quark.Entries()` must be a table or a number."
 	end
 
+	local self = setmetatable(entry, {
+		__call = function(_, ...)
+			entry.Object(...)
+		end,
+		__index = function(_, k)
+			return rawget(entry, k) or entry.Object[k]
+		end,
+	})
+
 	-- Add new objects
 
-	function entry:Push()
-		local obj = func(entry.Scope, #Children + 1)
+	function entry:Push(obj)
+		obj = obj or func(entry.Scope, #Children + 1)
 		entry.Object:Push(obj)
 		Children.append(obj)
+
+		return self
 	end
 
-	function entry:PushChildren(n: number | {any})
+	function entry:PushChildren(n: number | { any })
 		local len = #Children
 		if type(n) == "table" then
 			for i, v in n do
@@ -71,17 +81,29 @@ function Entries.new(n, func)
 		else
 			error "First argument of `Entries:PushChildren()` must be a table or a number."
 		end
+
+		return self
 	end
 
 	-- Remove objects
 
 	function entry:Remove(obj)
 		Children.retain(function(i: number, v)
-			return obj.__id ~= v.__id
+			if type(obj) == "table" then
+				return obj.__id ~= v.__id
+			elseif type(obj) == "number" then
+				return i ~= obj
+			elseif typeof(obj) == "Instance" then
+				return obj ~= v
+			else
+				error "Entries:Remove() takes a `New`, `Instance`, or a number."
+			end
 		end)
+
+		return self
 	end
 
-	return entry
+	return self
 end
 
 return Entries :: {

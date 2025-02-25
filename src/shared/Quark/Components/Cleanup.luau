@@ -7,7 +7,7 @@ local Cleanup = function()
 			if typeof(v) == "Instance" then
 				v:Destroy()
 			elseif type(v) == "table" then
-				if v._is_spring or v._is_tween then
+				if v._is_spring or v._is_tween or v._is_loop then
 					v:DisconnectAll()
 				elseif v._is_signal then
 					v:Disconnect()

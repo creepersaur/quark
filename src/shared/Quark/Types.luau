@@ -89,9 +89,38 @@ export type Tween<T> = {
 	BindToProperty: (self: Tween<T>, Object: Instance | { [string]: unknown }, Property: string) -> Tween<T>,
 }
 
-export type Entries = {
-	
+export type Loop<T = any?> = {
+	Value: State<T>,
+	Connections: { (any) -> () },
+	PlayConnection: RBXScriptConnection?,
+	_is_loop: true,
+
+	Play: (self: Loop<T>) -> Loop<T>,
+	Restart: (self: Loop<T>) -> Loop<T>,
+	Pause: (self: Loop<T>) -> Loop<T>,
+	Cancel: (self: Loop<T>) -> Loop<T>,
+	DisconnectAll: (self: Loop<T>) -> Loop<T>,
+	SetValue: (self: Loop<T>, value: T) -> Loop<T>,
+	Update: (self: Loop<T>, dt: number) -> Loop<T>,
+	BindToRenderStep: (self: Loop<T>) -> RBXScriptConnection,
+	BindToUpdate: (self: Loop<T>, func: (value: T) -> ()) -> Loop<T>,
+	BindAndPlay: (self: Loop<T>, func: (value: T) -> ()) -> Loop<T>,
+	BindToProperty: (self: Loop<T>, Object: Instance | { [string]: unknown }, Property: string) -> Loop<T>,
 }
+
+export type Entries = typeof(setmetatable( {} :: {
+	Object: New<Frame>,
+	Scope: Quark,
+	Children: {New<Instance> | Instance},
+	_is_entries: true,
+
+	Push: () -> Entries,
+	PushChildren: (n: number | {any}) -> Entries,
+	Remove: (n: number | New<Instance> | Instance) -> Entries,
+}, {} :: {
+	__call: (...any) -> New<Frame>,
+	__index: (...any) -> any
+})) & New<Frame>
 
 export type CanBeState<T> = T | State<T>
 
@@ -102,7 +131,8 @@ export type Quark = {
 	CanBeState: CanBeState<any>,
 	Spring: Spring<any>,
 	Tween: Tween<any>,
-	Entries: Entries,
+	Loop: Loop<any>,
+	Entries: <I, V>(n: number|{[I]: V}, func: (Scope: Quark, i: number|I, v: V) -> New<any>|Instance?) -> Entries,
 	QuickList: <T>({ T } | quicklist.QuickList<T>) -> quicklist.QuickList<T>,
 	Class: (name: string) -> string,
 	New: <T>(ClassName: Instance | all_instances.ALL_INSTANCES) -> New<T> & T & Instance,
@@ -114,6 +144,7 @@ export type Quark = {
 			stiffness: number?
 		) -> Spring<T>,
 		Tween: <T>(start: CanBeState<T>, target: CanBeState<T>, Info: TweenInfo, fixedStart: boolean?) -> Tween<T>,
+		Loop: <T>(value: T) -> Loop<T>,
 	},
 	GetStyle: (name: string) -> { [string]: any },
 	Cleanup: () -> (),

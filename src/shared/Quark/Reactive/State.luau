@@ -42,7 +42,7 @@ function module.new<T>(default: T? | (use: <R>(Types.State<R>) -> R) -> T?, stri
 
 	function self.compString(fmt_string: string, ...)
 		local vargs = {...}
-		return module.new(function(use)
+		return module.new(function(use: Types.State<any>)
 			return fmt_string:format(use(self), table.unpack(vargs))
 		end)
 	end
