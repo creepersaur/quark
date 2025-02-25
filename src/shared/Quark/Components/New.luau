@@ -1,12 +1,14 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local State = require(ReplicatedStorage.Shared.Quark.Reactive.State)
+local State = require(script.Parent.Parent.Reactive.State)
 local Types = require(script.Parent.Parent.Types)
 local all_instances = require(script.Parent.all_instances)
 local Created = {}
 
 local function AddChildren(self, list)
 	if not list[1] then
+		if typeof(list) == "table" and list._is_entries then
+			list = list.Object
+		end
+		
 		if typeof(list) == "table" and not list._is_new then
 			AddChildren(self, list.Children)
 		else
@@ -36,6 +38,10 @@ local function AddChildren(self, list)
 			obj = obj()
 		end
 
+		if typeof(list) == "table" and obj._is_entries then
+			obj = obj.Object
+		end
+		
 		if typeof(obj) == "table" and not obj.GetObject and not obj._is_new then
 			AddChildren(self, obj)
 		else
@@ -62,13 +68,15 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any }) -> Ne
 	local self = {
 		Object = obj,
 		Children = {},
-		__id = "x" .. math.random(0, math.huge),
+		__id = "x" .. math.random(-9_223_372_036_854_774_4, 9_223_372_036_854_774_4),
 		Style = nil,
 		Class = State.new "",
 		_is_new = true,
 	}
 
-	self.Class.connect(function()
+	local signal_connections: { Types.Signal<any> } = {}
+
+	local class_connection = self.Class.connect(function()
 		local style = rawget(self, "Style")
 		if style then
 			style:ApplyRecursive(self)
@@ -106,6 +114,14 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any }) -> Ne
 
 	function self.GetObject(self)
 		return self.Object
+	end
+
+	function self:Cleanup()
+		self.Object:Destroy()
+		class_connection:Disconnect()
+		for _, v in signal_connections do
+			v:Disconnect()
+		end
 	end
 
 	self = setmetatable(self, {
@@ -149,7 +165,7 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any }) -> Ne
 						"RBXScriptSignal requires a function for connection."
 					)
 					table.insert(
-						Created,
+						signal_connections,
 						self.Object[i]:Connect(function(...)
 							v(self, ...)
 						end)
@@ -158,11 +174,21 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any }) -> Ne
 					if typeof(v) == "table" then
 						if v._is_state then
 							self.Object[i] = v()
-							v.connect(function(value)
-								self.Object[i] = value
-							end)
+							table.insert(
+								signal_connections,
+								v.connect(function(value)
+									self.Object[i] = value
+								end)
+							)
 						elseif v._is_spring or v._is_tween then
-							v:BindToProperty(self.Object, i)
+							local e = v.Value
+							self.Object[i] = e()
+							table.insert(
+								signal_connections,
+								e.connect(function(value)
+									self.Object[i] = value
+								end)
+							)
 						end
 					else
 						self.Object[i] = v
@@ -174,7 +200,7 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any }) -> Ne
 		end,
 	})
 
-	table.insert(Created, self.Object)
+	table.insert(Created, self)
 
 	return self :: any
 end

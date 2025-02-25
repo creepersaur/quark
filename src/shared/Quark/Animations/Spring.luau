@@ -139,22 +139,20 @@ function Spring:BindToUpdate(func: (value: any) -> ())
 	local connect_signal = Reactive.Signal(self.Value, func)
 	table.insert(self.Connections, connect_signal)
 	table.insert(SpringModule.Created, connect_signal)
-	return self
+
+	return connect_signal
 end
 
 function Spring:BindAndPlay(func: (value: any) -> ())
 	self:Play()
-	self:BindToUpdate(func)
 
-	return self
+	return self:BindToUpdate(func)
 end
 
 function Spring:BindToProperty(Object: any, Property: string)
-	self:BindToUpdate(function(value)
+	return self:BindToUpdate(function(value)
 		Object[Property] = value
 	end)
-
-	return self
 end
 
 return SpringModule

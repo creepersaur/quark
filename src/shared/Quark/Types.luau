@@ -1,11 +1,10 @@
-local ReplicatedStorage = game:GetService "ReplicatedStorage"
-
-local all_instances = require(ReplicatedStorage.Shared.Quark.Components.all_instances)
+local all_instances = require(script.Parent.Components.all_instances)
 local quicklist = require(script.Parent.quicklist)
 type StateMethods<T> = {
 	__call: (self: State<T>, T?) -> T,
 	__index: StateMethods<T>,
 }
+
 
 export type State<T> = typeof(setmetatable(
 	{} :: {
@@ -13,6 +12,7 @@ export type State<T> = typeof(setmetatable(
 		setLambda: (T) -> () -> (),
 		connect: ((T) -> ()) -> Signal<T>,
 		connections: { (value: any) -> () },
+		compString: (fmt_string: string) -> any,
 		_is_state: true,
 	},
 	{} :: StateMethods<T>

@@ -17,6 +17,16 @@ return function(Parent)
 		children = {
 			New "UIListLayout" {
 				Padding = UDim.new(0, 10),
+				SortOrder = "LayoutOrder",
+			},
+			-- Tip text
+			New "TextLabel" {
+				Text = "Hover over the buttons. Wait a little to see the tooltip.",
+				TextColor3 = Color3.new(1, 1, 1),
+				Size = UDim2.new(1, 0, 0, 20),
+				BackgroundTransparency = 0.5,
+				BackgroundColor3 = Color3.new(),
+				TextXAlignment = "Left",
 			},
 		},
 	}
@@ -26,11 +36,11 @@ return function(Parent)
 
 	-- Push children to the Frame (table)
 	Frame:PushChildren {
-        Button(ButtonScope, "Continue", "Continue the game"),
-        Button(ButtonScope, "New Game", "Start a new Adventure"),
-        Button(ButtonScope, "Quit", "Commit die!"),
-    }
-    
+		Button(ButtonScope, "Continue", "Continue the game"),
+		Button(ButtonScope, "New Game", "Start a new Adventure"),
+		Button(ButtonScope, "Quit", "Commit die!"),
+	}
+
 	-- CLEANUP
 	return Quark.Cleanup
 end

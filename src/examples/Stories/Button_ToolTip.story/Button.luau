@@ -19,7 +19,7 @@ return function(Scope, text: string?, tip_text: string?)
 		Size = UDim2.fromOffset(100, 50),
 		BackgroundColor3 = Color3.new(1, 1, 1),
 		TextColor3 = Color3.new(1, 1, 1),
-		TextSize = 12,
+		TextSize = 13,
 		Text = text or "Button",
 
 		MouseEnter = Hovering.setLambda(1),
@@ -31,8 +31,10 @@ return function(Scope, text: string?, tip_text: string?)
 		end,
 
 		-- Create children (UI Corner / Styling)
-		children = New "UICorner" {
-			CornerRadius = UDim.new(0, 10),
+		children = {
+			New "UICorner" {
+				CornerRadius = UDim.new(0, 10),
+			},
 		},
 	}
 
@@ -45,14 +47,9 @@ return function(Scope, text: string?, tip_text: string?)
 
 	-- spring to control color + size
 	-- these springs are `number` springs, since we want to use one spring for both the color and size
-	Spring(0, Hovering, 0.3, 0.6):BindAndPlay(function(value: number)
+	Spring(0, Hovering, 0.9, 0.2):BindAndPlay(function(value: number)
 		Button.BackgroundColor3 = Color3.new(0.5):Lerp(Color3.new(1), value)
 		Button.Size = UDim2.fromScale(1 + value / 4, 1)
-	end)
-
-	-- A different spring to control text size
-	Spring(0, Hovering, 0.5, 0.2):BindAndPlay(function(value: number)
-		Button.TextSize = 12 + math.floor(5 * value ^ 2)
 	end)
 
 	return Main

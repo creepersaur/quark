@@ -26,24 +26,33 @@ return {
 
 		local size_spring = Spring(
 			Hovering(), -- Set initial start to state VALUE
-			Hovering,  -- Set target to the STATE (So it updates automatically)
+			Hovering, -- Set target to the STATE (So it updates automatically)
 			SpringSettings.Elasticity, -- We use the States defined in SpringSettings
 			SpringSettings.Stiffness
 		)
 
+		-- Tip text
+		New "TextLabel" {
+			Text = "Custom Quark Springs update when the target state updates. (They use Elasticity, Stiffness)",
+			TextColor3 = Color3.new(1, 1, 1),
+			Size = UDim2.new(1, 0, 0, 20),
+			BackgroundTransparency = 0.5,
+			BackgroundColor3 = Color3.new(),
+			TextXAlignment = "Left",
+			Parent = props.target,
+		}
+
 		-- Create a button
-		New "TextButton"
-			{
-				Parent = props.target,
-				Size = size_spring:Play(),
-			}
-			-- Events
-			{
-				-- setLamda returns a function telling it to update
-				MouseEnter = Hovering.setLambda(UDim2.fromScale(0.1, 0.2)),
-				-- Use Hovering's initial value (by calling it)
-				MouseLeave = Hovering.setLambda(Hovering()),
-			}
+		New "TextButton" {
+			Position = UDim2.fromOffset(0, 25),
+			Parent = props.target,
+			Size = size_spring:Play(),
+
+			-- setLamda returns a function telling it to update
+			MouseEnter = Hovering.setLambda(UDim2.fromScale(0.1, 0.2)),
+			-- Use Hovering's initial value (by calling it)
+			MouseLeave = Hovering.setLambda(Hovering()),
+		}
 
 		-- subscribe to the story controls
 		props.subscribe(function(_, info)

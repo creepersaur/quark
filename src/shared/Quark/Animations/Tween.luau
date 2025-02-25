@@ -32,6 +32,18 @@ function TweenModule.new<T>(
 		_is_tween = true,
 	}, Tween)
 
+	if typeof(self.Target) == "table" and self.Target._is_state then
+		local target_signal = self.Target.connect(function()
+			if not self.FixedStart then
+				self.Start = self.Value()
+			end
+			self.Timer = 0
+			self:Play()
+		end)
+		table.insert(self.Connections, target_signal)
+		table.insert(TweenModule.Created, target_signal)
+	end
+
 	return self
 end
 
@@ -239,18 +251,6 @@ function Tween:BindToUpdate(func: (value: any) -> ())
 	local connect_signal = self.Value.connect(func)
 	table.insert(self.Connections, connect_signal)
 	table.insert(TweenModule.Created, connect_signal)
-
-	if typeof(self.Target) == "table" and self.Target._is_state then
-		local target_signal = self.Target.connect(function()
-			if not self.FixedStart then
-				self.Start = table.clone(self.Value)
-			end
-			self.Timer = 0
-			Tween:Play()
-		end)
-		table.insert(self.Connections, target_signal)
-		table.insert(TweenModule.Created, target_signal)
-	end
 
 	return self
 end

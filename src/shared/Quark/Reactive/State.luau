@@ -40,18 +40,29 @@ function module.new<T>(default: T? | (use: <R>(Types.State<R>) -> R) -> T?, stri
 		return connection
 	end
 
-	if typeof(default) == "function" then
-		self.value = default(function(dependency: Types.State<any>)
-			table.insert(
-				module.Created,
-				dependency.connect(function(new)
-					self(default(function(d)
-						return d()
-					end))
-				end)
-			)
-			return dependency()
+	function self.compString(fmt_string: string, ...)
+		local vargs = {...}
+		return module.new(function(use)
+			return fmt_string:format(use(self), table.unpack(vargs))
 		end)
+	end
+
+	if typeof(default) == "function" then
+		coroutine.wrap(function()
+			self.value = default(function(dependency: Types.State<any>)
+				table.insert(
+					module.Created,
+					dependency.connect(function(new)
+						coroutine.wrap(function()
+							self(default(function(d)
+								return d()
+							end))
+						end)()
+					end)
+				)
+				return dependency()
+			end)
+		end)()
 	end
 
 	return self
