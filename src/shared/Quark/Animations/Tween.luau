@@ -32,7 +32,7 @@ function TweenModule.new<T>(
 		_is_tween = true,
 	}, Tween)
 
-	if typeof(self.Target) == "table" and self.Target._is_state then
+	if type(self.Target) == "table" and self.Target._is_state then
 		local target_signal = self.Target.connect(function()
 			if not self.FixedStart then
 				self.Start = self.Value()
@@ -51,7 +51,7 @@ function Tween:Play()
 	self:Pause()
 	self.Completed = false
 	local start = self.Start
-	if typeof(start) == "table" and start._is_state then
+	if type(start) == "table" and start._is_state then
 		start = start()
 	end
 	if self.Value() == nil then
@@ -87,8 +87,8 @@ function Tween:Cancel()
 	return self
 end
 
-function Tween:DisconnectAll()
-	for _, v: Types.Signal in self.Connections do
+function Tween:DisconnectAll<T>()
+	for _, v: Types.Signal<T> in self.Connections do
 		if v then
 			v:Disconnect()
 		end
@@ -210,12 +210,12 @@ function Tween:Update(dt)
 	end
 
 	local start = self.Start
-	if typeof(start) == "table" and start._is_state then
+	if type(start) == "table" and start._is_state then
 		start = start()
 	end
 
 	local target = self.Target
-	if typeof(target) == "table" and target._is_state then
+	if type(target) == "table" and target._is_state then
 		target = target()
 	end
 

@@ -59,13 +59,13 @@ end
 
 --[[ Apply the style to the object. ]]
 function Style:ApplySingle(obj: any)
-	local ObjectUnwrapped = (typeof(obj) == "table" and obj.Object) or obj
+	local ObjectUnwrapped = (type(obj) == "table" and obj.Object) or obj
 	local style_properties = self.Properties[ObjectUnwrapped.ClassName]
 	if style_properties then
 		WriteObjectProperties(ObjectUnwrapped, style_properties)
 	end
 
-	local class = typeof(obj) == "table" and obj.Class
+	local class = type(obj) == "table" and obj.Class
 	if not class then
 		return
 	end

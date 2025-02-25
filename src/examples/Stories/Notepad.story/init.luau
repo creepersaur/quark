@@ -12,9 +12,21 @@ local controls = {
 	Title = "Hello World",
 }
 local story = function(props)
+	-- Tip text
+	New "TextLabel" {
+		Text = "Click `New Note` to add a note. Set the text using the Story Controls.",
+		TextColor3 = Color3.new(1, 1, 1),
+		Size = UDim2.new(1, 0, 0, 20),
+		BackgroundTransparency = 0.5,
+		BackgroundColor3 = Color3.new(),
+		TextXAlignment = "Left",
+		Parent = props.target,
+	}
+
 	local Background = New "Frame" {
 		Size = UDim2.new(0, 200, 1, 0),
 		BackgroundColor3 = Color3.new(0.1, 0.1, 0.1),
+		Position = UDim2.fromOffset(0, 25),
 
 		Parent = props.target,
 		children = {
@@ -39,9 +51,9 @@ local story = function(props)
 		NoteHolder,
 	}
 
-    props.subscribe(function(values, infos)
-        controls.Title = infos.Title.__new
-    end)
+	props.subscribe(function(values, infos)
+		controls.Title = infos.Title.__new
+	end)
 	NewNoteButton.TextButton.MouseButton1Click:Connect(function()
 		AddNote(controls.Title .. ` | {#NoteHolder.Children - 1}`)
 	end)
@@ -50,6 +62,6 @@ local story = function(props)
 end
 
 return {
-    controls = controls,
-    render = story,
+	controls = controls,
+	render = story,
 }

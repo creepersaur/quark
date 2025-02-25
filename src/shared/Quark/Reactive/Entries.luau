@@ -22,7 +22,7 @@ function Entries.new(n, func)
 
 	-- Make the initial objects
 
-	if typeof(n) == "table" then
+	if type(n) == "table" then
 		for i, v in n do
 			local x = func(entry.Scope, i, v)
 			if x then
@@ -30,7 +30,7 @@ function Entries.new(n, func)
 				entry.Object:Push(x)
 			end
 		end
-	elseif typeof(n) == "number" then
+	elseif type(n) == "number" then
 		for i = 1, n do
 			local x = func(entry.Scope, i)
 			if x then
@@ -52,7 +52,7 @@ function Entries.new(n, func)
 
 	function entry:PushChildren(n: number | {any})
 		local len = #Children
-		if typeof(n) == "table" then
+		if type(n) == "table" then
 			for i, v in n do
 				local x = func(entry.Scope, i + len, v)
 				if x then
@@ -60,7 +60,7 @@ function Entries.new(n, func)
 					entry.Object:Push(x)
 				end
 			end
-		elseif typeof(n) == "number" then
+		elseif type(n) == "number" then
 			for i = 1, n do
 				local x = func(entry.Scope, i + len)
 				if x then

@@ -36,7 +36,7 @@ end
 function Spring:Play()
 	self:Pause()
 	local start = self.Start
-	if typeof(start) == "table" and start._is_state then
+	if type(start) == "table" and start._is_state then
 		start = start()
 	end
 	if self.Value() == nil then
@@ -70,8 +70,8 @@ function Spring:Cancel()
 	return self
 end
 
-function Spring:DisconnectAll()
-	for _, v: Types.Signal in self.Connections do
+function Spring:DisconnectAll<T>()
+	for _, v: Types.Signal<T> in self.Connections do
 		v:Disconnect()
 	end
 
@@ -86,16 +86,16 @@ end
 
 function Spring:Update(dt)
 	local target = self.Target
-	if typeof(target) == "table" and target._is_state then
+	if type(target) == "table" and target._is_state then
 		target = target()
 	end
 
 	local elasticity = self.Elasticity
-	if typeof(elasticity) == "table" and elasticity._is_state then
+	if type(elasticity) == "table" and elasticity._is_state then
 		elasticity = elasticity()
 	end
 	local stiffness = self.Stiffness
-	if typeof(stiffness) == "table" and stiffness._is_state then
+	if type(stiffness) == "table" and stiffness._is_state then
 		stiffness = stiffness()
 	end
 

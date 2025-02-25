@@ -90,7 +90,7 @@ end
 -- 	for i, v in tab do
 -- 		local tabs = string.rep("	", scope + 1)
 -- 		local value = tostring(v)
--- 		if typeof(v) == "table" then
+-- 		if type(v) == "table" then
 -- 			value = concat_table(v, sep or ",", scope + 1)
 -- 		end
 -- 		local line = "[" .. '"' .. i .. '"' .. "] = " .. value .. (sep or ",") .. "\n"
@@ -118,9 +118,9 @@ function concat_table(self, separator, scope)
 
 	for i, v in (checkql(self) and self.t) or self do
 		local sep = (i == #self) and "" or separator
-		if typeof(v) == "string" then
+		if type(v) == "string" then
 			str = str .. `"{v}"{sep}`
-		elseif typeof(v) == "table" then
+		elseif type(v) == "table" then
 			str = str
 				.. `{vertical and string.rep(indent, scope * 20 - 1) or ""}{concat_table(v, separator, scope + 1)}{sep}{vertical and "\n" or ""}`
 		else

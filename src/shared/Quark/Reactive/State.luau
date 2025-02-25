@@ -34,7 +34,7 @@ function module.new<T>(default: T? | (use: <R>(Types.State<R>) -> R) -> T?, stri
 		end
 	end
 
-	function self.connect(func): Types.Signal
+	function self.connect(func): Types.Signal<T>
 		local connection = Signal.new(self, func)
 		table.insert(module.Created, connection)
 		return connection
@@ -47,7 +47,7 @@ function module.new<T>(default: T? | (use: <R>(Types.State<R>) -> R) -> T?, stri
 		end)
 	end
 
-	if typeof(default) == "function" then
+	if type(default) == "function" then
 		coroutine.wrap(function()
 			self.value = default(function(dependency: Types.State<any>)
 				table.insert(

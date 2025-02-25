@@ -5,11 +5,11 @@ local Created = {}
 
 local function AddChildren(self, list)
 	if not list[1] then
-		if typeof(list) == "table" and list._is_entries then
+		if type(list) == "table" and list._is_entries then
 			list = list.Object
 		end
 		
-		if typeof(list) == "table" and not list._is_new then
+		if type(list) == "table" and not list._is_new then
 			AddChildren(self, list.Children)
 		else
 			local new_object = (list.Object or list)
@@ -19,7 +19,7 @@ local function AddChildren(self, list)
 
 			if rawget(self, "Style") then
 				local style = rawget(self, "Style")
-				if typeof(list) == "table" then
+				if type(list) == "table" then
 					rawset(list, "Style", style)
 				end
 				style:ApplyRecursive(list)
@@ -34,15 +34,15 @@ local function AddChildren(self, list)
 	end
 
 	for _, obj in list do
-		if typeof(obj) == "table" and obj._is_state then
+		if type(obj) == "table" and obj._is_state then
 			obj = obj()
 		end
 
-		if typeof(list) == "table" and obj._is_entries then
+		if type(list) == "table" and obj._is_entries then
 			obj = obj.Object
 		end
 		
-		if typeof(obj) == "table" and not obj.GetObject and not obj._is_new then
+		if type(obj) == "table" and not obj.GetObject and not obj._is_new then
 			AddChildren(self, obj)
 		else
 			local new_object = (obj.GetObject and obj.GetObject(obj) or obj)
@@ -61,7 +61,7 @@ type New<T> = Types.New<T>
 
 function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any }) -> New<T> & T & Instance
 	local obj: any = ClassName
-	if typeof(obj) == "string" then
+	if type(obj) == "string" then
 		obj = Instance.new((ClassName :: any) :: string)
 	end
 
@@ -154,14 +154,14 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any }) -> Ne
 					self.Children = v
 					AddChildren(self, v)
 				elseif i == "Parent" then
-					self.Object.Parent = (typeof(v) == "table" and v.Object) or v
+					self.Object.Parent = (type(v) == "table" and v.Object) or v
 				elseif i == "class" then
 					rawget(self, "Class")(v)
 				elseif i == "style" then
 					rawset(self, "Style", v)
 				elseif isSignal(self.Object, i) then
 					assert(
-						typeof(v) == "function" or typeof(v) == "table" and v._is_state,
+						type(v) == "function" or type(v) == "table" and v._is_state,
 						"RBXScriptSignal requires a function for connection."
 					)
 					table.insert(
@@ -171,7 +171,7 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any }) -> Ne
 						end)
 					)
 				else
-					if typeof(v) == "table" then
+					if type(v) == "table" then
 						if v._is_state then
 							self.Object[i] = v()
 							table.insert(

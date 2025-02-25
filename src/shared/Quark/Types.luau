@@ -5,20 +5,19 @@ type StateMethods<T> = {
 	__index: StateMethods<T>,
 }
 
-
 export type State<T> = typeof(setmetatable(
 	{} :: {
 		value: T,
 		setLambda: (T) -> () -> (),
 		connect: ((T) -> ()) -> Signal<T>,
 		connections: { (value: any) -> () },
-		compString: (fmt_string: string) -> any,
 		_is_state: true,
+		compString: (fmt_string: string) -> State<T>
 	},
 	{} :: StateMethods<T>
 ))
 
-export type Signal<T = unknown> = {
+export type Signal<T> = {
 	id: string,
 	state_object: State<T> | { State<T> },
 	_is_signal: true,
@@ -90,10 +89,9 @@ export type Tween<T> = {
 	BindToProperty: (self: Tween<T>, Object: Instance | { [string]: unknown }, Property: string) -> Tween<T>,
 }
 
-export type Entries = (
-	n: number | { unknown },
-	func: (i: number, v: any?) -> State<Instance | New<any>>
-) -> { State<Instance | New<any>> }
+export type Entries = {
+	
+}
 
 export type CanBeState<T> = T | State<T>
 
@@ -121,12 +119,5 @@ export type Quark = {
 	Cleanup: () -> (),
 	Scope: () -> Quark,
 }
-
--- Quark.StyleSheet = StyleSheet.new
--- Quark.GetStyle = StyleSheet.GetStyle
--- Quark.Class = StyleSheet.Class
-
--- name: string)
--- 	return function(Styles: { [string]: { [string]: any } }): Types.Style
 
 return {}
