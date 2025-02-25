@@ -11,6 +11,8 @@ local Cleanup = function()
 					v:DisconnectAll()
 				elseif v._is_signal then
 					v:Disconnect()
+				elseif v._is_new then
+					v:Cleanup()
 				end
 			else
 				pcall(function()
