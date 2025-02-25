@@ -11,6 +11,7 @@ return function(Parent)
 		["New Game"] = "Start a new adventure",
 		["Quit"] = "Commit die!",
 	}
+	local SpawnedButtons = 0
 
 	-- Main frame to contain all the buttons
 	New "Frame" {
@@ -37,8 +38,8 @@ return function(Parent)
 
 			-- Spawn buttons using Entries
 			Quark.Entries(ButtonData, function(Scope, i, v)
-				print(i, v)
-				return Button(Scope, i, v)
+				SpawnedButtons += 1
+				return Button(Scope, i, v, (SpawnedButtons - 1) / 10)
 			end):Push(New "UIListLayout" {
 				Padding = UDim.new(0, 10),
 				SortOrder = "LayoutOrder",

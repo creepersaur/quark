@@ -24,9 +24,11 @@ function Entries.new(n, func)
 	if type(n) == "table" then
 		for i, v in n do
 			local x = func(entry.Scope, i, v)
-			if x then
+			if type(x) == "table" and x._is_new then
 				Children.append(x)
 				entry.Object:Push(x)
+			elseif x then
+				error "Entries function return value must be a `New` or nil."
 			end
 		end
 	elseif type(n) == "number" then
@@ -38,7 +40,7 @@ function Entries.new(n, func)
 			end
 		end
 	else
-		error "First argument of `Quark.Entries()` must be a table or a number."
+		error "First argument of `Quark.Entries()` must be a `table` or a number."
 	end
 
 	local self = setmetatable(entry, {
@@ -53,7 +55,10 @@ function Entries.new(n, func)
 	-- Add new objects
 
 	function entry:Push(obj)
-		obj = obj or func(entry.Scope, #Children + 1)
+		if (not obj) or type(obj) ~= "table" then
+			obj = func(entry.Scope, #Children + 1)
+		end
+
 		entry.Object:Push(obj)
 		Children.append(obj)
 
@@ -93,10 +98,8 @@ function Entries.new(n, func)
 				return obj.__id ~= v.__id
 			elseif type(obj) == "number" then
 				return i ~= obj
-			elseif typeof(obj) == "Instance" then
-				return obj ~= v
 			else
-				error "Entries:Remove() takes a `New`, `Instance`, or a number."
+				error "Entries:Remove() takes a `New`, or a number."
 			end
 		end)
 

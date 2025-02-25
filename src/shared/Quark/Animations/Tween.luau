@@ -19,6 +19,7 @@ function TweenModule.new<T>(
 ): Types.Tween<T>
 	local self = setmetatable({
 		Start = start or 0,
+		OriginalStart = start or 0,
 		Value = Reactive.State(start or 0),
 		Target = target or 1,
 		Timer = 0,
@@ -34,9 +35,7 @@ function TweenModule.new<T>(
 
 	if type(self.Target) == "table" and self.Target._is_state then
 		local target_signal = self.Target.connect(function()
-			if not self.FixedStart then
-				self.Start = self.Value()
-			end
+			self.Start = self.Value(self.FixedStart and self.OriginalStart or self.Value())
 			self.Timer = 0
 			self:Play()
 		end)
@@ -55,7 +54,7 @@ function Tween:Play()
 		start = start()
 	end
 	if self.Value() == nil then
-		self.Value(start)
+		self.Value(self.FixedStart and self.OriginalStart or start)
 		self.Timer = 0
 	end
 	self.PlayConnection = self:BindToRenderStep()
@@ -67,6 +66,8 @@ end
 
 function Tween:Restart()
 	self.Value(nil)
+	self.Timer = 0
+	
 	return self:Play()
 end
 
