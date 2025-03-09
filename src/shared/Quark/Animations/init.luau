@@ -13,4 +13,8 @@ local Tween = require(script.Tween)
 Tween.Created = Animations._Created
 Animations.Tween = Tween.new
 
+local Loop = require(script.Loop)
+Loop.Created = Animations._Created
+Animations.Loop = Loop.new
+
 return Animations
