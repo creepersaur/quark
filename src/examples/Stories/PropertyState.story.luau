@@ -43,9 +43,5 @@ return function(parent: Instance)
 		MouseLeave = Hovering.setLambda "Hover over me",
 	}
 
-	New "Frame" {
-		
-	}
-
     return Quark.Cleanup
 end

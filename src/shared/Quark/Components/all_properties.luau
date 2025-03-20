@@ -1168,6 +1168,7 @@ export type ALL_PROPERTIES<T> = {
 	AdditionalLuaState: string?,
 	PlaybackCompleted: RBXScriptSignal<string>,
 	RecordingCompleted: RBXScriptSignal<string>,
+	Destroying: RBXScriptSignal<...any>,
 }
 
 return 0

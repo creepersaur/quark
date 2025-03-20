@@ -70,6 +70,8 @@ for i in data:
 		#! NOTE: This isn't perfectly accurate
 		#! since the luau typechecker isn't smart enough to support multiple functions per index
 
+props["Destroying"] = ["RBXScriptSignal<...any>"]
+
 output = "export type ALL_PROPERTIES<T> = {\n"
 for i, v in props.items():
 	type_string = "|".join(v)
