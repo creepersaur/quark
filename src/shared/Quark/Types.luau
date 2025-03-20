@@ -1,3 +1,4 @@
+local all_properties = require(script.Parent.Components.all_properties)
 local all_instances = require(script.Parent.Components.all_instances)
 local quicklist = require(script.Parent.quicklist)
 type StateMethods<T> = {
@@ -32,10 +33,10 @@ export type Style = {
 }
 
 export type New<T> = {
-	PushChildren: ({ New<T> }) -> New<T>,
-	Push: (child: New<T>) -> New<T>,
-	PushClass: (class: string) -> New<T>,
-} & T & (properties: { [string]: any }) -> New<T> & T
+	PushChildren: (self: New<T>, { New<T> }) -> New<T>,
+	Push: (self: New<T>, child: New<T>?) -> New<T>,
+	PushClass: (self: New<T>, class: string) -> New<T>,
+} & T & (properties: { [string]: any } & all_properties.ALL_PROPERTIES<New<T>>) -> New<T> & T
 
 export type Spring<T> = {
 	Start: CanBeState<T>,

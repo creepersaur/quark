@@ -2,7 +2,7 @@ local Types = require(script.Parent.Parent.Types)
 
 local module = {
 	Created = {},
-	_class_id = "__class_",
+	_class_id = "__class__",
 }
 
 function module.Class(name: string)
@@ -65,7 +65,7 @@ function Style:ApplySingle(obj: any)
 		WriteObjectProperties(ObjectUnwrapped, style_properties)
 	end
 
-	local class = type(obj) == "table" and obj.Class
+	local class = type(obj) == "table" and obj.class
 	if not class then
 		return
 	end

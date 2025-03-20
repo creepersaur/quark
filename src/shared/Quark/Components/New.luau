@@ -1,6 +1,7 @@
 local State = require(script.Parent.Parent.Reactive.State)
 local Types = require(script.Parent.Parent.Types)
 local all_instances = require(script.Parent.all_instances)
+local all_properties = require(script.Parent.all_properties)
 local Created = {}
 
 local function AddChildren(self, list)
@@ -57,9 +58,10 @@ local function AddChildren(self, list)
 end
 
 type INSTANCE_X = all_instances.ALL_INSTANCES
+type PROPERTY_X<T> = all_properties.ALL_PROPERTIES<T>
 type New<T> = Types.New<T>
 
-function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any }) -> New<T> & T & Instance
+function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any } & PROPERTY_X<New<T>>) -> New<T> & T & Instance
 	local obj: any = ClassName
 	if type(obj) == "string" then
 		obj = Instance.new((ClassName :: any) :: string)
@@ -145,10 +147,15 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any }) -> Ne
 			self.Object[idx] = value
 		end,
 		__call = function(self, Properties: { [string]: any }): New<T>
+			if not Properties then
+				return self
+			end
 			for i, v in Properties do
 				if i == "children" then
 					if v._is_state then
 						v = v()
+					elseif not v.Object and #v < 1 then
+						continue
 					end
 
 					self.Children = v
@@ -159,6 +166,7 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any }) -> Ne
 					rawget(self, "Class")(v)
 				elseif i == "style" then
 					rawset(self, "Style", v)
+					v:ApplyRecursive(self)
 				elseif isSignal(self.Object, i) then
 					assert(
 						type(v) == "function" or type(v) == "table" and v._is_state,

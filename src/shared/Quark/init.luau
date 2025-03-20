@@ -40,7 +40,6 @@ Quark.QuickList = QuickList
 
 --[[ TYPES ]]
 local Types = require(script.Types)
-Quark.Types = script.Types
 
 export type State<T> = Types.State<T>
 export type Signal<T = unknown> = Types.Signal<T>

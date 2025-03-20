@@ -16,7 +16,10 @@ function Entries.new(n, func)
 	local entry = {
 		Scope = Quark.Scope(),
 		Children = Children,
-		Object = Quark.New "Frame",
+		Object = Quark.New "Frame" {
+			Size = UDim2.fromScale(1, 1),
+			BackgroundTransparency = 1,
+		},
 		_is_entries = true,
 	}
 
