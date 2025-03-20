@@ -9,11 +9,14 @@ local function AddChildren(self, list)
 		if type(list) == "table" and list._is_entries then
 			list = list.Object
 		end
-		
+
 		if type(list) == "table" and not list._is_new then
-			AddChildren(self, list.Children)
-		else
-			local new_object = (list.Object or list)
+			if list.Children then
+				AddChildren(self, list.Children)
+				return
+			end
+		elseif type(list) == "table" and list.Object then
+			local new_object = list.Object
 			new_object.Parent = self.Object
 			table.insert(Created, new_object)
 			table.insert(self.Children, list)
@@ -25,13 +28,9 @@ local function AddChildren(self, list)
 				end
 				style:ApplyRecursive(list)
 			end
+
+			return
 		end
-
-		return
-	end
-
-	if #list < 1 then
-		return
 	end
 
 	for _, obj in list do
@@ -42,7 +41,7 @@ local function AddChildren(self, list)
 		if type(list) == "table" and obj._is_entries then
 			obj = obj.Object
 		end
-		
+
 		if type(obj) == "table" and not obj.GetObject and not obj._is_new then
 			AddChildren(self, obj)
 		else
@@ -58,10 +57,10 @@ local function AddChildren(self, list)
 end
 
 type INSTANCE_X = all_instances.ALL_INSTANCES
-type PROPERTY_X<T> = all_properties.ALL_PROPERTIES<T>
+type PROPERTY_X = all_properties.ALL_PROPERTIES
 type New<T> = Types.New<T>
 
-function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any } & PROPERTY_X<New<T>>) -> New<T> & T & Instance
+function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any } & PROPERTY_X) -> New<T> & T & Instance & () -> New<T>
 	local obj: any = ClassName
 	if type(obj) == "string" then
 		obj = Instance.new((ClassName :: any) :: string)

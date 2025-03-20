@@ -36,7 +36,7 @@ export type New<T> = {
 	PushChildren: (self: New<T>, { New<T> }) -> New<T>,
 	Push: (self: New<T>, child: New<T>?) -> New<T>,
 	PushClass: (self: New<T>, class: string) -> New<T>,
-} & T & (properties: { [string]: any } & all_properties.ALL_PROPERTIES<New<T>>) -> New<T> & T
+} & T & (properties: { [string]: any } & all_properties.ALL_PROPERTIES) -> New<T> & T
 
 export type Spring<T> = {
 	Start: CanBeState<T>,

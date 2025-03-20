@@ -43,7 +43,7 @@ for i in data:
 
 		if vType in ignore: continue
 		
-		vType += "?"
+		# vType += "?"
 		if i["Name"] in props:
 			if vType in props[i["Name"]]: continue
 			props[i["Name"]].append(vType)
@@ -68,11 +68,11 @@ for i in data:
 			props[i["Name"]] = [vType]
 
 		#! NOTE: This isn't perfectly accurate
-		#! since the luau typechecker isn't smart enough to support multiple functions per index
+		#! In a perfect world we'd have different types per ClassName
 
 props["Destroying"] = ["RBXScriptSignal<...any>"]
 
-output = "export type ALL_PROPERTIES<T> = {\n"
+output = "export type ALL_PROPERTIES = {\n"
 for i, v in props.items():
 	type_string = "|".join(v)
 
