@@ -23,6 +23,7 @@ Quark.Animations = Animations
 
 --[[ Styles ]]
 local Styles = require(script.Styles)
+
 local StyleSheet = Styles.StyleSheet
 Quark.StyleSheet = StyleSheet.new
 Quark.GetStyle = StyleSheet.GetStyle
