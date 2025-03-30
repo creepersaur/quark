@@ -1,0 +1,169 @@
+.Sidebar {
+	width: calc(15vw + 100px);
+	height: 89vh;
+	background: var(--secondary_bg);
+	position: absolute;
+	border-right: 1px solid var(--line);
+	padding: 20px;
+	justify-items: right;
+}
+
+.Sidebar .Fold {
+	width: 230px;
+	padding: 10px;
+	padding-left: 15px;
+	margin-bottom: -5px;
+	translate: 10px;
+}
+
+.Sidebar strong {
+	font-size: 15px;
+	padding: 7px;
+	padding-bottom: 0;
+	border-radius: 5px;
+	color: white;
+	display: block;
+	width: 100%;
+	font-weight: 500;
+
+	transition: 0.2s;
+}
+
+.Sidebar li {
+	margin-top: 5px;
+	color: white;
+	list-style: none;
+	margin-left: 15px;
+
+	/* padding-left: 5px; */
+	border-left: 2px solid var(--line);
+}
+
+.Sidebar li a {
+	font-size: 14.5px;
+	opacity: 0.5;
+	display: inline-block;
+	width: 100%;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	text-indent: 10px;
+	cursor: pointer;
+	translate: 0 2px; 
+}
+
+.Sidebar li a:hover {
+	opacity: 0.9;
+}
+
+.Sidebar li a[active] {
+	opacity: 1;
+	filter: brightness(1.2);
+	font-weight: 500;
+	border-left: 2px solid var(--button_primary_single);
+	background: var(--button_primary_single);
+	-webkit-background-clip: text;
+	background-clip: text;
+  	-webkit-text-fill-color: transparent;
+	translate: -2px 2px; 
+}
+
+.material-symbols-outlined{
+	user-select: none;
+	translate: -5px -2px;
+	line-height: 1px;
+	vertical-align: middle;
+	scale: 0.9;
+	margin-left: -5px;
+	margin-right: -5px;
+}
+
+.FoldItem[active] .material-symbols-outlined{
+	-webkit-text-fill-color: var(--button_primary_single);
+}
+
+#Main {
+	padding: 20px;
+	color: var(--doc_text);
+	position: absolute;
+	width: calc(100vw - 15vw - 200px);
+	height: calc(93vh - 40px);
+	left: calc(15vw + 140px);
+	display: block;
+	max-width: 60vw;
+}
+
+#Main * {
+	margin-bottom: 10px; /* Adds spacing between elements */
+	padding-top: 2pxx; /* Adds internal spacing */
+	padding-bottom: 2px; /* Adds internal spacing */
+}
+
+#Main h1 {
+	color: white;
+}
+
+#Main h2 {
+	color: rgba(255, 255, 255, 0.966);
+}
+
+#Main h3 {
+	color: rgba(255, 255, 255, 0.829);
+}
+
+#Main a {
+	color: var(--link_color);
+}
+
+blockquote {
+	margin: 10px 0; /* Space between blockquotes */
+	padding: 10px 15px; /* Inner spacing */
+	border-left: 4px solid var(--brighter_line); /* Left border for a classic blockquote look */
+	background: var(--primary_bg); /* Light gray background */
+}
+
+pre {
+	border: 1px solid var(--code_block_border);
+	border-top: 10px solid var(--code_block_border);
+	background: var(--code_block) !important; /* Dark background (VS Code style) */
+	padding: 12px !important;
+	border-radius: 5px; /* Rounded corners */
+	overflow:visible;
+}
+
+code {
+	font-size: 14px !important;
+	border-radius: 4px;
+	font-family: JetBrainsMono;
+}
+
+/* Keywords (like function, class, return) */
+.token.keyword {
+	color: #ff6975 !important; /* Purple */
+	font-weight: bold;
+}
+
+/* Strings ("Hello World") */
+.token.string {
+	color: #ffd08a !important; /* Green */
+}
+
+/* Numbers (123, 3.14) */
+.token.number {
+	color: #6fffc3 !important; /* Orange */
+}
+
+/* Comments */
+.token.comment {
+	color: #5c6370 !important; /* Gray */
+	font-style: italic;
+}
+
+/* Functions */
+.token.function {
+	color: #61afef !important; /* Blue */
+}
+
+/* Operators (=, +, -, etc.) */
+.token.operator {
+	color: #56b6c2 !important; /* Cyan */
+}

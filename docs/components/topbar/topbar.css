@@ -1,0 +1,78 @@
+.TopBar {
+	display: block;
+	position: static;
+	border-bottom: 1px solid var(--line);
+
+	background: var(--top_bar);
+	padding: 10px;
+	padding-right: 20px;
+}
+
+.TopBar strong {
+	user-select: none;
+	font-size: 25px;
+	color: rgb(224, 224, 224);
+	cursor: pointer;
+	position: relative;
+
+	transition: 0.1s;
+}
+
+.TopBar strong:hover {
+	font-size: 25px;
+	color: white;
+}
+
+.TopBar strong:hover > img {
+	filter: brightness(1);
+
+	transition: 0.1s;
+}
+
+.TopBar strong img {
+	margin-left: 5px;
+	filter: brightness(0.8);
+	translate: 0 20%;
+	transition: 0.1s;
+}
+
+.TopBar li {
+	color: white;
+	user-select: none;
+	text-decoration: none;
+	list-style: none;
+	float: right;
+	translate: 0 20%;
+}
+
+.TopBar li a {
+	background: rgba(255,255,255,0);
+	padding: 7px;
+	text-decoration: none;
+	color: white;
+	font-weight: 700;
+	font-size: 20px;
+	opacity: 0.7;
+	
+	transition: 0.1s;
+}
+
+.TopBar li a:hover {
+	background: rgba(255,255,255,0.05);
+	opacity: 1;
+}
+
+.TopBar li a:active {
+	background: rgba(255,255,255,0.1);
+	opacity: 1;
+}
+
+.TopBar li line {
+	width: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+	height: 20px;
+	translate: 0 2.5px;
+	background: var(--line);
+	display: inline-block;
+}

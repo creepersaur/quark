@@ -1,54 +1,11 @@
-* {
-	font-family: Inter;
-	margin: 0;
-}
-
-body {
-	background: var(--dark_bg);
-}
-
-.TopBar {
-	display: block;
-	position: sticky;
-	border-bottom: 1px solid var(--line);
-
-	background: var(--top_bar);
-	padding: 10px;
-}
-
-.TopBar strong {
-	font-size: 25px;
-	color: rgb(224, 224, 224);
-	cursor: pointer;
-
-	transition: 0.1s;
-}
-
-.TopBar strong:hover {
-	font-size: 25px;
-	color: white;
-}
-
-.TopBar strong:hover > img {
-	filter: brightness(1);
-
-	transition: 0.1s;
-}
-
-.TopBar strong img {
-	margin-left: 5px;
-	filter: brightness(0.8);
-	translate: 0 15%;
-	transition: 0.1s;
-}
-
 .Header {
 	position: absolute;
-	top: 50%;
+	top: 60px;
 	left: 50%;
 	background: var(--dark_bg);
-	translate: -50% -50%;
+	translate: -50% 0;
 	width: max(100%, 500px);
+	height: 100vh;
 	
 	align-content: center;
 }
@@ -57,7 +14,7 @@ body {
 	position: absolute;
 	top: 50%;
 	left: 65%;
-	transform: translate(-20%, -50%);
+	transform: translate(-20%, -85%);
 	width: 200px; /* Set a reasonable size */
 	height: auto;
 	max-width: 30vw; /* Keeps it responsive */
@@ -68,6 +25,7 @@ body {
 	margin-left: calc(1.618rem + 10%);
 	text-align: left;
 	user-select: none;
+	translate: 0 -75px;
 }
 
 .DescriptionContent p {
@@ -97,46 +55,53 @@ body {
 	margin-left: calc(1.618rem + 10%);
 	text-align: left;
 	margin-top: 30px;
+	translate: 0 -75px;
 }
 
-.HeaderButtons button {
-	font-family: sans-serif;
+a {
+	color: white;
+	text-decoration: none;
+}
 
+.HeaderButtons a {
 	padding: 0.5rem;
 	padding-left: 2rem;
 	padding-right: 2rem;
 	width: auto;
 	border-radius: 100rem;
-	font-weight: 700;
+	font-weight: 900;
 	font-size: 15px;
 	border: none;
 	cursor: pointer;
+	background: white;
+	color: black;
 
 	transition: 0.1s;
 }
 
-.HeaderButtons button[active] {
+.HeaderButtons a[active] {
+	font-weight: 700;
 	background: var(--button_primary);
 	color: white;
 	margin-right: 10px;
 }
 
-.HeaderButtons button:hover {
+.HeaderButtons a:hover {
 	filter: brightness(0.85);
 
 	transition: 0.1s;
 }
 
-.HeaderButtons button[active]:hover {
+.HeaderButtons a[active]:hover {
 	filter: hue-rotate(0deg) brightness(0.9);
 }
 
-.HeaderButtons button:active {
+.HeaderButtons a:active {
 	filter: brightness(1);
 	transition: 0s;
 }
 
-.HeaderButtons button[active]:active {
+.HeaderButtons a[active]:active {
 	filter: hue-rotate(5deg) brightness(1.1);
 }
 
@@ -155,11 +120,12 @@ body {
 	color: var(--secondary-text);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
 	.Header img {
 		position: relative;
 		left: auto;
 		top: auto;
+		translate: 0 -60px;
 		transform: none;
 		display: block;
 		margin: 0 auto 20px auto; /* Centers above the header */
@@ -177,11 +143,13 @@ body {
 
 	.DescriptionContent p {
 		width: 100%;
+		translate: 0 -20px;
 	}
 
 	.HeaderButtons {
 		width: 100%;
 		margin-left: 0;
 		text-align: center;
+		translate: 0 -105px;
 	}
 }
