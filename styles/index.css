@@ -1,0 +1,187 @@
+* {
+	font-family: Inter;
+	margin: 0;
+}
+
+body {
+	background: var(--dark_bg);
+}
+
+.TopBar {
+	display: block;
+	position: sticky;
+	border-bottom: 1px solid var(--line);
+
+	background: var(--top_bar);
+	padding: 10px;
+}
+
+.TopBar strong {
+	font-size: 25px;
+	color: rgb(224, 224, 224);
+	cursor: pointer;
+
+	transition: 0.1s;
+}
+
+.TopBar strong:hover {
+	font-size: 25px;
+	color: white;
+}
+
+.TopBar strong:hover > img {
+	filter: brightness(1);
+
+	transition: 0.1s;
+}
+
+.TopBar strong img {
+	margin-left: 5px;
+	filter: brightness(0.8);
+	translate: 0 15%;
+	transition: 0.1s;
+}
+
+.Header {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background: var(--dark_bg);
+	translate: -50% -50%;
+	width: max(100%, 500px);
+	
+	align-content: center;
+}
+
+.Header img {
+	position: absolute;
+	top: 50%;
+	left: 65%;
+	transform: translate(-20%, -50%);
+	width: 200px; /* Set a reasonable size */
+	height: auto;
+	max-width: 30vw; /* Keeps it responsive */
+	max-height: 30vh;
+}
+
+.DescriptionContent {
+	margin-left: calc(1.618rem + 10%);
+	text-align: left;
+	user-select: none;
+}
+
+.DescriptionContent p {
+	color: var(--primary_text);
+	margin-top: 10px;
+	width: 40vw;
+	font-weight: 500;
+	font-size: 20px
+}
+
+.DescriptionContent h1 {
+	font-size: 60px;
+	margin-bottom: 30px;
+	background: var(--button_primary);
+	-webkit-background-clip: text;
+	background-clip: text;
+  	-webkit-text-fill-color: transparent;
+
+	transition: 0.1s;
+}
+
+.DescriptionContent h1:hover {
+	filter: brightness(1.2);
+}
+
+.HeaderButtons {
+	margin-left: calc(1.618rem + 10%);
+	text-align: left;
+	margin-top: 30px;
+}
+
+.HeaderButtons button {
+	font-family: sans-serif;
+
+	padding: 0.5rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	width: auto;
+	border-radius: 100rem;
+	font-weight: 700;
+	font-size: 15px;
+	border: none;
+	cursor: pointer;
+
+	transition: 0.1s;
+}
+
+.HeaderButtons button[active] {
+	background: var(--button_primary);
+	color: white;
+	margin-right: 10px;
+}
+
+.HeaderButtons button:hover {
+	filter: brightness(0.85);
+
+	transition: 0.1s;
+}
+
+.HeaderButtons button[active]:hover {
+	filter: hue-rotate(0deg) brightness(0.9);
+}
+
+.HeaderButtons button:active {
+	filter: brightness(1);
+	transition: 0s;
+}
+
+.HeaderButtons button[active]:active {
+	filter: hue-rotate(5deg) brightness(1.1);
+}
+
+.Footer {
+	position: absolute;
+	background: none;
+	border-top: 1px solid var(--line);
+	width: calc(100% - 30px);
+	height: 5rem;
+	bottom: 0px;
+	margin: 15px;
+
+	color: white;
+	text-align: center;
+	align-content: center;
+	color: var(--secondary-text);
+}
+
+@media (max-width: 768px) {
+	.Header img {
+		position: relative;
+		left: auto;
+		top: auto;
+		transform: none;
+		display: block;
+		margin: 0 auto 20px auto; /* Centers above the header */
+	}
+
+	.Header {
+		width: 100%;
+	}
+
+	.DescriptionContent {
+		width: 100%;
+		text-align: center;
+		margin: 0;
+	}
+
+	.DescriptionContent p {
+		width: 100%;
+	}
+
+	.HeaderButtons {
+		width: 100%;
+		margin-left: 0;
+		text-align: center;
+	}
+}

@@ -1,0 +1,13 @@
+:root{
+	--top_bar: rgba(218, 238, 255, 0.05);
+	--dark_bg: #0d131b;
+	--primary_bg: rgb(39, 39, 39);
+	--secondary_bg: rgb(92, 92, 92);
+
+	--line: rgba(92, 92, 92, 0.2);
+	--primary_text: rgb(142, 158, 168);
+	--secondary-text: rgb(81, 100, 126);
+
+	--button_primary: linear-gradient(135deg, rgba(76,187,135,1) 0%, rgba(57,138,109,1) 60%);
+	--button_secondary: white;
+}
