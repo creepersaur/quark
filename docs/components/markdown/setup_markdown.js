@@ -1,7 +1,7 @@
 marked.setOptions({
 	highlight: function (code, lang) {
 		// Use Prism to highlight the code
-		const validLang = Prism.languages[lang] ? lang : "clike"; // Default to 'clike' if language isn't found
+		const validLang = Prism.languages[lang] ? lang : "lua"; // Default to 'clike' if language isn't found
 		return Prism.highlight(code, Prism.languages[validLang], validLang);
 	},
 });

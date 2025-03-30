@@ -131,9 +131,19 @@ pre {
 }
 
 code {
+	background: var(--code_span);
+	outline: 1px solid rgba(126, 139, 255, 0.322);
+	padding: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
 	font-size: 14px !important;
 	border-radius: 4px;
-	font-family: JetBrainsMono;
+	font-family: JetBrains Mono !important;
+}
+
+pre code {
+	outline: 0;
+	background: none;
 }
 
 /* Keywords (like function, class, return) */
