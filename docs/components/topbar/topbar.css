@@ -1,6 +1,6 @@
 .TopBar {
 	display: block;
-	position: static;
+	position: sticky;
 	border-bottom: 1px solid var(--line);
 
 	background: var(--top_bar);

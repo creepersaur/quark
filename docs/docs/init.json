@@ -1,0 +1,36 @@
+{
+	"Getting Started": {
+		"download|Installation": "GettingStarted/installation.md",
+		"waving_hand|Hello Quark": "GettingStarted/hello_quark.md"
+	},
+
+	"New": {
+		"add_circle|Creating Instances": "hello.md",
+		"tune|Properties and Methods": "hello.md",
+		"edit|Custom Properties": "hello.md",
+		"data_object|Premade Instances": "hello.md",
+		"event_list|Entries": ""
+	},
+
+	"Environment": {
+		"globe|Scope": "scope.md",
+		"cleaning_services|Cleanup": "cleanup.md",
+		"style|Stylesheets": "stylesheets.md"
+	},
+
+	"Reactivity": {
+		"polyline|State": "state.md",
+		"sensors|Signal": "hello.md"
+	},
+
+	"Animations": {
+		"animation|Spring": "spring.md",
+		"move_up|Tween": "spring.md",
+		"all_inclusive|Loop": "spring.md"
+	},
+
+	"Stories": {
+		"web_stories|Basic Stories": "basic_stories.md",
+		"auto_stories|Advanced Stories": "spring.md"
+	}
+}

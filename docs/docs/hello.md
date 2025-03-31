@@ -9,6 +9,7 @@ local Spring = Quark.Animations.Spring
 ```
 
 Creating a spring:
+
 -# It's a function, these are just parameters:
 
 ```lua
