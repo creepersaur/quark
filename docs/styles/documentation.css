@@ -129,7 +129,7 @@ body {
 	left: calc(15vw + 140px);
 	top: 60px;
 	display: block;
-	max-width: 60vw;
+	max-width: 50vw;
 	overflow-y: scroll;
 }
 
@@ -260,18 +260,34 @@ pre code {
 	font-weight: 500;
 }
 
+.token.brace {
+	color: #9eadce !important;
+}
+
 .token.new {
 	font-weight: 500;
 	color: rgb(80, 255, 168) !important
 }
 
+.token.builtin {
+	color: rgb(68, 236, 180) !important;
+}
+
 .token.property {
-	color: rgb(255, 196, 148) !important;
+	color: rgb(255, 182, 148) !important;
 }
 
 /* Operators (=, +, -, etc.) */
 .token.operator {
 	color: #70f5ff91 !important; /* Cyan */
+}
+
+.token.type{
+	color: rgb(245, 60, 153);
+}
+
+.token.table_key {
+	color: red !important;
 }
 
 .comment {

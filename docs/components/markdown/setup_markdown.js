@@ -8,18 +8,26 @@ Prism.languages["luau"] = {
 	},
 	number: /\b0x[a-f\d]+(?:\.[a-f\d]*)?(?:p[+-]?\d+)?\b|\b\d+(?:\.\B|(?:\.\d*)?(?:e[+-]?\d+)?\b)|\B\.\d+(?:e[+-]?\d+)?\b/i,
 	keyword:
-		/\b(?:and|break|do|else|elseif|end|false|for|function|goto|if|in|local|nil|not|or|repeat|return|then|true|until|while)\b/,
-	function: [/(?!\d)\w+(?=\s*(?:[({]))/, /\bNew\b/, /\print\b/],
+		/\b(?:self|and|break|do|else|elseif|end|false|for|function|goto|if|in|local|nil|not|or|repeat|return|then|true|until|while)\b/,
+	builtin:
+		/\bQuark|Axes|BrickColor|CatalogSearchParams|CFrame|Color3|ColorSequence|ColorSequenceKeypoint|DateTime|DockWidgetPluginGuiInfo|Enum|EnumItem|Enums|Faces|Instance|NumberRange|NumberSequence|NumberSequenceKeypoint|PathWaypoint|PhysicalProperties|Random|Ray|RaycastParams|RaycastResult|RBXScriptConnection|RBXScriptSignal|Rect|Region3|Region3int16|TweenInfo|UDim2|UDim|Vector2|Vector2int16|Vector3|Vector3int16\b/,
+	function: [
+		/(?!\d)\w+(?=\s*(?:[({]))/,
+		/\bNew\b(?!<)/,
+		/\bprint\b/,
+		/\bscript\b/,
+	],
 	operator: [
-		/[-+*%^&|#]|\/\/?|<[<=]?|>[>=]?|[=~]=?/,
+		/[-+*%^&|#]|\/\/?|< [<=]?| >[>=]?|[=~]=?/,
 		{
 			// Match ".." but don't break "..."
 			pattern: /(^|[^.])\.\.(?!\.)/,
 			lookbehind: true,
 		},
 	],
+	type: [/(?<=:)\s?(\w*)/gim, /(?<=<)(.*)(?=>)/gim],
 	property: /(?<=\.)\w*/,
-	punctuation: /[\[\](){},;]|\.+|:+/,
+	punctuation: /[\[\](),;]|\.+|:+/,
 };
 
 marked.setOptions({
@@ -81,7 +89,9 @@ const nextPageExtension = {
 };
 
 // Add extension to Marked
-marked.use({ extensions: [commentExtension, nextPageExtension] });
+marked.use({
+	extensions: [commentExtension, nextPageExtension],
+});
 
 function fileMarkdown(file_path) {
 	fetch("docs/" + file_path)
