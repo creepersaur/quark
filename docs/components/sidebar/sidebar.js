@@ -1,6 +1,35 @@
 const sidebar = document.getElementById("Sidebar");
 
-fetch("docs/init.json")
+function connect_items() {
+	const items = document.querySelectorAll(".FoldItem");
+
+	items.forEach((i) => {
+		i.addEventListener("click", () => {
+			items.forEach((e) => e.removeAttribute("active"));
+			i.setAttribute("active", 1);
+
+			fileMarkdown(i.getAttribute("path"));
+			document.title = `Quark - ${i.getAttribute("name")}`;
+			
+			let split = window.location.href.split("#")
+			let path = i.getAttribute("path")
+			window.location.href = split[0] + "#" + path.substring(0, path.length - 3)
+		});
+	});
+}
+
+function open_page(page) {
+	const items = document.querySelectorAll(".FoldItem");
+
+	items.forEach((i) => {
+		if (i.getAttribute("path") == page + ".md") {
+			i.click()
+		}
+	})
+}
+
+function setup_sidebar() {
+	return fetch("docs/init.json")
 	.then((response) => response.json())
 	.then((data) => {
 		for (const key in data) {
@@ -44,16 +73,16 @@ fetch("docs/init.json")
 			}
 		}
 
-		const items = document.querySelectorAll(".FoldItem");
-
-		items.forEach((i) => {
-			i.addEventListener("click", () => {
-				items.forEach((e) => e.removeAttribute("active"));
-				i.setAttribute("active", 1);
-
-				fileMarkdown(i.getAttribute("path"));
-				document.title = `Quark - ${i.getAttribute("name")}`;
-			});
-		});
+		connect_items();
 	})
-	.catch((error) => console.error("Error loading docs:", error));
+	.catch((error) => console.error("Error loading docs:", error))
+}
+
+setup_sidebar().then(
+	() => {
+		let split = window.location.href.split("#")
+		if (split.length > 1) {
+			open_page(split[1])
+		}
+	}
+)

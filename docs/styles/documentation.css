@@ -1,4 +1,4 @@
-body{
+body {
 	overflow: hidden;
 }
 
@@ -10,6 +10,13 @@ body{
 	padding: 20px;
 	justify-items: right;
 	overflow: auto;
+}
+
+@-moz-document url-prefix() {
+	#Sidebar {
+		scrollbar-width: 10px;
+		scrollbar-color: var(--brighter_line) var(--line);
+	}
 }
 
 /* width */
@@ -249,7 +256,7 @@ pre code {
 #Main .Default * {
 	display: block;
 	justify-self: center;
-	filter: hue-rotate(60deg) grayscale(0.5) opacity(0.4)
+	filter: hue-rotate(60deg) grayscale(0.5) opacity(0.4);
 }
 
 #Main .Default {
