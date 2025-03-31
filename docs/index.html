@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="styles/index.css" />
 		<link rel="stylesheet" href="styles/theme.css" />
+		<link rel="stylesheet" href="components/topbar/topbar.css" />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +17,26 @@
 		<title>Quark Documentation</title>
 	</head>
 	<body>
-		<script src="components/topbar/topbar.js"></script>
+		<script defer src="components/topbar/topbar.js"></script>
+		<div class="TopBar">
+			<strong id="HomeButton">
+				<img height="30" src="assets/QuarkIcon.svg" />
+				Quark
+			</strong>
+		
+			<li>
+				<a href="documentation.html">Documentation</a>
+				<line></line>
+				<a href="#">API</a>
+				<line></line>
+				<a
+					href="https://github.com/creepersaur/quark"
+					target="__blank"
+					rel="noopener noreferrer"
+					class="navbar__item navbar__link header-github-link"
+				></a>
+			</li>
+		</div>
 
 		<div class="Header">
 			<img src="assets/QuarkIcon.svg"/>

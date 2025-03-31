@@ -10,7 +10,7 @@
 	--primary_text: rgb(142, 158, 168);
 	--secondary-text: rgb(81, 100, 126);
 	--doc_text: rgb(200, 200, 200);
-	--link_color: rgb(40, 140, 255);
+	--link_color: var(--button_primary_single);
 
 	--button_primary: linear-gradient(135deg, rgba(76,187,135,1) 0%, rgba(57,138,109,1) 60%);
 	--button_secondary: white;
@@ -21,7 +21,7 @@
 
 	--code_block: #1e222e9f;
 	--code_block_border: #373f50;
-	--code_span: #3d4a7067;
+	--code_span: #262d4167;
 	--comment: #6b7894;
 }
 

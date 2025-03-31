@@ -78,11 +78,11 @@ function setup_sidebar() {
 	.catch((error) => console.error("Error loading docs:", error))
 }
 
-setup_sidebar().then(
-	() => {
-		let split = window.location.href.split("#")
-		if (split.length > 1) {
-			open_page(split[1])
-		}
+function promptPageUpdate() {
+	let split = window.location.href.split("#")
+	if (split.length > 1) {
+		open_page(split[1])
 	}
-)
+}
+
+setup_sidebar().then(promptPageUpdate)

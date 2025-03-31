@@ -44,6 +44,7 @@ body {
 
 #Sidebar .Fold {
 	width: 230px;
+	float: right;
 	padding: 10px;
 	padding-left: 15px;
 	margin-bottom: -5px;
@@ -63,10 +64,9 @@ body {
 	transition: 0.2s;
 }
 
-#Sidebar li {
-	margin-top: 5px;
-	color: white;
+.Fold li {
 	list-style: none;
+	margin-top: 5px;
 	margin-left: 15px;
 
 	/* padding-left: 5px; */
@@ -75,6 +75,7 @@ body {
 
 .FoldItem {
 	font-size: 14.5px;
+	color: white;
 	opacity: 0.5;
 	display: inline-block;
 	width: 100%;
@@ -123,12 +124,20 @@ body {
 	padding: 20px;
 	color: var(--doc_text);
 	position: absolute;
-	width: calc(100vw - 15vw - 200px);
+	width: 100vw !important;
 	height: calc(93vh - 40px);
 	left: calc(15vw + 140px);
+	top: 60px;
 	display: block;
 	max-width: 60vw;
 	overflow-y: scroll;
+}
+
+@media (max-width: 1500px) {
+	#Main {
+		width: 100% !important;
+		max-width: calc(100vw - 24vw - 120px);
+	}
 }
 
 #Main * {
@@ -151,6 +160,11 @@ body {
 
 #Main a {
 	color: var(--link_color);
+	transition: 0.2s;
+}
+
+#Main a[href]:hover {
+	filter: brightness(1.5);
 }
 
 /* width */
@@ -180,6 +194,12 @@ blockquote {
 	background: var(--primary_bg); /* Light gray background */
 }
 
+code {
+	color: rgb(218, 222, 230);
+	padding-right: 5px !important;
+	padding-left: 5px !important;
+}
+
 pre {
 	border: 1px solid var(--code_block_border);
 	border-top: 10px solid var(--code_block_border);
@@ -187,30 +207,35 @@ pre {
 		--code_block
 	) !important; /* Dark background (VS Code style) */
 	padding: 12px !important;
+	padding-left: 20px !important;
 	border-radius: 5px; /* Rounded corners */
 	overflow: visible;
+	font-family: JetBrains Mono !important;
 }
 
 code {
 	background: var(--code_span);
 	outline: 1px solid rgba(126, 139, 255, 0.322);
 	padding: 1px;
-	padding-left: 5px;
-	padding-right: 5px;
 	font-size: 14px !important;
-	border-radius: 4px;
 	font-family: JetBrains Mono !important;
 }
 
 pre code {
 	outline: 0;
 	background: none;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
+.token{
+	font-family: JetBrains Mono !important;
 }
 
 /* Keywords (like function, class, return) */
 .token.keyword {
 	color: #ff6975 !important; /* Purple */
-	font-weight: bold;
+	font-weight: 500;
 }
 
 /* Strings ("Hello World") */
@@ -232,15 +257,66 @@ pre code {
 /* Functions */
 .token.function {
 	color: #61afef !important; /* Blue */
+	font-weight: 500;
+}
+
+.token.new {
+	font-weight: 500;
+	color: rgb(80, 255, 168) !important
+}
+
+.token.property {
+	color: rgb(255, 196, 148) !important;
 }
 
 /* Operators (=, +, -, etc.) */
 .token.operator {
-	color: #56b6c2 !important; /* Cyan */
+	color: #70f5ff91 !important; /* Cyan */
 }
 
 .comment {
 	color: var(--comment);
+}
+
+.NextPage {
+	display: block;
+	width: 30%;
+	min-width: fit-content;
+	height: 45px;
+	justify-content: center;
+	margin-top: 20px;
+	offset-anchor: 100%;
+	float: right;
+	border: 1px solid var(--brighter_line);
+	cursor: pointer;
+	padding-top: 10px;
+	padding-right: 22px;
+	padding-left: 22px;
+	text-decoration: none;
+	color: var(--doc_text) !important;
+	font-weight: 500;
+	border-radius: 7px;
+	font-size: 13px;
+	text-align: right !important;
+	user-select: none;
+
+	transition: 0.1s;
+}
+
+.NextPage:hover {
+	filter: hue-rotate(0deg) brightness(0.9);
+	border: 1px solid var(--button_primary_single);
+}
+
+.NextPage:active {
+	filter: hue-rotate(5deg) brightness(1.1);
+	transition: 0s;
+}
+
+.NextPage strong {
+	display: block;
+	color: var(--button_primary_single) !important;
+	font-size: 17px !important;
 }
 
 #Main .Default {
@@ -268,4 +344,11 @@ pre code {
 	left: 50%;
 	top: -300%;
 	translate: -50% -50%;
+}
+
+hr {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	background: var(--line);
+	border: 0;
 }

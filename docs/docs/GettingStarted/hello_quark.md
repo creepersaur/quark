@@ -5,3 +5,5 @@
 Yeah hi can I have a large doctor pepper...
 
 and uhh... a big fry?
+
+<!Next Page>(#GettingStarted/installation)

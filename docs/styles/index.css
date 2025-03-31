@@ -1,3 +1,7 @@
+body {
+	overflow: hidden;
+}
+
 .Header {
 	position: absolute;
 	top: 60px;
@@ -112,12 +116,13 @@ a {
 	width: calc(100% - 30px);
 	height: 5rem;
 	bottom: 0px;
+	font-size: 14px;
 	margin: 15px;
 
 	color: white;
 	text-align: center;
 	align-content: center;
-	color: var(--secondary-text);
+	color: var(--primary_text);
 }
 
 @media (max-width: 700px) {
