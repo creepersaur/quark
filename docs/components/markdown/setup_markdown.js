@@ -10,7 +10,7 @@ Prism.languages["luau"] = {
 	keyword:
 		/\b(?:self|and|break|do|else|elseif|end|false|for|function|goto|if|in|local|nil|not|or|repeat|return|then|true|until|while)\b/,
 	builtin:
-		/\bQuark|Axes|BrickColor|CatalogSearchParams|CFrame|Color3|ColorSequence|ColorSequenceKeypoint|DateTime|DockWidgetPluginGuiInfo|Enum|EnumItem|Enums|Faces|Instance|NumberRange|NumberSequence|NumberSequenceKeypoint|PathWaypoint|PhysicalProperties|Random|Ray|RaycastParams|RaycastResult|RBXScriptConnection|RBXScriptSignal|Rect|Region3|Region3int16|TweenInfo|UDim2|UDim|Vector2|Vector2int16|Vector3|Vector3int16\b/,
+		/\bworkspace|Axes|BrickColor|CatalogSearchParams|CFrame|Color3|ColorSequence|ColorSequenceKeypoint|DateTime|DockWidgetPluginGuiInfo|Enum|EnumItem|Enums|Faces|Instance|NumberRange|NumberSequence|NumberSequenceKeypoint|PathWaypoint|PhysicalProperties|Random|Ray|RaycastParams|RaycastResult|RBXScriptConnection|RBXScriptSignal|Rect|Region3|Region3int16|TweenInfo|UDim2|UDim|Vector2|Vector2int16|Vector3|Vector3int16\b/,
 	function: [
 		/(?!\d)\w+(?=\s*(?:[({]))/,
 		/\bNew\b(?!<)/,
@@ -18,7 +18,7 @@ Prism.languages["luau"] = {
 		/\bscript\b/,
 	],
 	operator: [
-		/[-+*%^&|#]|\/\/?|< [<=]?| >[>=]?|[=~]=?/,
+		/[-+*%^&|#]|\/\/?|< [<=]?| >[>=]?|[=~]|(\.\.\.)=?/,
 		{
 			// Match ".." but don't break "..."
 			pattern: /(^|[^.])\.\.(?!\.)/,

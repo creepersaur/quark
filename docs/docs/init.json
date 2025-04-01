@@ -5,8 +5,8 @@
 	},
 
 	"New": {
-		"add_circle|Creating Instances": "hello.md",
-		"tune|Properties and Methods": "hello.md",
+		"add_circle|Creating Instances": "New/creating_instances.md",
+		"tune|Properties and Methods": "New/properties_and_methods.md",
 		"edit|Custom Properties": "hello.md",
 		"data_object|Premade Instances": "hello.md",
 		"event_list|Entries": ""

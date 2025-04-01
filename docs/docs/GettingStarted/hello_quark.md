@@ -30,4 +30,6 @@ If everything works correctly, you should see a TextLabel appear when you play t
 
 </div>
 
-<!NextPage|Installation>(#GettingStarted/installation)
+---
+
+<!NextPage|Creating Instances>(#New/creating_instances)
