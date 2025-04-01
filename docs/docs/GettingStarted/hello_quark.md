@@ -7,7 +7,6 @@ The instance can be anything, but we'll choose a `TextLabel`
 
 1. Make a `ScreenGui` inside of StarterGui.
 2. Add a `LocalScript` inside it.
-
 3. Put this code in the LocalScript:
 
 ```luau

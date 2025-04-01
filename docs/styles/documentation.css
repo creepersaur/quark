@@ -194,6 +194,73 @@ blockquote {
 	background: var(--primary_bg); /* Light gray background */
 }
 
+/* BLOCK QUOTE TYPES */
+blockquote:has(warning) {
+	background: rgba(255, 136, 0, 0.199);
+	border-left: 4px solid rgb(255, 206, 100);
+}
+
+blockquote:has(danger) {
+	background: rgba(255, 0, 0, 0.199);
+	border-left: 4px solid rgb(255, 101, 101);
+	padding-bottom: 10px !important;
+}
+
+blockquote:has(note) {
+	background: rgba(0, 110, 255, 0.123);
+	border-left: 4px solid rgb(88, 127, 255);
+	padding-bottom: 10px !important;
+}
+
+blockquote:has(tip) {
+	background: rgba(0, 255, 85, 0.1);
+	border-left: 4px solid rgb(88, 255, 110);
+	padding-bottom: 10px !important;
+}
+
+/* BLOCK QUOTE LABELS */
+blockquote:has(warning)::before {
+	content: '⚠️ Warning';
+	padding: 5px;
+	margin-bottom: 5px;
+	color: white;
+	font-weight: 700;
+	background: rgba(0, 0, 0, 0.3);
+	display: block;
+}
+
+blockquote:has(danger)::before {
+	content: '❗ Danger';
+	padding: 5px;
+	margin-bottom: 5px;
+	color: white;
+	font-weight: 700;
+	background: rgba(0, 0, 0, 0.3);
+	display: block;
+}
+
+blockquote:has(note)::before {
+	content: 'ℹ️ Note';
+	padding: 5px;
+	margin-bottom: 5px;
+	color: white;
+	font-weight: 700;
+	background: rgba(0, 0, 0, 0.3);
+	display: block;
+}
+
+blockquote:has(tip)::before {
+	content: '🍏 Tip';
+	padding: 5px;
+	margin-bottom: 5px;
+	color: white;
+	font-weight: 700;
+	background: rgba(0, 0, 0, 0.3);
+	display: block;
+}
+
+/* CODE STUFF */
+
 code {
 	color: rgb(218, 222, 230);
 	padding-right: 5px !important;
@@ -283,11 +350,15 @@ pre code {
 }
 
 .token.type{
-	color: rgb(245, 60, 153);
+	color: rgb(255, 106, 181);
 }
 
 .token.table_key {
 	color: red !important;
+}
+
+#Main strong {
+	color: rgb(233, 233, 233);
 }
 
 .comment {

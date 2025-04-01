@@ -29,6 +29,11 @@ x.Text = "Hello world"
 x:Destroy()
 ```
 
+> <warning>
+>
+> **NOTE:** All UI objects are sized `{0,0,0,0}` by default. They will **not be shown** unless you set their size explicitly.
+> </warning>
+
 ---
 
 ## Adding Children
@@ -55,7 +60,36 @@ x:PushChildren({
 })
 ```
 
-One may also use the `children` custom property to add children (Which is the best way to add children.)
+- `children` custom property
+
+This is the **best way** to add children into a New object. You can use it for making tree-like structures which store all the UI in an ordered manner. It also supports *dictionaries/arrays*.
+
+```luau
+New "Frame" {
+	children = {
+		New "TextLabel",
+		New "UICorner",
+	}
+}
+```
+
+---
+
+## Types
+
+##### (Optional)
+
+If you want some type checking on `New`, it's basically `New<Instance>` by default. All properties/methods of Instance are shown. If you want to change this, you can do
+
+```luau
+local x: New<Frame> = New "Frame" {
+	...
+}
+```
+
+Which will give you type checking for `Frame`. (Type checking may be bugged sometimes but usually you don't have to use it.)
+
+All Instance names and properties of every instance are in the autocomplete for `New`. So you can see all the different properties and events. This makes it faster to write.
 
 ---
 
