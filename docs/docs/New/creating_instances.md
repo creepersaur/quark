@@ -11,9 +11,12 @@ New "TextLabel"
 
 `New` objects are what most of your UI will consist of. Consider them the instances that you'd regularly make UI out of.
 
+> <note>
+>
 >Some methods, functions, etc. require you to have an `Instance` object directly. Passing in a `New` object wont work in those cases.
 >
->If you want the **actual Instance** that the New object wraps around you can use `.Object` to get the object.
+>If you want the **actual Instance** that the New object wraps around you can use `.Object` property to get the object.
+> </note>
 
 They act almost the same as normal Instances. You can get properties and call methods on them:
 
@@ -62,7 +65,7 @@ x:PushChildren({
 
 - `children` custom property
 
-This is the **best way** to add children into a New object. You can use it for making tree-like structures which store all the UI in an ordered manner. It also supports *dictionaries/arrays*.
+This is the **best way** to add children into a New object. You can use it for making tree-like structures which store all the UI in an ordered manner. It also supports *dictionaries/arrays/and single new objects*.
 
 ```luau
 New "Frame" {
@@ -82,6 +85,8 @@ New "Frame" {
 If you want some type checking on `New`, it's basically `New<Instance>` by default. All properties/methods of Instance are shown. If you want to change this, you can do
 
 ```luau
+type New<T> = Quark.New<T>
+
 local x: New<Frame> = New "Frame" {
 	...
 }
