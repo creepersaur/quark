@@ -196,26 +196,23 @@ blockquote {
 
 /* BLOCK QUOTE TYPES */
 blockquote:has(warning) {
-	background: rgba(255, 136, 0, 0.199);
+	background: rgba(255, 136, 0, 0.12);
 	border-left: 4px solid rgb(255, 206, 100);
 }
 
 blockquote:has(danger) {
-	background: rgba(255, 0, 0, 0.199);
+	background: rgba(255, 0, 0, 0.12);
 	border-left: 4px solid rgb(255, 101, 101);
-	padding-bottom: 10px !important;
 }
 
 blockquote:has(note) {
-	background: rgba(0, 110, 255, 0.123);
+	background: rgba(0, 110, 255, 0.066);
 	border-left: 4px solid rgb(88, 127, 255);
-	padding-bottom: 10px !important;
 }
 
 blockquote:has(tip) {
-	background: rgba(0, 255, 85, 0.1);
+	background: rgba(0, 255, 85, 0.12);
 	border-left: 4px solid rgb(88, 255, 110);
-	padding-bottom: 10px !important;
 }
 
 /* BLOCK QUOTE LABELS */

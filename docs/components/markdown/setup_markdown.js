@@ -97,8 +97,20 @@ function fileMarkdown(file_path) {
 	fetch("docs/" + file_path)
 		.then((response) => response.text())
 		.then((data) => {
-			document.getElementById("Main").innerHTML = marked.parse(data);
+			if (data.includes("<!DOCTYPE html>")) {
+				fetch("docs/404.md")
+					.then((response) => response.text())
+					.then((data) => {
+						document.getElementById("Main").innerHTML = marked.parse(data);
+					})
+					.catch((error) =>
+						console.error("Error loading 404 file:", error)
+					);
+			} else {
+				document.getElementById("Main").innerHTML = marked.parse(data);
+			}
+			
 			Prism.highlightAll();
 		})
-		.catch((error) => console.error("Error loading topbar:", error));
+		.catch((error) => console.error("Error loading markdown file:", error));
 }

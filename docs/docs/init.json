@@ -8,29 +8,29 @@
 		"add_circle|Creating Instances": "New/creating_instances.md",
 		"tune|Properties and Methods": "New/properties_and_methods.md",
 		"edit|Custom Properties": "New/custom_properties.md",
-		"data_object|Premade Instances": "hello.md",
+		"data_object|Premade Instances": "",
 		"event_list|Entries": ""
 	},
 
 	"Environment": {
-		"globe|Scope": "scope.md",
-		"cleaning_services|Cleanup": "cleanup.md",
-		"style|Stylesheets": "stylesheets.md"
+		"globe|Scope": "",
+		"cleaning_services|Cleanup": "",
+		"style|Stylesheets": ""
 	},
 
 	"Reactivity": {
-		"polyline|State": "state.md",
-		"sensors|Signal": "hello.md"
+		"polyline|State": "",
+		"sensors|Signal": ""
 	},
 
 	"Animations": {
-		"animation|Spring": "spring.md",
-		"move_up|Tween": "spring.md",
-		"all_inclusive|Loop": "spring.md"
+		"animation|Spring": "",
+		"move_up|Tween": "",
+		"all_inclusive|Loop": ""
 	},
 
 	"Stories": {
-		"web_stories|Basic Stories": "basic_stories.md",
-		"auto_stories|Advanced Stories": "spring.md"
+		"web_stories|Basic Stories": "",
+		"auto_stories|Advanced Stories": ""
 	}
 }
