@@ -94,7 +94,7 @@ local x: New<Frame> = New "Frame" {
 
 Which will give you type checking for `Frame`. (Type checking may be bugged sometimes but usually you don't have to use it.)
 
-All Instance names and properties of every instance are in the autocomplete for `New`. So you can see all the different properties and events. This makes it faster to write.
+All Instance names and properties of every instance are in the autocomplete for `New()`. So you can see all the different properties and events. This makes it faster to write.
 
 ---
 
