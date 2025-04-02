@@ -1,6 +1,6 @@
 <div align="center">
 
-<img width="400" alt="Quark" src="https://github.com/user-attachments/assets/2cc3f03e-4328-4106-9e38-70f731548862">
+<img width="400" alt="Quark_creepersaur" src="https://github.com/user-attachments/assets/02d6c90d-dcde-4ccd-be88-a5daa9b53058" />
 
 </div>
 
