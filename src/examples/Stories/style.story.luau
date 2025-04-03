@@ -6,7 +6,7 @@ local New = Quark.New
 Quark.StyleSheet "Hello" {
 	TextLabel = {
 		BackgroundColor3 = Color3.new(0.2, 0.5, 1),
-		Text = "class: Hello",
+		Text = "Instance: TextLabel",
 	},
 	[Quark.Class "BIG"] = {
 		TextSize = 30,

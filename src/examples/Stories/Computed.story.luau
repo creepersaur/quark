@@ -43,7 +43,7 @@ return function(parent)
 		-- Same thing as the computed, just only for string formats.
 		-- it replaces `%s` with the value of the Counter.
 		-- all other arguments after the first translate to extra `string.format` arguments.
-		Text = Counter.compString("[State.compState] Counter: %s"),
+		Text = Counter.compString("[computed state] Counter: %s"),
 
 		-- Click event increments counter
 		MouseButton1Click = function()

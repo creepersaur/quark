@@ -65,7 +65,7 @@ function Style:ApplySingle(obj: any)
 		WriteObjectProperties(ObjectUnwrapped, style_properties)
 	end
 
-	local class = type(obj) == "table" and obj.class
+	local class = type(obj) == "table" and obj.Class
 	if not class then
 		return
 	end
