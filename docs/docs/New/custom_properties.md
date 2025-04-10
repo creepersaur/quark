@@ -2,11 +2,11 @@
 
 Quark has custom properties (lowercase) which are not in normal instances.
 
-| Property | Description                                            | Usage Example                     |
-| -------- | ------------------------------------------------------ | --------------------------------- |
-| `children` | Table of New objects to parent as children.            | Used to **append** children       |
-| `class`    | Space-separated string of class names for Stylesheets. | Apply reusable styles to objects. |
-| `style` | Stylesheet object to link the styles. | Set stylesheet to pull style from. |
+| Property | Description                                            |
+| -------- | ------------------------------------------------------ |
+| `children` | Table of New objects to parent (append) as children.            |
+| `class`    | Space-separated string of class names for Stylesheets. |
+| `style` | Stylesheet object to link the styles. |
 
 ---
 
