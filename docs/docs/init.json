@@ -5,7 +5,7 @@
 	},
 
 	"New": {
-		"add_circle|Creating Instances": "New/creating_instances.md",
+		"add_circle|What is New?": "New/whats_new.md",
 		"tune|Properties and Methods": "New/properties_and_methods.md",
 		"edit|Custom Properties": "New/custom_properties.md",
 		"data_object|Premade Instances": "",

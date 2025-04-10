@@ -65,7 +65,8 @@ New "Frame" {
 
 You can use the built-in `New<Instance>` type or type-casting to get Instance method/property autocomplete.
 
-### Method 1
+<details>
+<summary> Method 1 </summary>
 
 ```luau
 -- Load the type from the Quark Module
@@ -76,7 +77,12 @@ local x: New<Frame> = New "Frame" {
 }
 ```
 
-### Method 2
+</details>
+
+<details>
+<summary> Method 2 </summary>
+
+Cast the type of the name:
 
 ```luau
 local x = New ("Frame" :: Frame) {
@@ -84,12 +90,14 @@ local x = New ("Frame" :: Frame) {
 }
 ```
 
+</details>
+
 > <note>
 >
 > Instance/Property autocomplete exist for the `New()` function.
+>
+> ![_](assets/screenshots/PropertyAutocomplete.png)
 > </note>
-
-![_](assets/screenshots/PropertyAutocomplete.png)
 
 ---
 

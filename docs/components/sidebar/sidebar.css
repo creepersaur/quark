@@ -1,0 +1,118 @@
+
+#Sidebar {
+	width: calc(15vw + 100px);
+	height: 89vh;
+	background: var(--secondary_bg);
+	border-right: 1px solid var(--line);
+	padding: 20px;
+	justify-items: right;
+	overflow: auto;
+}
+
+@-moz-document url-prefix() {
+	#Sidebar {
+		scrollbar-width: 10px;
+		scrollbar-color: var(--brighter_line) var(--line);
+	}
+}
+
+/* width */
+#Sidebar::-webkit-scrollbar {
+	width: 5px;
+	opacity: 0;
+}
+
+/* Track */
+#Sidebar::-webkit-scrollbar-track {
+	background: var(--line);
+	opacity: 0;
+}
+
+/* Handle */
+#Sidebar::-webkit-scrollbar-thumb {
+	background: var(--brighter_line);
+}
+
+/* Handle on hover */
+#Sidebar::-webkit-scrollbar-thumb:hover {
+	background: var(--button_primary_single);
+	opacity: 0;
+}
+
+#Sidebar .Fold {
+	width: 230px;
+	float: right;
+	padding: 10px;
+	padding-left: 15px;
+	margin-bottom: -5px;
+	translate: 10px;
+}
+
+#Sidebar strong {
+	font-size: 15px;
+	padding: 7px;
+	padding-bottom: 0;
+	border-radius: 5px;
+	color: white;
+	display: block;
+	width: 100%;
+	font-weight: 500;
+
+	transition: 0.2s;
+}
+
+.Fold li {
+	list-style: none;
+	margin-top: 5px;
+	margin-left: 15px;
+
+	/* padding-left: 5px; */
+	border-left: 2px solid var(--line);
+}
+
+.FoldItem {
+	font-size: 14.5px;
+	color: white;
+	opacity: 0.5;
+	display: inline-block;
+	width: 100%;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	text-indent: 10px;
+	cursor: pointer;
+	translate: 0 2px;
+	-webkit-background-clip: text;
+	background-clip: text;
+
+	transition: 0.1s;
+}
+
+.FoldItem:hover {
+	opacity: 0.9;
+}
+
+.FoldItem[active] {
+	opacity: 1;
+	filter: brightness(1.2);
+	font-weight: 600;
+	border-left: 2px solid var(--button_primary_single);
+	background: var(--button_primary_single);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	translate: -2px 2px;
+}
+
+.material-symbols-outlined {
+	user-select: none;
+	translate: -5px -2px;
+	line-height: 1px;
+	vertical-align: middle;
+	scale: 0.9;
+	margin-left: -5px;
+	margin-right: -5px;
+}
+
+.FoldItem[active] .material-symbols-outlined {
+	-webkit-text-fill-color: var(--button_primary_single);
+}
