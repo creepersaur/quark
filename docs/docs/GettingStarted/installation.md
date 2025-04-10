@@ -23,7 +23,7 @@ local Quark = require(game.ReplicatedStorage.Quark)
 
 ## Building from Source
 
-For those building from source code is in `src/shared/Quark`.
+For those building from source, the source-code is in `src/shared/Quark`.
 
 ```luau
 -- Quark is inside of `ReplicatedStorage/Shared`

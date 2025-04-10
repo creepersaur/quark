@@ -8,7 +8,7 @@
 		"add_circle|What is New?": "New/whats_new.md",
 		"tune|Properties and Methods": "New/properties_and_methods.md",
 		"edit|Custom Properties": "New/custom_properties.md",
-		"data_object|Premade Instances": "",
+		"data_object|Premade Instances": "New/premade_instances",
 		"event_list|Entries": ""
 	},
 

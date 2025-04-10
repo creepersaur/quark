@@ -1,2 +1,65 @@
 # Custom Properties
 
+Quark has custom properties (lowercase) which are not in normal instances.
+
+| Property | Description                                            | Usage Example                     |
+| -------- | ------------------------------------------------------ | --------------------------------- |
+| `children` | Table of New objects to parent as children.            | Used to **append** children       |
+| `class`    | Space-separated string of class names for Stylesheets. | Apply reusable styles to objects. |
+| `style` | Stylesheet object to link the styles. | Set stylesheet to pull style from. |
+
+---
+
+- ### `children` <#table|crimson>
+
+Add new children to an object. Does not remove previous ones when calling multiple times.
+
+You can also set it to a `New` object.
+
+```luau
+local label = New "TextLabel" {
+	children = {
+		New "UICorner",
+		New "UIAspectRatioConstraint"
+	}
+}
+
+label {
+	children = New "UIStroke"
+}
+```
+
+---
+
+- ### `class` <#string|dodgerblue>
+
+Set the class of an object. Used with Stylesheets.
+One can have multiple classes by adding spaces in the `class` string.
+
+-# The example below implies that you have Big and Red styles
+
+```luau
+New "TextButton" {
+	class = "Big Red"
+}
+```
+
+---
+
+- ### `style` <#Stylesheet|var(--button_primary_single)>
+
+Set the stylesheet to be used by objects. Must be a stylesheet object.
+`class` implies that `style` is set.
+
+```luau
+local my_style = StyleSheet "Name" { ... }
+
+New "TextButton" {
+	style = my_style,
+	class = 'some_class' -- `class` IS OPTIONAL
+}
+```
+
+---
+
+<!NextPage|Premade Instances>(#New/premade_instances)

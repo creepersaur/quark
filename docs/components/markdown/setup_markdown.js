@@ -76,7 +76,6 @@ const nextPageExtension = {
 		return undefined;
 	},
 	renderer(token) {
-		// Render comment as a faded span
 		return `<a
 			class="NextPage"
 			onclick="
@@ -89,9 +88,29 @@ const nextPageExtension = {
 	},
 };
 
+const tagExtension = {
+	level: "inline",
+	name: "tagged",
+	tokenizer(src) {
+		const match = /^<#(.*?)\|(.*?)>/.exec(src);
+		if (match) {
+			return {
+				type: "tagged",
+				raw: match[0],
+				text: match[1].trim(),
+				tagtype: match[2].trim(),
+			};
+		}
+		return undefined;
+	},
+	renderer(token) {
+		return `<tagged style="background: ${token.tagtype};">${token.text}</tagged>`;
+	},
+}
+
 // Add extension to Marked
 marked.use({
-	extensions: [commentExtension, nextPageExtension],
+	extensions: [commentExtension, nextPageExtension, tagExtension],
 });
 
 function fileMarkdown(file_path) {
