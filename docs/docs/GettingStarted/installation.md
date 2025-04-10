@@ -1,5 +1,3 @@
-##### Getting Started
-
 # Installation
 
 You can install Quark by three methods
@@ -11,7 +9,7 @@ You can install Quark by three methods
 
 ---
 
-### Using Quark
+## Using Quark
 
 After installing Quark, put the ModuleScript inside of `ReplicatedStorage`.
 
@@ -25,7 +23,7 @@ local Quark = require(game.ReplicatedStorage.Quark)
 
 ## Building from Source
 
-If you're building from source then `src/shared/Quark` should already have all the code required. Just use `require()` as stated above.
+For those building from source code is in `src/shared/Quark`.
 
 ```luau
 -- Quark is inside of `ReplicatedStorage/Shared`

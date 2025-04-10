@@ -35,6 +35,7 @@ marked.setOptions({
 		code = code.trim();
 		// Use Prism to highlight the code
 		const validLang = Prism.languages[lang] ? lang : "lua"; // Default to 'lua' if language isn't found
+		
 		return Prism.highlight(code, Prism.languages[validLang], validLang);
 	},
 });
@@ -114,3 +115,25 @@ function fileMarkdown(file_path) {
 		})
 		.catch((error) => console.error("Error loading markdown file:", error));
 }
+
+Prism.hooks.add('complete', (env) => {
+	if (!env.element.parentNode.querySelector('.copy_btn')) {
+		const button = document.createElement('span')
+		button.className = 'copy_btn material-symbols-outlined'
+		button.innerText = 'content_copy'
+
+		const btnText = document.createElement('p')
+		btnText.innerHTML = 'copied!'
+
+		button.addEventListener('click', () => {
+			navigator.clipboard.writeText(env.code)
+			button.setAttribute("copied", true)
+			setTimeout(() => {
+				button.removeAttribute("copied")
+			}, 1000)
+		})
+
+		button.appendChild(btnText)
+		env.element.parentNode.appendChild(button)
+	}
+})

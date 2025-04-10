@@ -1,27 +1,10 @@
-##### New
-
 # Creating Instances
 
-The `New()` function of Quark allows you to pass in the name or Instance and returns a `New` object.
+Consider `New` objects as the instances your UI is made of.
+They wrap actual Instances in an Object Oriented fashion.
+Pass the ClassName of the Instance to create in the `New()` function.
 
 ```luau
--- You don't have to wrap strings in parenthesis
-New "TextLabel"
-```
-
-`New` objects are what most of your UI will consist of. Consider them the instances that you'd regularly make UI out of.
-
-> <note>
->
->Some methods, functions, etc. require you to have an `Instance` object directly. Passing in a `New` object wont work in those cases.
->
->If you want the **actual Instance** that the New object wraps around you can use `.Object` property to get the object.
-> </note>
-
-They act almost the same as normal Instances. You can get properties and call methods on them:
-
-```luau
-local Quark = require(game.ReplicatedStorage.Quark)
 local New = Quark.New
 
 -- Make a TextButton
@@ -32,9 +15,11 @@ x.Text = "Hello world"
 x:Destroy()
 ```
 
+> If you want to pass in the **actual instance** to a method, use the `.Object` property.
+
 > <warning>
 >
-> **NOTE:** All UI objects are sized `{0,0,0,0}` by default. They will **not be shown** unless you set their size explicitly.
+> All UI objects are sized `{0,0,0,0}` by default. They will **not be shown** unless you set their size explicitly.
 > </warning>
 
 ---
@@ -44,18 +29,14 @@ x:Destroy()
 You can add children by calling these methods:
 
 - `Push()`
-
-Used to push a single object as a child.
-
-```luau
-x:Push(New "UICorner")
-```
-
 - `PushChildren()`
-
-Used to push multiple objects (a table of objects) as children.
+- `children` custom property
 
 ```luau
+-- push a single object as a child.
+x:Push(New "UICorner")
+
+-- push multiple objects (a table of objects).
 x:PushChildren({
 	New "UICorner",
 	New "UIAspectRatioConstraint",
@@ -63,12 +44,12 @@ x:PushChildren({
 })
 ```
 
-- `children` custom property
-
-This is the **best way** to add children into a New object. You can use it for making tree-like structures which store all the UI in an ordered manner. It also supports *dictionaries/arrays/and single new objects*.
+This is the **best way** to add children into a New object. Most UI is in the form of tree-like structures.
 
 ```luau
 New "Frame" {
+	Property = value,
+
 	children = {
 		New "TextLabel",
 		New "UICorner",
@@ -82,9 +63,12 @@ New "Frame" {
 
 ##### (Optional)
 
-If you want some type checking on `New`, it's basically `New<Instance>` by default. All properties/methods of Instance are shown. If you want to change this, you can do
+You can use the built-in `New<Instance>` type or type-casting to get Instance method/property autocomplete.
+
+### Method 1
 
 ```luau
+-- Load the type from the Quark Module
 type New<T> = Quark.New<T>
 
 local x: New<Frame> = New "Frame" {
@@ -92,9 +76,20 @@ local x: New<Frame> = New "Frame" {
 }
 ```
 
-Which will give you type checking for `Frame`. (Type checking may be bugged sometimes but usually you don't have to use it.)
+### Method 2
 
-All Instance names and properties of every instance are in the autocomplete for `New()`. So you can see all the different properties and events. This makes it faster to write.
+```luau
+local x = New ("Frame" :: Frame) {
+	...
+}
+```
+
+> <note>
+>
+> Instance/Property autocomplete exist for the `New()` function.
+> </note>
+
+![_](assets/screenshots/PropertyAutocomplete.png)
 
 ---
 
