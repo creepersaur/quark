@@ -173,6 +173,7 @@ code {
 	background: var(--code_span);
 	outline: 1px solid rgba(126, 139, 255, 0.322);
 	font-family: JetBrains Mono !important;
+	font-size: 14px !important;
 }
 
 pre code {
@@ -180,6 +181,7 @@ pre code {
 	background: none;
 	padding-left: 0px !important;
 	padding-right: 0px !important;
+	font-size: 13.6px !important;
 }
 
 .token{

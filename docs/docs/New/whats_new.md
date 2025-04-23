@@ -1,4 +1,4 @@
-# Creating Instances
+# What is New?
 
 Consider `New` objects as the instances your UI is made of.
 They wrap actual Instances in an Object Oriented fashion.
