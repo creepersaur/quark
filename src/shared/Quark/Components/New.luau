@@ -149,6 +149,7 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any } & PROP
 			if not Properties then
 				return self
 			end
+			local queuedParent = nil
 			for i, v in Properties do
 				if i == "children" then
 					if v._is_state then
@@ -160,7 +161,7 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any } & PROP
 					self.Children = v
 					AddChildren(self, v)
 				elseif i == "Parent" then
-					self.Object.Parent = (type(v) == "table" and v.Object) or v
+					queuedParent = (type(v) == "table" and v.Object) or v
 				elseif i == "class" then
 					rawget(self, "Class")(v)
 				elseif i == "style" then
@@ -201,6 +202,10 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any } & PROP
 						self.Object[i] = v
 					end
 				end
+			end
+
+			if queuedParent then
+				self.Object.Parent = queuedParent
 			end
 
 			return self :: any
