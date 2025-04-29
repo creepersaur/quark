@@ -47,6 +47,18 @@ function module.new<T>(default: T? | (use: <R>(Types.State<R>) -> R) -> T?, stri
 		end)
 	end
 
+	function self.reset()
+		if not HandleComputedState(default, self) then
+			self.value = default
+		end
+	end
+
+	HandleComputedState(default, self)
+
+	return self
+end
+
+function HandleComputedState(default, self)
 	if type(default) == "function" then
 		coroutine.wrap(function()
 			self.value = default(function(dependency: Types.State<any>)
@@ -63,9 +75,11 @@ function module.new<T>(default: T? | (use: <R>(Types.State<R>) -> R) -> T?, stri
 				return dependency()
 			end)
 		end)()
+
+		return true
 	end
 
-	return self
+	return false
 end
 
 return module
