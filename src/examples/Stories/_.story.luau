@@ -17,23 +17,33 @@ return Quark.CreateStory(function(t)
 				[{ "PaddingLeft", "PaddingRight", "PaddingTop", "PaddingBottom" }] = Padding,
 			},
 			Quark.Entries(5, function(Scope, i)
-				return Scope.New "Frame" {
+				return Scope.New "TextButton" {
 					Size = UDim2.fromScale(1, 1),
+					Text = "",
 					BackgroundColor3 = function()
 						return Color3.new(i / 5)
 					end,
 
 					Hook("MouseEnter", function(self: Quark.New<Frame>)
-						self.BackgroundColor3 = Color3.new(1, 1, 1)
+						self.BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)
 					end),
 					
 					Hook("MouseLeave", function(self: Quark.New<Frame>)
-						self.BackgroundColor3 = Color3.new(0.7,0.7,0.7)
+						self.BackgroundColor3 = Color3.new(0.23, 0.23, 0.23)
+					end),
+					
+					Hook("MouseButton1Down", function(self: Quark.New<Frame>)
+						self.BackgroundColor3 = Color3.new(0.8, 0.8, 0.8)
+					end),
+					
+					Hook("MouseButton1Up", function(self: Quark.New<Frame>)
+						self.BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)
 					end),
 
 					children = {
 						New "UIAspectRatioConstraint",
 						New "UIStroke" {
+							ApplyStrokeMode = "Border",
 							Color = Color3.new(1, 1, 1),
 							Thickness = 2,
 						},

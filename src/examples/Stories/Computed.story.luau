@@ -3,7 +3,7 @@ local ReplicatedStorage = game:GetService "ReplicatedStorage"
 local Quark = require(ReplicatedStorage.Shared.Quark)
 local New = Quark.New
 local State = Quark.State
-local OnEvent = Quark.OnEvent
+local Hook = Quark.Hook
 
 return function(parent)
 	local Counter = State(0)
@@ -31,9 +31,9 @@ return function(parent)
 		end),
 
 		-- Click event increments counter
-		[OnEvent "MouseButton1Click"] = function()
+		Hook("MouseButton1Click", function()
 			Counter(Counter() + 1)
-		end,
+		end),
 	}
 
 	New "TextButton" {
@@ -47,9 +47,9 @@ return function(parent)
 		Text = Counter.compString "[computed state] Counter: %s",
 
 		-- Click event increments counter
-		[OnEvent "MouseButton1Click"] = function()
+		Hook("MouseButton1Click", function()
 			Counter(Counter() + 1)
-		end,
+		end),
 	}
 
 	return Quark.Cleanup

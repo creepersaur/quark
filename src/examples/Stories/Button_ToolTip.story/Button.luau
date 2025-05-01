@@ -2,7 +2,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Quark = require(ReplicatedStorage.Shared.Quark)
 local ToolTip = require(script.Parent.ToolTip)
-local OnEvent = Quark.OnEvent
+local Hook = Quark.Hook
 
 return function(Scope: Quark.Scope, text: string?, tip_text: string?, wait_time: number?)
 	local Tween = Scope.Animations.Tween
@@ -43,16 +43,16 @@ return function(Scope: Quark.Scope, text: string?, tip_text: string?, wait_time:
 		TextColor3 = Color3.new(1, 1, 1),
 		TextSize = Tween(0, 13, TweenInfo.new(0.3)):Play(),
 
-		[OnEvent "MouseEnter"] = Hovering.setLambda(1),
-		[OnEvent "MouseLeave"] = Hovering.setLambda(0),
-		[OnEvent "MouseButton1Down"] = Hovering.setLambda(0),
-		[OnEvent "MouseButton1Up"] = Hovering.setLambda(1),
-		[OnEvent "Activated"] = function()
+		Hook("MouseEnter", Hovering.setLambda(1)),
+		Hook("MouseLeave", Hovering.setLambda(0)),
+		Hook("MouseButton1Down", Hovering.setLambda(0)),
+		Hook("MouseButton1Up", Hovering.setLambda(1)),
+		Hook("Activated", function()
 			BG_ColorSpeed:Restart()
 
 			BG_ColorSpring.Value(Color3.new(1, 1, 1))
 			print("Button Clicked:", text)
-		end,
+		end),
 
 		-- Create children (UI Corner / Styling)
 		children = {

@@ -2,7 +2,7 @@ local ReplicatedStorage = game:GetService "ReplicatedStorage"
 
 local Quark = require(ReplicatedStorage.Shared.Quark)
 local New = Quark.New
-local OnEvent = Quark.OnEvent
+local Hook = Quark.Hook
 
 return function(parent: Instance)
 	-- This state controls text.
@@ -40,8 +40,8 @@ return function(parent: Instance)
 
 		-- `setLambda()` returns a function which updates Hovering.
 		-- It also takes the new value.
-		[OnEvent "MouseEnter"] = Hovering.setLambda "OMG HI!",
-		[OnEvent "MouseLeave"] = Hovering.setLambda "Hover over me",
+		Hook("MouseEnter", Hovering.setLambda "OMG HI!"),
+		Hook("MouseLeave", Hovering.setLambda "Hover over me"),
 	}
 
 	return Quark.Cleanup

@@ -8,6 +8,6 @@ rokit.toml
 Quark.rbxm
 Quark.rbxl
 sourcemap.json
-_.story
+_.story.luau
 *output.luau
 output.luau

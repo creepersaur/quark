@@ -4,7 +4,7 @@ local Quark = require(ReplicatedStorage.Shared.Quark)
 return function(Scope: Quark.Scope, text: string?)
 	local New = Scope.New
 	local Spring = Scope.Animations.Spring
-	local OnEvent = Scope.OnEvent
+	local Hook = Scope.Hook
 
 	local Main = New "Frame" {
 		Size = UDim2.new(1, -10, 0, 50),
@@ -23,19 +23,19 @@ return function(Scope: Quark.Scope, text: string?)
 		Position = UDim2.fromScale(0.5, 0.5),
 		Parent = Main,
 
-        [OnEvent "MouseEnter"] = Hovering.setLambda(1),
-        [OnEvent "MouseLeave"] = Hovering.setLambda(0),
+        Hook("MouseEnter", Hovering.setLambda(1)),
+        Hook("MouseLeave", Hovering.setLambda(0)),
         
-        [OnEvent "MouseButton1Down"] = function(self)
+        Hook("MouseButton1Down", function(self)
 			self.BackgroundColor3 = Color3.new(1,0.1,0.2)
 			Hovering(0)
-		end,
-        [OnEvent "MouseButton1Up"] = Hovering.setLambda(1),
+		end),
+        Hook("MouseButton1Up", Hovering.setLambda(1)),
 
-        [OnEvent "MouseButton1Click"] = function(self)
+        Hook("MouseButton1Click", function(self)
             Main.Object:Destroy()
             hover_spring:DisconnectAll()
-        end,
+        end),
         
         children = {
             New "TextLabel" {
