@@ -1,5 +1,5 @@
-local all_properties = require(script.Parent.Components.all_properties)
-local all_instances = require(script.Parent.Components.all_instances)
+local all_properties = require(script.Parent.Misc.all_properties)
+local all_instances = require(script.Parent.Misc.all_instances)
 local quicklist = require(script.Parent.quicklist)
 type StateMethods<T> = {
 	__call: (self: State<T>, T?) -> T,

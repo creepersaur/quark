@@ -1,8 +1,8 @@
 local State = require(script.Parent.Parent.Reactive.State)
 local Types = require(script.Parent.Parent.Types)
-local all_instances = require(script.Parent.all_instances)
-local all_properties = require(script.Parent.all_properties)
-local default_properties = require(script.Parent.default_properties)
+local all_instances = require(script.Parent.Parent.Misc.all_instances)
+local all_properties = require(script.Parent.Parent.Misc.all_properties)
+local default_properties = require(script.Parent.Parent.Misc.default_properties)
 local Created = {}
 
 local function AddChildren(self, list)
