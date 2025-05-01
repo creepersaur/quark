@@ -16,6 +16,7 @@ Quark.Entries = Reactive.Entries
 --[[ NEW ]]
 local New = require(script.Components.New)
 Quark.New = New.New
+Quark.OnEvent = New.OnEvent
 
 --[[ ANIMATIONS ]]
 local Animations = require(script.Animations)

@@ -2,6 +2,7 @@ local State = require(script.Parent.Parent.Reactive.State)
 local Types = require(script.Parent.Parent.Types)
 local all_instances = require(script.Parent.all_instances)
 local all_properties = require(script.Parent.all_properties)
+local default_properties = require(script.Parent.default_properties)
 local Created = {}
 
 local function AddChildren(self, list)
@@ -60,7 +61,11 @@ type INSTANCE_X = all_instances.ALL_INSTANCES
 type PROPERTY_X = all_properties.ALL_PROPERTIES
 type New<T> = Types.New<T>
 
-function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any } & PROPERTY_X) -> New<T> & T & Instance & () -> New<T>
+local EventPrefix = "_event|"
+
+function New<T>(
+	ClassName: Instance | INSTANCE_X
+): T | ({ [string]: any } & PROPERTY_X) -> New<T> & T & Instance & () -> New<T>
 	local obj: any = ClassName
 	if type(obj) == "string" then
 		obj = Instance.new((ClassName :: any) :: string)
@@ -167,10 +172,14 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any } & PROP
 				elseif i == "style" then
 					rawset(self, "Style", v)
 					v:ApplyRecursive(self)
-				elseif isSignal(self.Object, i) then
+				elseif string.sub(i, 1, #EventPrefix) == EventPrefix then
 					assert(
-						type(v) == "function" or type(v) == "table" and v._is_state,
-						"RBXScriptSignal requires a function for connection."
+						isSignal(self.Object, i:split(EventPrefix)[2]),
+						"`OnEvent` should only be used for event signals."
+					)
+					assert(
+						type(v) == "function",
+						"(OnEvent) RBXScriptSignal requires a function for connection."
 					)
 					table.insert(
 						signal_connections,
@@ -178,6 +187,10 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any } & PROP
 							v(self, ...)
 						end)
 					)
+				elseif type(i) == "function" then
+					if string.sub(i, 1, #EventPrefix) ~= EventPrefix then
+						self.Object[i] = v(self)
+					end
 				else
 					if type(v) == "table" then
 						if v._is_state then
@@ -212,6 +225,12 @@ function New<T>(ClassName: Instance | INSTANCE_X): T | ({ [string]: any } & PROP
 		end,
 	})
 
+	if type(ClassName) == "string" then
+		if default_properties[ClassName] then
+			self(default_properties[ClassName])
+		end
+	end
+
 	table.insert(Created, self)
 
 	return self :: any
@@ -234,5 +253,8 @@ end
 
 return {
 	New = New,
+	OnEvent = function(EventName: string)
+		return EventPrefix .. EventName
+	end,
 	Created = Created,
 }

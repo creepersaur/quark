@@ -125,6 +125,8 @@ export type Entries = typeof(setmetatable( {} :: {
 export type CanBeState<T> = T | State<T>
 
 export type Quark = {
+	New: <T>(ClassName: Instance | all_instances.ALL_INSTANCES) -> New<T> & T & Instance,
+	OnEvent: (EventName: string) -> string,
 	State: <T>(default: T? | (use: <R>(State<R>) -> R) -> T?, strict: boolean?) -> State<T>,
 	Signal: <T>(state: | { State<T> }, func: (value: T, old: T) -> ()) -> Signal<T>,
 	StyleSheet: (name: string) -> (Styles: { [string]: { [string]: any } }) -> Style,
@@ -135,7 +137,6 @@ export type Quark = {
 	Entries: <I, V>(n: number|{[I]: V}, func: (Scope: Quark, i: number|I, v: V) -> New<any>|Instance?) -> Entries,
 	QuickList: <T>({ T } | quicklist.QuickList<T>) -> quicklist.QuickList<T>,
 	Class: (name: string) -> string,
-	New: <T>(ClassName: Instance | all_instances.ALL_INSTANCES) -> New<T> & T & Instance,
 	Animations: {
 		Spring: <T>(
 			start: CanBeState<T>,
