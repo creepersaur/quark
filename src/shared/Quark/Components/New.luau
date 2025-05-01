@@ -1,3 +1,6 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local custom_properties = require(ReplicatedStorage.Shared.Quark.Misc.custom_properties)
 local State = require(script.Parent.Parent.Reactive.State)
 local Types = require(script.Parent.Parent.Types)
 local all_instances = require(script.Parent.Parent.Misc.all_instances)
@@ -58,10 +61,11 @@ local function AddChildren(self, list)
 end
 
 type INSTANCE_X = all_instances.ALL_INSTANCES
-type PROPERTY_X = all_properties.ALL_PROPERTIES
+type PROPERTY_X = all_properties.ALL_PROPERTIES & custom_properties.CUSTOM_PROPERTIES
 type New<T> = Types.New<T>
 
-local EventPrefix = "_event|"
+local HookPrefix = "_hook"
+local HookCallback = "_callback"
 
 function New<T>(
 	ClassName: Instance | INSTANCE_X
@@ -172,25 +176,14 @@ function New<T>(
 				elseif i == "style" then
 					rawset(self, "Style", v)
 					v:ApplyRecursive(self)
-				elseif string.sub(i, 1, #EventPrefix) == EventPrefix then
-					assert(
-						isSignal(self.Object, i:split("|")[2]),
-						"`OnEvent` should only be used for event signals."
-					)
-					assert(
-						type(v) == "function",
-						"(OnEvent) RBXScriptSignal requires a function for connection."
-					)
-					table.insert(
-						signal_connections,
-						self.Object[i:split("|")[2]]:Connect(function(...)
-							v(self, ...)
-						end)
-					)
-				elseif type(i) == "function" then
-					if string.sub(i, 1, #EventPrefix) ~= EventPrefix then
-						self.Object[i] = v(self)
+				elseif type(i) == "table" then
+					local new_props = {}
+					for _, new_index in i do
+						new_props[new_index] = v
 					end
+					self(new_props)
+				elseif type(v) == "function" then
+					self.Object[i] = v(self)
 				else
 					if type(v) == "table" then
 						if v._is_state then
@@ -208,6 +201,21 @@ function New<T>(
 								signal_connections,
 								e.connect(function(value)
 									self.Object[i] = value
+								end)
+							)
+						elseif type(v[HookPrefix]) == "string" then
+							assert(
+								isSignal(self.Object, v[HookPrefix]),
+								"`Hook()` can only be used to connect an RBXScriptSignal event."
+							)
+							assert(
+								type(v[HookCallback]) == "function",
+								"`Hook()` can only take a function callback as the second argument."
+							)
+							table.insert(
+								signal_connections,
+								self.Object[v[HookPrefix]]:Connect(function(...)
+									v[HookCallback](self, ...)
 								end)
 							)
 						end
@@ -253,8 +261,11 @@ end
 
 return {
 	New = New,
-	OnEvent = function(EventName: string)
-		return EventPrefix .. EventName
+	Hook = function(EventName: string, EventCallback: (New<any>, ...any) -> ())
+		return {
+			[HookPrefix] = EventName,
+			[HookCallback] = EventCallback,
+		}
 	end,
 	Created = Created,
 }

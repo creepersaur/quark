@@ -1,5 +1,6 @@
 local all_properties = require(script.Parent.Misc.all_properties)
 local all_instances = require(script.Parent.Misc.all_instances)
+local custom_properties = require(script.Parent.Misc.custom_properties)
 local quicklist = require(script.Parent.quicklist)
 type StateMethods<T> = {
 	__call: (self: State<T>, T?) -> T,
@@ -33,10 +34,11 @@ export type Style = {
 }
 
 export type New<T> = {
+	Object: T,
 	PushChildren: (self: New<T>, { New<T> }) -> New<T>,
 	Push: (self: New<T>, child: New<T>?) -> New<T>,
 	PushClass: (self: New<T>, class: string) -> New<T>,
-} & T & (properties: { [string]: any } & all_properties.ALL_PROPERTIES) -> New<T> & T
+} & T & (properties: { [string]: any } & all_properties.ALL_PROPERTIES & custom_properties.CUSTOM_PROPERTIES) -> New<T> & T
 
 export type Spring<T> = {
 	Start: CanBeState<T>,
@@ -108,28 +110,46 @@ export type Loop = {
 	BindToProperty: (self: Loop, Object: Instance | { [string]: unknown }, Property: string) -> Loop,
 }
 
-export type Entries = typeof(setmetatable(
-	{} :: {
-		Object: New<Frame>,
-		Scope: Quark,
-		Children: { New<Instance> | Instance },
-		_is_entries: true,
+-- export type Entries = typeof(setmetatable(
+-- 	{} :: {
+-- 		Object: New<Frame>,
+-- 		Scope: Quark,
+-- 		Children: { New<Instance> | Instance },
+-- 		_is_entries: true,
 
-		Push: () -> Entries,
-		PushChildren: (n: number | { any }) -> Entries,
-		Remove: (n: number | New<Instance> | Instance) -> Entries,
-	},
-	{} :: {
-		__call: (...any) -> New<Frame>,
-		__index: (...any) -> any,
-	}
-)) & New<Frame>
+-- 		Push: () -> Entries,
+-- 		PushChildren: (n: number | { any }) -> Entries,
+-- 		Remove: (n: number | New<Instance> | Instance) -> Entries,
+-- 	},
+-- 	{} :: {
+-- 		__call: (...any) -> Entries,
+-- 		__index: (...any) -> any,
+-- 	}
+-- ))
+
+export type Entries = any & typeof(setmetatable({}, {} :: {
+	__call: (Entries, {}) -> Entries
+})) & {
+	Object: New<Frame> & ({}) -> New<Frame>,
+	Scope: Quark,
+	Children: quicklist.QuickList<New<Instance> | Instance>,
+	_is_entries: true,
+
+	Push: () -> Entries,
+	PushChildren: (n: number | { any }) -> Entries,
+	Remove: (n: number | New<Instance> | Instance) -> Entries
+} & New<Frame>
 
 export type CanBeState<T> = T | State<T>
 
+type Hook = {
+	_hook: string,
+	_callback: (New<any>, ...any) -> ()
+}
+
 export type Quark = {
 	New: <T>(ClassName: Instance | all_instances.ALL_INSTANCES) -> New<T> & T & Instance,
-	OnEvent: (EventName: string) -> string,
+	Hook: (EventName: string, EventCallback: (New<any>, ...any) -> ()) -> Hook,
 	State: <T>(default: T? | (use: <R>(State<R>) -> R) -> T?, strict: boolean?) -> State<T>,
 	Signal: <T>(state: | { State<T> }, func: (value: T, old: T) -> ()) -> Signal<T>,
 	StyleSheet: (name: string) -> (Styles: { [string]: { [string]: any } }) -> Style,

@@ -40,9 +40,11 @@ function Entries.new(n, func)
 		error "First argument of `Quark.Entries()` must be a `table` or a number."
 	end
 
-	local self = setmetatable(entry, {
+	local self
+	self = setmetatable(entry, {
 		__call = function(_, ...)
 			entry.Object(...)
+			return self
 		end,
 		__index = function(_, k)
 			return rawget(entry, k) or entry.Object[k]
