@@ -4,6 +4,7 @@ local Quark = require(ReplicatedStorage.Shared.Quark)
 local Spring = Quark.Animations.Spring
 local New = Quark.New
 local State = Quark.State
+local OnEvent = Quark.OnEvent
 
 -- Spring settings can be States
 local SpringSettings = {
@@ -49,9 +50,9 @@ return {
 			Size = size_spring:Play(),
 
 			-- setLamda returns a function telling it to update
-			MouseEnter = Hovering.setLambda(UDim2.fromScale(0.1, 0.2)),
+			[OnEvent "MouseEnter"] = Hovering.setLambda(UDim2.fromScale(0.1, 0.2)),
 			-- Use Hovering's initial value (by calling it)
-			MouseLeave = Hovering.setLambda(Hovering()),
+			[OnEvent "MouseLeave"] = Hovering.setLambda(Hovering()),
 		}
 
 		-- subscribe to the story controls

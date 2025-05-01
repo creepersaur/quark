@@ -146,7 +146,7 @@ end
 function Spring:BindAndPlay(func: (value: any) -> ())
 	self:Play()
 
-	return self:BindToUpdate(func)
+	return self, self:BindToUpdate(func)
 end
 
 function Spring:BindToProperty(Object: any, Property: string)

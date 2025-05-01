@@ -3,6 +3,7 @@ local TweenService = game:GetService "TweenService"
 
 local Quark = require(ReplicatedStorage.Shared.Quark)
 local New = Quark.New
+local OnEvent = Quark.OnEvent
 
 return function(parent)
 	local START = UDim2.fromOffset(0, 50)
@@ -32,8 +33,8 @@ return function(parent)
 		Position = UDim2.fromOffset(0, 25),
 		BackgroundColor3 = Color3.new(0.4, 1, 0.57),
 
-		MouseEnter = T.Target.setLambda(UDim2.new(0.2, 0, 0, 50)),
-		MouseLeave = T.Target.setLambda(UDim2.new(0.15, 0, 0, 50)),
+		[OnEvent "MouseEnter"] = T.Target.setLambda(UDim2.new(0.2, 0, 0, 50)),
+		[OnEvent "MouseLeave"] = T.Target.setLambda(UDim2.new(0.15, 0, 0, 50)),
 	}
 
 	local Tween = TweenService:Create(

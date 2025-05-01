@@ -174,7 +174,7 @@ function New<T>(
 					v:ApplyRecursive(self)
 				elseif string.sub(i, 1, #EventPrefix) == EventPrefix then
 					assert(
-						isSignal(self.Object, i:split(EventPrefix)[2]),
+						isSignal(self.Object, i:split("|")[2]),
 						"`OnEvent` should only be used for event signals."
 					)
 					assert(
@@ -183,7 +183,7 @@ function New<T>(
 					)
 					table.insert(
 						signal_connections,
-						self.Object[i]:Connect(function(...)
+						self.Object[i:split("|")[2]]:Connect(function(...)
 							v(self, ...)
 						end)
 					)

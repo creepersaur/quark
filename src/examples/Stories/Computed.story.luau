@@ -3,6 +3,7 @@ local ReplicatedStorage = game:GetService "ReplicatedStorage"
 local Quark = require(ReplicatedStorage.Shared.Quark)
 local New = Quark.New
 local State = Quark.State
+local OnEvent = Quark.OnEvent
 
 return function(parent)
 	local Counter = State(0)
@@ -30,7 +31,7 @@ return function(parent)
 		end),
 
 		-- Click event increments counter
-		MouseButton1Click = function()
+		[OnEvent "MouseButton1Click"] = function()
 			Counter(Counter() + 1)
 		end,
 	}
@@ -43,10 +44,10 @@ return function(parent)
 		-- Same thing as the computed, just only for string formats.
 		-- it replaces `%s` with the value of the Counter.
 		-- all other arguments after the first translate to extra `string.format` arguments.
-		Text = Counter.compString("[computed state] Counter: %s"),
+		Text = Counter.compString "[computed state] Counter: %s",
 
 		-- Click event increments counter
-		MouseButton1Click = function()
+		[OnEvent "MouseButton1Click"] = function()
 			Counter(Counter() + 1)
 		end,
 	}

@@ -2,6 +2,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Quark = require(ReplicatedStorage.Shared.Quark)
 local ToolTip = require(script.Parent.ToolTip)
+local OnEvent = Quark.OnEvent
 
 return function(Scope: Quark.Scope, text: string?, tip_text: string?, wait_time: number?)
 	local Tween = Scope.Animations.Tween
@@ -42,11 +43,11 @@ return function(Scope: Quark.Scope, text: string?, tip_text: string?, wait_time:
 		TextColor3 = Color3.new(1, 1, 1),
 		TextSize = Tween(0, 13, TweenInfo.new(0.3)):Play(),
 
-		MouseEnter = Hovering.setLambda(1),
-		MouseLeave = Hovering.setLambda(0),
-		MouseButton1Down = Hovering.setLambda(0),
-		MouseButton1Up = Hovering.setLambda(1),
-		Activated = function()
+		[OnEvent "MouseEnter"] = Hovering.setLambda(1),
+		[OnEvent "MouseLeave"] = Hovering.setLambda(0),
+		[OnEvent "MouseButton1Down"] = Hovering.setLambda(0),
+		[OnEvent "MouseButton1Up"] = Hovering.setLambda(1),
+		[OnEvent "Activated"] = function()
 			BG_ColorSpeed:Restart()
 
 			BG_ColorSpring.Value(Color3.new(1, 1, 1))

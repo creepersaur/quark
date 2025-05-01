@@ -54,6 +54,8 @@ return function(parent: Instance)
 		},
 	}
 
+	-- You can get styles using their names
+	-- (Or just use the StyleSheet() return value)
 	Quark.GetStyle("Hello"):ApplyRecursive(x)
 
 	return Quark.Cleanup
