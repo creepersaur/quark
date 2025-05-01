@@ -13,7 +13,7 @@ export type State<T> = typeof(setmetatable(
 		connect: ((T) -> ()) -> Signal<T>,
 		connections: { (value: any) -> () },
 		_is_state: true,
-		compString: (fmt_string: string) -> State<T>
+		compString: (fmt_string: string) -> State<T>,
 	},
 	{} :: StateMethods<T>
 ))
@@ -108,19 +108,22 @@ export type Loop = {
 	BindToProperty: (self: Loop, Object: Instance | { [string]: unknown }, Property: string) -> Loop,
 }
 
-export type Entries = typeof(setmetatable( {} :: {
-	Object: New<Frame>,
-	Scope: Quark,
-	Children: {New<Instance> | Instance},
-	_is_entries: true,
+export type Entries = typeof(setmetatable(
+	{} :: {
+		Object: New<Frame>,
+		Scope: Quark,
+		Children: { New<Instance> | Instance },
+		_is_entries: true,
 
-	Push: () -> Entries,
-	PushChildren: (n: number | {any}) -> Entries,
-	Remove: (n: number | New<Instance> | Instance) -> Entries,
-}, {} :: {
-	__call: (...any) -> New<Frame>,
-	__index: (...any) -> any
-})) & New<Frame>
+		Push: () -> Entries,
+		PushChildren: (n: number | { any }) -> Entries,
+		Remove: (n: number | New<Instance> | Instance) -> Entries,
+	},
+	{} :: {
+		__call: (...any) -> New<Frame>,
+		__index: (...any) -> any,
+	}
+)) & New<Frame>
 
 export type CanBeState<T> = T | State<T>
 
@@ -134,7 +137,7 @@ export type Quark = {
 	Spring: Spring<any>,
 	Tween: Tween<any>,
 	Loop: Loop,
-	Entries: <I, V>(n: number|{[I]: V}, func: (Scope: Quark, i: number|I, v: V) -> New<any>|Instance?) -> Entries,
+	Entries: <I, V>(n: number | { [I]: V }, func: (Scope: Quark, i: number | I, v: V) -> New<any> | Instance?) -> Entries,
 	QuickList: <T>({ T } | quicklist.QuickList<T>) -> quicklist.QuickList<T>,
 	Class: (name: string) -> string,
 	Animations: {
@@ -150,6 +153,7 @@ export type Quark = {
 	GetStyle: (name: string) -> { [string]: any },
 	Cleanup: () -> (),
 	Scope: () -> Quark,
+	CreateStory: ((Target: Instance) -> Instance | New<any> | { Instance | New<any> }) -> (Instance) -> (),
 }
 
 return {}

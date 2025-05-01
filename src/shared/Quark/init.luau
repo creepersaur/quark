@@ -40,6 +40,11 @@ Cleanup[3](Scope.ScopeList)
 local QuickList = require(script.quicklist)
 Quark.QuickList = QuickList
 
+--[[ STORY ]]
+local CreateStory = require(script.Components.CreateStory)
+Quark.CreateStory = CreateStory.CreateStory
+CreateStory.Quark = Quark
+
 --[[ TYPES ]]
 local Types = require(script.Types)
 
