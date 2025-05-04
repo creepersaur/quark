@@ -1,4 +1,5 @@
 local all_properties = require(script.Parent.Misc.all_properties)
+local all_events = require(script.Parent.Misc.all_events)
 local all_instances = require(script.Parent.Misc.all_instances)
 local custom_properties = require(script.Parent.Misc.custom_properties)
 local quicklist = require(script.Parent.quicklist)
@@ -149,7 +150,7 @@ type Hook = {
 
 export type Quark = {
 	New: <T>(ClassName: Instance | all_instances.ALL_INSTANCES) -> New<T> & T & Instance,
-	Hook: (EventName: string, EventCallback: (New<any>, ...any) -> ()) -> Hook,
+	Hook: (EventName: all_events.ALL_EVENTS | string, EventCallback: (New<GuiObject>, ...any) -> ()) -> Hook,
 	State: <T>(default: T? | (use: <R>(State<R>) -> R) -> T?, strict: boolean?) -> State<T>,
 	Signal: <T>(state: | { State<T> }, func: (value: T, old: T) -> ()) -> Signal<T>,
 	StyleSheet: (name: string) -> (Styles: { [string]: { [string]: any } }) -> Style,

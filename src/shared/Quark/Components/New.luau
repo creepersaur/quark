@@ -1,5 +1,6 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ReplicatedStorage = game:GetService "ReplicatedStorage"
 
+local all_events = require(ReplicatedStorage.Shared.Quark.Misc.all_events)
 local custom_properties = require(ReplicatedStorage.Shared.Quark.Misc.custom_properties)
 local State = require(script.Parent.Parent.Reactive.State)
 local Types = require(script.Parent.Parent.Types)
@@ -261,7 +262,7 @@ end
 
 return {
 	New = New,
-	Hook = function(EventName: string, EventCallback: (New<any>, ...any) -> ())
+	Hook = function(EventName: all_events.ALL_EVENTS | string, EventCallback: (New<GuiObject>, ...any) -> ())
 		return {
 			[HookPrefix] = EventName,
 			[HookCallback] = EventCallback,

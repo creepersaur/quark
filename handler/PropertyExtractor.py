@@ -4,6 +4,8 @@ import os
 f = open("handler\\API-Dump.json", "r")
 data = json.loads(f.read())
 props = {}
+events = {}
+event_list = []
 
 enums = [
     "AccessModifierType",
@@ -470,7 +472,6 @@ class_include = "ui frame part constraint layout surface billboard corner stroke
 
 HASHED = []
 
-
 def get_type_from_string(vType: str):
     match vType:
         case "int":
@@ -520,7 +521,6 @@ def get_type_from_string(vType: str):
 
     return vType
 
-
 for M in data["Classes"]:
     if "Name" in M:
             if M["Name"] not in important_classes.split():
@@ -562,27 +562,47 @@ for M in data["Classes"]:
                 compiled_args.append(vType)
 
             arg_string = ", ".join(compiled_args)
-            vType = f"RBXScriptSignal<{arg_string}>"
+            if len(arg_string) > 0:
+                arg_string = f"<{arg_string}>"
+            
+            vType = f"RBXScriptSignal" + arg_string
 
-            if i["Name"] in props:
-                if vType in props[i["Name"]]:
+            if i["Name"] in events:
+                if vType in events[i["Name"]]:
                     continue
-                props[i["Name"]].append(vType)
+                events[i["Name"]].append(vType)
             else:
-                props[i["Name"]] = [vType]
+                events[i["Name"]] = [vType]
+
+            if i["Name"] not in event_list:
+                event_list.append(i["Name"])
 
             #! NOTE: This isn't perfectly accurate
             #! In a perfect world we'd have different types per ClassName
 
-props["Destroying"] = ["RBXScriptSignal<...any>"]
+def write_output(name, file_name, value_dict):
+	output = f"export type {name} = " + "{\n"
+	for i, v in value_dict.items():
+		type_string = "|".join(v)
 
-output = "export type ALL_PROPERTIES = {\n"
-for i, v in props.items():
-    type_string = "|".join(v)
+		output += f"\t{i}: {type_string},\n"
+	output += "}\n\nreturn 0"
 
-    output += f"\t{i}: {type_string},\n"
-output += "}\n\nreturn 0"
+	open(f"handler\\{file_name}.luau", "w").write(output)
 
-print("UICorner" in HASHED)
+write_output("ALL_PROPERTIES", "properties", props)
 
-open("handler\\output.luau", "w").write(output)
+events["Destroying"] = ["RBXScriptSignal"]
+event_list.append("Destroying")
+
+def write_type(name, file_name, value_list):
+    output = f"export type {name} = \n"
+    print(event_list)
+    
+    output += '"' + '" | "'.join(value_list) + '"'
+    
+    output += "\n\nreturn 0"
+
+    open(f"handler\\{file_name}.luau", "w").write(output)
+
+write_type("ALL_EVENTS", "events", event_list)
