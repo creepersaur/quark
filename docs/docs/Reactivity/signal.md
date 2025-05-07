@@ -1,23 +1,26 @@
-<div class="tab_holder" code_only>
-<tab name = "Compressed" active="yes">
+Tab testing, `Signal.md` is incomplete!
 
-```luau
-local TextState = State({Counter}, function()
-	return "Hello"
-end)
+<div class="tab_holder" code_only>
+<tab name = "Python" active="yes">
+
+```py
+import random
+print(random.randint(1, 5))
 ```
 
 </tab>
 
-<tab name = "Spacious">
+<tab name = "Rust">
 
-```luau
-local TextState = State(
-	{ Counter },
-	function()
-		return "Hello"
-	end
-)
+```rust
+use rand::prelude::*;
+
+fn main() {
+	// Get an RNG:
+	let mut rng = rand::rng();
+
+	println!("Random value: {}", rng.random_range(1..=5));
+}
 ```
 
 </tab>
@@ -34,13 +37,13 @@ Foo Bar
 You just opened Tab 3
 </tab>
 <tab name="Tab4">
-
 This extremely cool:
 
 ```luau
 print("hello world")
 ```
 
+haha yes
 </tab>
 <tab name="lipsum">
 Lorem ipsum dolor sit amet omg no way.

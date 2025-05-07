@@ -83,12 +83,19 @@
 	translate: 0 2px;
 	-webkit-background-clip: text;
 	background-clip: text;
+	position: relative;
+	border-left: 2px solid rgba(11, 207, 109, 0);
 
-	transition: 0.1s;
+	transition: 0.2s;
 }
 
 .FoldItem:hover {
 	opacity: 0.9;
+}
+
+.FoldItem:not([active]):active {
+	opacity: 1;
+	background: var(--line);
 }
 
 .FoldItem[active] {
@@ -101,6 +108,24 @@
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 	translate: -2px 2px;
+}
+
+.FoldItem::before {
+	content: "";
+	background: red;
+	position: absolute;
+	width: 100%;
+	height: calc(100% - 4px);
+	translate: 0 2px;
+	top: 0;
+	left: 0;
+	border-radius: 5px;
+	background: var(--line);
+	opacity: 0.5;
+}
+
+.FoldItem[active]::before {
+	opacity: .7;
 }
 
 .material-symbols-outlined {

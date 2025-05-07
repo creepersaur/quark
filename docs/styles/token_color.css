@@ -1,0 +1,76 @@
+/* CODE STUFF */
+
+.token {
+	font-family: JetBrains Mono !important;
+	font-weight: 300 !important;
+	outline: 2px solid rgba(255, 255, 255, 0);
+	
+}
+
+.token.keyword {
+	color: rgb(255, 110, 166) !important;
+}
+
+.token.function {
+	color: rgb(124, 181, 255) !important;
+}
+
+.token.property {
+	color: rgb(196, 253, 255) !important;
+}
+
+.token.string {
+	color: #ffe08a !important;
+}
+
+/* Numbers (123, 3.14) */
+.token.number {
+	color: #c6e4a5 !important; /* Orange */
+}
+
+/* Comments */
+.token.danger_comment {
+	color: #8a5d5d !important; /* Gray */
+	font-style: italic;
+}
+
+.token.comment {
+	font-style: italic;
+}
+
+.token.brace {
+	color: #9eadce !important;
+}
+
+.token.builtin {
+	color: rgb(109, 206, 161) !important;
+}
+
+/* Operators (=, +, -, etc.) */
+.token.operator {
+	color: #70f5ff91 !important; /* Cyan */
+}
+
+.token.type {
+	color: rgb(165, 255, 187);
+}
+
+.token.table_key {
+	color: red !important;
+}
+
+#Main strong {
+	color: rgb(233, 233, 233);
+}
+
+.comment {
+	color: var(--comment);
+}
+
+.token:hover {
+	background: rgba(255, 255, 255, 0.08) !important;
+	outline: 2px solid rgba(255, 255, 255, 0.08);
+	scale: 2 !important;
+	
+	transition: 0.2s;
+}

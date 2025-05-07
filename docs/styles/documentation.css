@@ -155,8 +155,6 @@ blockquote img {
 	margin-bottom: -5px !important;
 }
 
-/* CODE STUFF */
-
 pre {
 	position: relative;
 	border: 1px solid var(--code_block_border);
@@ -176,7 +174,7 @@ code {
 	padding-right: 5px !important;
 	padding-left: 5px !important;
 	background: var(--code_span);
-	outline: 1px solid rgba(126, 139, 255, 0.322);
+	outline: 1px solid var(--brighter_line);
 	font-family: JetBrains Mono !important;
 	font-size: 14px !important;
 }
@@ -191,77 +189,6 @@ pre code {
 
 .token {
 	font-family: JetBrains Mono !important;
-}
-
-/* Keywords (like function, class, return) */
-.token.keyword {
-	color: #ff6975 !important; /* Purple */
-	font-weight: 500;
-}
-
-/* Strings ("Hello World") */
-.token.string {
-	color: #ffd08a !important; /* Green */
-}
-
-/* Numbers (123, 3.14) */
-.token.number {
-	color: #6fffc3 !important; /* Orange */
-}
-
-/* Comments */
-.token.danger_comment {
-	color: #8a5d5d !important; /* Gray */
-	font-style: italic;
-}
-
-.token.comment {
-	color: #5c6370 !important; /* Gray */
-	font-style: italic;
-}
-
-/* Functions */
-.token.function {
-	color: #61afef !important; /* Blue */
-	font-weight: 500;
-}
-
-.token.brace {
-	color: #9eadce !important;
-}
-
-.token.new {
-	font-weight: 500;
-	color: rgb(80, 255, 168) !important;
-}
-
-.token.builtin {
-	color: rgb(68, 236, 180) !important;
-}
-
-.token.property {
-	color: rgb(255, 216, 179) !important;
-}
-
-/* Operators (=, +, -, etc.) */
-.token.operator {
-	color: #70f5ff91 !important; /* Cyan */
-}
-
-.token.type {
-	color: rgb(255, 106, 181);
-}
-
-.token.table_key {
-	color: red !important;
-}
-
-#Main strong {
-	color: rgb(233, 233, 233);
-}
-
-.comment {
-	color: var(--comment);
 }
 
 .NextPage {
@@ -351,15 +278,25 @@ hr {
 	text-align: center;
 	align-content: center;
 	font-size: 22px !important;
-	opacity: 0.2;
 	outline: 2px solid rgba(0, 0, 0, 0);
 	cursor: pointer;
+	opacity: 0;
 
 	transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+pre:hover .copy_btn:not(:hover):not([copied]) {
+	opacity: 0.2;
+}
+
 .copy_btn:hover {
 	opacity: 1;
+}
+
+.copy_btn:not([copied]):active {
+	opacity: 1;
+	background: var(--brighter_line);
+	filter: brightness(1.5);
 }
 
 .copy_btn[copied] {
@@ -401,6 +338,8 @@ summary {
 	padding-bottom: 7px !important;
 	cursor: pointer;
 	text-align: center;
+
+	transition: 0.2s;
 }
 
 summary:hover {
@@ -493,7 +432,7 @@ tagged {
 	width: calc(100% - 2px);
 	height: 100%;
 	z-index: -1;
-	background: rgba(0, 0, 0, 0.1);
+	background: rgba(0, 0, 0, 0.2);
 	border: 1px solid var(--brighter_line);
 	border-radius: 10px;
 	padding-bottom: 5px;
@@ -541,6 +480,7 @@ tagged {
 }
 
 .holder_buttons button {
+	position: relative;
 	border: none;
 	background: var(--line);
 	color: white;
@@ -567,16 +507,18 @@ tagged {
 }
 
 .holder_buttons button[active] {
-	background: var(--brighter_line);
+	background: var(--middle_line);
+	outline: 1px solid var(--brighter_line);
 }
 
 .holder_buttons button::after {
 	content: "";
 	display: block;
+	position: absolute;
 	background: var(--button_primary_single);
 	border-radius: 10px;
 	height: 4px;
-	translate: 50% 4px;
+	translate: -50% 6px;
 	left: 50%;
 	width: 0px;
 	opacity: 0;
@@ -588,6 +530,6 @@ tagged {
 	height: 4px;
 	opacity: 1;
 	content: "";
-	translate: -5px 4px;
-	width: calc(100% + 10px);
+	translate: -50% 6px;
+	width: 100%;
 }

@@ -138,31 +138,50 @@ print(MyLabel.Text) -- prints `Goodbye!`
 By putting a function inside a State, you can create a computed state:
 
 ```luau
--- `dependencies` is a table containing States
-local dependencies: { State }
-local Computed = State(function(), dependencies)
+local Computed = State(function(use)
+	return "Value"
+end)
 ```
+
+The `use` function allows you to **connect to the updates** of another state. `use(State)` also returns the value of the state.
 
 Where the `function()` gets ran whenever one of the **dependencies updates**. The State's value is set to the **return value** of the `function()`.
 
-<newline></newline>
-
-### Example:
-
-<newline></newline>
+## Example:
 
 Sometimes you want to update a state, based off of another state.
 Say for example, I want to update my `TextState` whenever my `Counter` state changes.
 
-```luau
-local Counter = State(0)
+To make it such that the TextState updates when Counter updates, we `use(Counter)` and add it to the dependencies.
+<div class="tab_holder" code_only>
+<tab name = "Compressed" active="yes">
 
-local TextState = State(function()
-	return "Hello"
+```luau
+local TextState = State(function(use)
+	return "Counter: " .. use(Counter)
 end)
 ```
 
-`TextState` will use the function's return value as the Value.
-So in the above example the value is `Hello`.
+</tab>
 
-To make it such that the TextState updates when Counter updates, we can add the `Counter` in a table for dependencies:
+<tab name = "Full Code">
+
+```luau
+local Counter = State(0)
+
+local TextState = State(function(use)
+	return "Counter: " .. use(Counter)
+end)
+
+Counter(5)
+print( TextState() ) -- Prints "Counter: 5"
+```
+
+</tab>
+</div>
+
+---
+
+To connect to State updates, please check out Signals:
+
+<!NextPage|Signal>(#Reactivity/signal)
