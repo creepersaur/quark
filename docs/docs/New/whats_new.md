@@ -17,10 +17,10 @@ x:Destroy()
 
 > If you want to pass in the **actual instance** to a method, use the `.Object` property.
 
-> <warning>
+> <note>
 >
-> All UI objects are sized `{0,0,0,0}` by default. They will **not be shown** unless you set their size explicitly.
-> </warning>
+> All UI objects have default properties applied to them to show them correctly. (e.g. Size changes and removing the border).
+> </note>
 
 ---
 
@@ -85,6 +85,8 @@ local x: New<Frame> = New "Frame" {
 Cast the type of the name:
 
 ```luau
+--! NOT RECOMMENDED, MAY NOT WORK.
+-- (Editor may warn you about type casting.)
 local x = New ("Frame" :: Frame) {
 	...
 }

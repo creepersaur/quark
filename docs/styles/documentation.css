@@ -30,14 +30,14 @@ body {
 
 #Main h1 {
 	color: white;
-	font-weight: 300;
+	font-weight: 500;
 	font-size: 40px;
 }
 
 #Main h2 {
 	padding-top: 2px;
 	color: rgba(255, 255, 255, 0.966);
-	font-weight: 200;
+	font-weight: 300;
 	font-size: 30px;
 }
 
@@ -45,7 +45,7 @@ body {
 	color: rgba(255, 255, 255, 0.829);
 	font-weight: 400;
 	font-size: 20px;
-	margin-bottom: -1px !important;
+	margin-bottom: -12px !important;
 }
 
 #Main a {
@@ -75,6 +75,10 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
 	background: var(--button_primary_single);
+}
+
+newline {
+	display: block;
 }
 
 blockquote {
@@ -205,6 +209,11 @@ pre code {
 }
 
 /* Comments */
+.token.danger_comment {
+	color: #8a5d5d !important; /* Gray */
+	font-style: italic;
+}
+
 .token.comment {
 	color: #5c6370 !important; /* Gray */
 	font-style: italic;
@@ -458,4 +467,76 @@ tagged {
 		calc(100% - var(--sharpness)) 100%,
 		0 100%
 	);
+}
+
+/* ----------------------------------
+-- TAB / TAB HOLDERS
+-------------------------------------*/
+
+tab_holder {
+	display: block;
+	background: rgba(0, 0, 0, 0.322);
+	padding: 5px;
+	border: 1px solid var(--brighter_line);
+	padding-bottom: 0px !important;
+}
+
+.holder_buttons {
+	display: block;
+	background: var(--line);
+	height: 34px;
+	width: calc(100% + 9px);
+	translate: -5px -5px;
+	margin-bottom: -5px !important;
+	border-bottom: var(--brighter_line) solid 1px;
+	padding-left: 1px;
+}
+
+.holder_buttons button {
+	border: none;
+	background: var(--line);
+	color: white;
+	height: 100%;
+	cursor: pointer;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 2px;
+
+	transition: 0.2s;
+}
+
+.holder_buttons button:not([active]):hover {
+	filter: brightness(1.5);
+}
+
+.holder_buttons button:not([active]):active {
+	filter: brightness(1.5);
+	background: var(--brighter_line);
+
+	transition: 0.1s;
+}
+
+.holder_buttons button[active] {
+	background: var(--brighter_line);
+}
+
+.holder_buttons button::after {
+	content: "";
+	display: block;
+	background: var(--button_primary_single);
+	height: 4px;
+	translate: 50% 5px;
+	left: 50%;
+	width: 0px;
+	opacity: 0;
+
+	transition: .2s;
+}
+
+.holder_buttons button[active]::after {
+	height: 4px;
+	opacity: 1;
+	content: "";
+	translate: -10px 5px;
+	width: calc(100% + 20px);
 }

@@ -10,7 +10,7 @@ Quark has custom properties (lowercase) which are not in normal instances.
 
 ---
 
-- ### `children` <#table|crimson>
+- ### `children` <#table { Instances }|crimson>
 
 Add new children to an object. Does not remove previous ones when calling multiple times.
 
@@ -46,7 +46,7 @@ New "TextButton" {
 
 ---
 
-- ### `style` <#Stylesheet|var(--button_primary_single)>
+- ### `style` <#Stylesheet|rgb(55, 143, 102)>
 
 Set the stylesheet to be used by objects. Must be a stylesheet object.
 `class` implies that `style` is set.

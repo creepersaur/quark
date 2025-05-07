@@ -25,7 +25,7 @@ local object = New(PremadeFrame) {
 	
 	children = New "UIPadding"
 }
--- CHILDREN ARE ONLY APPENDED, NOT SET.
+-- CHILDREN ARE ONLY ADDED, NOT SET.
 ```
 
 ---

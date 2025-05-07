@@ -1,4 +1,5 @@
 Prism.languages["luau"] = {
+	danger_comment: /^#!.+|--!(?:\[(=*)\[[\s\S]*?\]\1\]|.*)/m,
 	comment: /^#!.+|--(?:\[(=*)\[[\s\S]*?\]\1\]|.*)/m,
 	// \z may be used to skip the following space
 	string: {
@@ -128,8 +129,10 @@ function fileMarkdown(file_path) {
 			} else {
 				document.getElementById("Main").innerHTML = marked.parse(data);
 			}
-			
+		})
+		.then(() => {
 			Prism.highlightAll();
+			setup_tabs()
 		})
 		.catch((error) => console.error("Error loading markdown file:", error));
 }
@@ -155,3 +158,47 @@ Prism.hooks.add('complete', (env) => {
 		env.element.parentNode.appendChild(button)
 	}
 })
+
+function setup_tabs() {
+	const tab_holders = document.querySelectorAll("tab_holder")
+	
+	tab_holders.forEach((holder) => {
+		const tabs = holder.querySelectorAll("tab")
+		const holder_buttons = document.createElement("div")
+		holder_buttons.className = "holder_buttons"
+
+		let buttons = [];
+		let current_tab = tabs[0];
+		
+		tabs.forEach((t) => {
+			let tab_html = t.innerHTML;
+			t.innerHTML = "";
+
+			const button = document.createElement("button")
+			button.innerHTML = t.getAttribute("name")
+			
+			if (t.getAttribute("active") == "yes") {
+				button.setAttribute("active", t.getAttribute("active"))
+				t.innerHTML = tab_html;
+			}
+
+			button.addEventListener("click", () => {
+				buttons.forEach((i) => {
+					i.removeAttribute("active")
+				})
+
+				tabs.forEach((i) => {
+					i.innerHTML = "";
+				})
+
+				t.innerHTML = tab_html;
+				button.setAttribute("active", "yes")
+			})
+
+			buttons.push(button)
+			holder_buttons.appendChild(button)
+		})
+
+		holder.prepend(holder_buttons)
+	})
+}

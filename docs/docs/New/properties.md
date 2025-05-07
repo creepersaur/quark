@@ -1,4 +1,4 @@
-# Properties and Methods
+# Properties
 
 Call a `New` object using a table to set properties and method callbacks that exist on the object you're creating.
 
@@ -17,29 +17,19 @@ MyLabel {
 
 ---
 
-## Methods
+## Function Properties
 
-Usually, an event connection consists of
-
-```luau
-Instance.Event:Connect(function(...))
-```
-
-You can give the Event name as the key, and callback function as value.
-
-The default connection parameters come after `self` which is a reference to the `New` object.
+Setting a property to a function will run the function and set the property to the returned value.
 
 ```luau
-New "TextButton" {
-	Activated = function(self, ...)
-		print("The button was clicked")
-	end,
-
-	InputBegan = function(self, input: InputObject)
-		print(input.KeyCode.Name .. " was pressed.")
+New "TextLabel" {
+	Text = function()
+		return "Hello"
 	end,
 }
 ```
+
+In the above example, the `Text` becomes `"Hello"`. Useful in cases where you have to write code for a property, but don't want to create variables that take up space in the whole scope.
 
 ---
 

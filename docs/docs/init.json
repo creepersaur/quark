@@ -6,21 +6,22 @@
 
 	"New": {
 		"add_circle|What is New?": "New/whats_new.md",
-		"tune|Properties and Methods": "New/properties_and_methods.md",
+		"tune|Properties": "New/properties.md",
 		"edit|Custom Properties": "New/custom_properties.md",
 		"data_object|Premade Instances": "New/premade_instances.md",
 		"event_list|Entries": ""
+	},
+
+	"Reactivity": {
+		"electrical_services|Events": "Reactivity/events.md",
+		"polyline|State": "Reactivity/state.md",
+		"sensors|Signal": "Reactivity/signal.md"
 	},
 
 	"Environment": {
 		"globe|Scope": "",
 		"cleaning_services|Cleanup": "",
 		"style|Stylesheets": ""
-	},
-
-	"Reactivity": {
-		"polyline|State": "",
-		"sensors|Signal": ""
 	},
 
 	"Animations": {
