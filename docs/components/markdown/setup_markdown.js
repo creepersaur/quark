@@ -131,8 +131,8 @@ function fileMarkdown(file_path) {
 			}
 		})
 		.then(() => {
+			setup_tabs();
 			Prism.highlightAll();
-			setup_tabs()
 		})
 		.catch((error) => console.error("Error loading markdown file:", error));
 }
@@ -160,7 +160,7 @@ Prism.hooks.add('complete', (env) => {
 })
 
 function setup_tabs() {
-	const tab_holders = document.querySelectorAll("tab_holder")
+	const tab_holders = document.querySelectorAll(".tab_holder")
 	
 	tab_holders.forEach((holder) => {
 		const tabs = holder.querySelectorAll("tab")
@@ -168,7 +168,8 @@ function setup_tabs() {
 		holder_buttons.className = "holder_buttons"
 
 		let buttons = [];
-		let current_tab = tabs[0];
+		const content_holder = document.createElement("div")
+		content_holder.className = "content_holder"
 		
 		tabs.forEach((t) => {
 			let tab_html = t.innerHTML;
@@ -179,7 +180,7 @@ function setup_tabs() {
 			
 			if (t.getAttribute("active") == "yes") {
 				button.setAttribute("active", t.getAttribute("active"))
-				t.innerHTML = tab_html;
+				content_holder.innerHTML = tab_html;
 			}
 
 			button.addEventListener("click", () => {
@@ -191,8 +192,10 @@ function setup_tabs() {
 					i.innerHTML = "";
 				})
 
-				t.innerHTML = tab_html;
+				content_holder.innerHTML = tab_html;
 				button.setAttribute("active", "yes")
+
+				Prism.highlightAll();
 			})
 
 			buttons.push(button)
@@ -200,5 +203,6 @@ function setup_tabs() {
 		})
 
 		holder.prepend(holder_buttons)
+		holder.appendChild(content_holder)
 	})
 }
