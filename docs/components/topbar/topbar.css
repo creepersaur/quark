@@ -105,3 +105,19 @@
 	opacity: 1;
 	filter: invert(1);
 }
+
+@media (max-width: 450px) {
+	.TopBar {
+		height: 35px
+	}
+
+	.TopBar strong {
+		display: none;
+	}
+
+	.TopBar li {
+		top: 10px;
+		right: 15px;
+		position: absolute;
+	}
+}
