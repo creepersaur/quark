@@ -1,5 +1,6 @@
 {
 	"Getting Started": {
+		"play_circle|Introduction": "GettingStarted/intro.md",
 		"download|Installation": "GettingStarted/installation.md",
 		"waving_hand|Hello Quark": "GettingStarted/hello_quark.md"
 	},
