@@ -2,7 +2,17 @@ body {
 	overflow: hidden;
 }
 
+@keyframes MainReveal {
+	0% {opacity: 0; scale: 0.8; clip-path: inset(0 0 100% 0);}
+	100% {opacity: 1; ; clip-path: inset(0 0 0 0);}
+}
+
+.reveal-animation {
+	animation: MainReveal 1s forwards;
+}
+
 #Main {
+	opacity: 0;
 	padding: 20px;
 	color: var(--doc_text);
 	position: absolute;

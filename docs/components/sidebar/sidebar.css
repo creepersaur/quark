@@ -1,3 +1,7 @@
+@keyframes SidebarOpacity {
+	0% {opacity: 0; rotate: 10deg; translate: -100%;}
+	100% {opacity: 1;}
+}
 
 #Sidebar {
 	width: calc(15vw + 100px);
@@ -7,6 +11,8 @@
 	padding: 20px;
 	justify-items: right;
 	overflow: auto;
+
+	animation: SidebarOpacity 1s forwards
 }
 
 @-moz-document url-prefix() {
@@ -70,6 +76,16 @@
 	border-left: 2px solid var(--line);
 }
 
+@keyframes revealClip {
+	from {
+		opacity: 0;
+		clip-path: inset(0 100% 0 0);
+	}
+	to {
+		clip-path: inset(0 0 0 0);
+	}
+}
+
 .FoldItem {
 	font-size: 14.5px;
 	color: white;
@@ -80,12 +96,15 @@
 	padding-bottom: 10px;
 	text-indent: 10px;
 	cursor: pointer;
+	overflow-x: hidden;
 	translate: 0 2px;
 	-webkit-background-clip: text;
 	background-clip: text;
 	position: relative;
 	border-left: 2px solid rgba(11, 207, 109, 0);
 
+	clip-path: inset(0 100% 0 0); /* initially hidden from right */
+	animation: revealClip 2s forwards;
 	transition: 0.2s;
 }
 

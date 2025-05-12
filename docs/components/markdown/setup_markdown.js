@@ -10,7 +10,8 @@ Prism.languages["luau"] = {
 	number: /\b0x[a-f\d]+(?:\.[a-f\d]*)?(?:p[+-]?\d+)?\b|\b\d+(?:\.\B|(?:\.\d*)?(?:e[+-]?\d+)?\b)|\B\.\d+(?:e[+-]?\d+)?\b/i,
 	keyword:
 		/\b(?:type|self|and|break|do|else|elseif|end|false|for|function|goto|if|in|local|nil|not|or|repeat|return|then|true|until|while)\b/,
-	builtin: /\b(workspace|Axes|BrickColor|CatalogSearchParams|CFrame|Color3|ColorSequence|ColorSequenceKeypoint|DateTime|DockWidgetPluginGuiInfo|Enum|EnumItem|Enums|Faces|Instance|NumberRange|NumberSequence|NumberSequenceKeypoint|PathWaypoint|PhysicalProperties|Random|Ray|RaycastParams|RaycastResult|RBXScriptConnection|RBXScriptSignal|Rect|Region3|Region3int16|TweenInfo|UDim2|UDim|Vector2|Vector2int16|Vector3|Vector3int16)\b/,
+	builtin:
+		/\b(workspace|Axes|BrickColor|CatalogSearchParams|CFrame|Color3|ColorSequence|ColorSequenceKeypoint|DateTime|DockWidgetPluginGuiInfo|Enum|EnumItem|Enums|Faces|Instance|NumberRange|NumberSequence|NumberSequenceKeypoint|PathWaypoint|PhysicalProperties|Random|Ray|RaycastParams|RaycastResult|RBXScriptConnection|RBXScriptSignal|Rect|Region3|Region3int16|TweenInfo|UDim2|UDim|Vector2|Vector2int16|Vector3|Vector3int16)\b/,
 	function: [
 		/(?!\d)\w+(?=\s*(?:[({]))/,
 		/\bNew\b(?!<)/,
@@ -35,7 +36,7 @@ marked.setOptions({
 		code = code.trim();
 		// Use Prism to highlight the code
 		const validLang = Prism.languages[lang] ? lang : "lua"; // Default to 'lua' if language isn't found
-		
+
 		return Prism.highlight(code, Prism.languages[validLang], validLang);
 	},
 });
@@ -106,14 +107,18 @@ const tagExtension = {
 	renderer(token) {
 		return `<tagged style="background: ${token.tagtype};">${token.text}</tagged>`;
 	},
-}
+};
 
 // Add extension to Marked
 marked.use({
 	extensions: [commentExtension, nextPageExtension, tagExtension],
 });
 
+let previous_file_path = null;
+
 function fileMarkdown(file_path) {
+	const Main = document.getElementById("Main");
+
 	fetch("docs/" + file_path)
 		.then((response) => response.text())
 		.then((data) => {
@@ -121,88 +126,103 @@ function fileMarkdown(file_path) {
 				fetch("docs/404.md")
 					.then((response) => response.text())
 					.then((data) => {
-						document.getElementById("Main").innerHTML = marked.parse(data);
+						if (previous_file_path != file_path) {
+							Main.classList.remove("reveal-animation");
+							void Main.offsetWidth; // Trigger reflow
+							Main.classList.add("reveal-animation");
+						}
+
+						Main.innerHTML = marked.parse(data);
 					})
 					.catch((error) =>
 						console.error("Error loading 404 file:", error)
 					);
 			} else {
-				document.getElementById("Main").innerHTML = marked.parse(data);
+				let parsed = marked.parse(data);
+
+				if (previous_file_path != file_path) {
+					Main.classList.remove("reveal-animation");
+					void Main.offsetWidth; // Trigger reflow
+					Main.classList.add("reveal-animation");
+				}
+
+				Main.innerHTML = parsed;
 			}
 		})
 		.then(() => {
 			setup_tabs();
 			Prism.highlightAll();
 		})
-		.catch((error) => console.error("Error loading markdown file:", error));
+		.catch((error) => console.error("Error loading markdown file:", error))
+		.then(() => (previous_file_path = file_path));
 }
 
-Prism.hooks.add('complete', (env) => {
-	if (!env.element.parentNode.querySelector('.copy_btn')) {
-		const button = document.createElement('span')
-		button.className = 'copy_btn material-symbols-outlined'
-		button.innerText = 'content_copy'
+Prism.hooks.add("complete", (env) => {
+	if (!env.element.parentNode.querySelector(".copy_btn")) {
+		const button = document.createElement("span");
+		button.className = "copy_btn material-symbols-outlined";
+		button.innerText = "content_copy";
 
-		const btnText = document.createElement('p')
-		btnText.innerHTML = 'copied!'
+		const btnText = document.createElement("p");
+		btnText.innerHTML = "copied!";
 
-		button.addEventListener('click', () => {
-			navigator.clipboard.writeText(env.code)
-			button.setAttribute("copied", true)
+		button.addEventListener("click", () => {
+			navigator.clipboard.writeText(env.code);
+			button.setAttribute("copied", true);
 			setTimeout(() => {
-				button.removeAttribute("copied")
-			}, 1000)
-		})
+				button.removeAttribute("copied");
+			}, 1000);
+		});
 
-		button.appendChild(btnText)
-		env.element.parentNode.appendChild(button)
+		button.appendChild(btnText);
+		env.element.parentNode.appendChild(button);
 	}
-})
+});
 
 function setup_tabs() {
-	const tab_holders = document.querySelectorAll(".tab_holder")
-	
+	const tab_holders = document.querySelectorAll(".tab_holder");
+
 	tab_holders.forEach((holder) => {
-		const tabs = holder.querySelectorAll("tab")
-		const holder_buttons = document.createElement("div")
-		holder_buttons.className = "holder_buttons"
+		const tabs = holder.querySelectorAll("tab");
+		const holder_buttons = document.createElement("div");
+		holder_buttons.className = "holder_buttons";
 
 		let buttons = [];
-		const content_holder = document.createElement("div")
-		content_holder.className = "content_holder"
-		
+		const content_holder = document.createElement("div");
+		content_holder.className = "content_holder";
+
 		tabs.forEach((t) => {
 			let tab_html = t.innerHTML;
 			t.innerHTML = "";
 
-			const button = document.createElement("button")
-			button.innerHTML = t.getAttribute("name")
-			
+			const button = document.createElement("button");
+			button.innerHTML = t.getAttribute("name");
+
 			if (t.getAttribute("active") == "yes") {
-				button.setAttribute("active", t.getAttribute("active"))
+				button.setAttribute("active", t.getAttribute("active"));
 				content_holder.innerHTML = tab_html;
 			}
 
 			button.addEventListener("click", () => {
 				buttons.forEach((i) => {
-					i.removeAttribute("active")
-				})
+					i.removeAttribute("active");
+				});
 
 				tabs.forEach((i) => {
 					i.innerHTML = "";
-				})
+				});
 
 				content_holder.innerHTML = tab_html;
-				button.setAttribute("active", "yes")
+				button.setAttribute("active", "yes");
 
 				Prism.highlightAll();
-			})
+			});
 
-			buttons.push(button)
-			holder_buttons.appendChild(button)
-		})
+			buttons.push(button);
+			holder_buttons.appendChild(button);
+		});
 
-		holder.prepend(holder_buttons)
-		holder.appendChild(content_holder)
-	})
+		holder.prepend(holder_buttons);
+		holder.appendChild(content_holder);
+	});
 }
