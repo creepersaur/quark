@@ -31,4 +31,4 @@ If everything works correctly, you should see a TextLabel appear when you play t
 
 ---
 
-<!NextPage|What is New?>(#New/whats_new)
+<!NextPage|Creating Instances>(#Instances/creating_instances)
