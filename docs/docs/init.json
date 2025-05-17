@@ -5,11 +5,11 @@
 		"waving_hand|Hello Quark": "GettingStarted/hello_quark.md"
 	},
 
-	"New": {
-		"add_circle|What is New?": "New/whats_new.md",
-		"tune|Properties": "New/properties.md",
-		"edit|Custom Properties": "New/custom_properties.md",
-		"data_object|Premade Instances": "New/premade_instances.md",
+	"Instances": {
+		"add_circle|Creating Instances": "Instances/creating_instances.md",
+		"tune|Properties": "Instances/properties.md",
+		"edit|Custom Properties": "Instances/custom_properties.md",
+		"data_object|Premade Instances": "Instances/premade_instances.md",
 		"event_list|Entries": ""
 	},
 

@@ -1,3 +1,5 @@
+[header: Reactivity]
+
 # State
 
 States are variable wrappers that allow you to update, reset, connect to changes in their values. They can store **any value**.

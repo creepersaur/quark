@@ -1,3 +1,5 @@
+[header: Instances]
+
 # Properties
 
 Call a `New` object using a table to set properties and method callbacks that exist on the object you're creating.

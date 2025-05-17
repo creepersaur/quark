@@ -1,3 +1,4 @@
+[header: Reactivity]
 Tab testing, `Signal.md` is incomplete!
 
 <div class="tab_holder" code_only>
@@ -16,10 +17,10 @@ print(random.randint(1, 5))
 use rand::prelude::*;
 
 fn main() {
-	// Get an RNG:
-	let mut rng = rand::rng();
+ // Get an RNG:
+ let mut rng = rand::rng();
 
-	println!("Random value: {}", rng.random_range(1..=5));
+ println!("Random value: {}", rng.random_range(1..=5));
 }
 ```
 
@@ -47,5 +48,31 @@ haha yes
 </tab>
 <tab name="lipsum">
 Lorem ipsum dolor sit amet omg no way.
+</tab>
+
+</div>
+
+<div class="tab_holder" title="sigma" code_only>
+
+<tab name="luau" active="yes">
+
+```lua
+print("Hello world")
+```
+
+</tab>
+<tab name="Roblox-TS">
+
+```ts
+console.log("Hello world");
+```
+
+</tab>
+
+</div>
+
+<div class="tab_holder" title="I can now name these things">
+<tab hide name="luau" active="yes">
+Hello World
 </tab>
 </div>

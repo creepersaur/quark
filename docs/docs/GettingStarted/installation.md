@@ -1,3 +1,5 @@
+[header: Getting Started]
+
 # Installation
 
 You can install Quark by three methods

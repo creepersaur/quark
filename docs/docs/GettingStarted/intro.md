@@ -1,3 +1,5 @@
+[header: Getting Started]
+
 # Introduction
 
 Quark is a lightweight, reactive UI framework for Roblox built with Luau.

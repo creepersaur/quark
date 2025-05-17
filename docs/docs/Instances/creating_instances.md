@@ -1,4 +1,6 @@
-# What is New?
+[header: Instances]
+
+# Creating Instances
 
 Consider `New` objects as the instances your UI is made of.
 They wrap actual Instances in an Object Oriented fashion.
@@ -16,7 +18,7 @@ x:Destroy()
 ```
 
 > If you want to pass in the **actual instance** to a method, use the `.Object` property.
-
+>
 > <note>
 >
 > All UI objects have default properties applied to them to show them correctly. (e.g. Size changes and removing the border).

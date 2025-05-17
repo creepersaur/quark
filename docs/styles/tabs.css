@@ -1,0 +1,146 @@
+
+/* ----------------------------------
+-- TAB / TAB HOLDERS
+-------------------------------------*/
+
+.tab_holder {
+	position: relative;
+	height: max-content;
+}
+
+.tab_holder[code_only] pre {
+	border-radius: 0 0 10px 10px;
+}
+
+.tab_holder::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: calc(100% - 2px);
+	height: 100%;
+	z-index: -1;
+	background: rgba(0, 0, 0, 0.2);
+	border: 1px solid var(--brighter_line);
+	border-radius: 10px;
+	padding-bottom: 5px;
+}
+
+.tab_holder[code_only]::before {
+	height: calc(100% - 15px);
+	padding-bottom: 0px;
+}
+
+.tab_holder tab {
+	display: none;
+}
+
+.tab_holder .content_holder {
+	height: min-content;
+	margin-bottom: -2px !important;
+}
+
+.tab_holder:not([code_only]) tab {
+	margin-left: 10px;
+	background: red;
+	text-align: left;
+}
+
+.tab_holder:not([code_only]) .content_holder {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.holder_buttons {
+    position: relative;
+	display: block;
+	background: var(--line);
+	padding: 5px;
+	padding-left: 7px;
+	margin-bottom: 5px !important;
+	padding-bottom: 5px !important;
+	height: 36px;
+	border-bottom: var(--brighter_line) solid 1px;
+	border-radius: 10px 10px 0 0;
+}
+
+.tab_holder[title] .holder_buttons::before {
+    content: attr(title);
+    top: 50%;
+    translate: 10px -50%;
+    position: absolute;
+    color: white;
+}
+
+.holder_buttons button[hide] {
+    display: none;
+}
+
+.tab_holder .tab_buttons {
+    height: calc(100% - 10px);
+    position: absolute;
+    margin-bottom: 100px !important;
+}
+
+.tab_holder[title] .tab_buttons {
+    right: 0;
+}
+
+.tab_holder[code_only] .holder_buttons {
+	margin-bottom: -7px !important;
+}
+
+.holder_buttons button {
+	position: relative;
+	border: none;
+	background: var(--line);
+	color: white;
+	height: calc(100% - 2px);
+	cursor: pointer;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 5px;
+	margin-top: 2px;
+	border-radius: 5px;
+
+	transition: 0.2s;
+}
+
+.holder_buttons button:not([active]):hover {
+	filter: brightness(1.5);
+}
+
+.holder_buttons button:not([active]):active {
+	filter: brightness(1.5);
+	background: var(--brighter_line);
+
+	transition: 0.1s;
+}
+
+.holder_buttons button[active] {
+	background: var(--middle_line);
+	outline: 1px solid var(--brighter_line);
+}
+
+.holder_buttons button::after {
+	content: "";
+	display: block;
+	position: absolute;
+	background: var(--button_primary_single);
+	border-radius: 10px;
+	height: 4px;
+	translate: -50% 6px;
+	left: 50%;
+	width: 0px;
+	opacity: 0;
+
+	transition: 0.2s;
+}
+
+.holder_buttons button[active]::after {
+	height: 4px;
+	opacity: 1;
+	content: "";
+	translate: -50% 6px;
+	width: 100%;
+}

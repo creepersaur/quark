@@ -1,3 +1,5 @@
+[header: Reactivity]
+
 # Events
 
 Using the `Hook` function, you can bind `RBXScriptSignal` connections to an object.

@@ -1,3 +1,5 @@
+[header: Instances]
+
 # Premade Instances
 
 If you have any UI or Instances that already exist and want to use them with Quark, you can use `New(Instance)` to wrap that inside a `New` object.
