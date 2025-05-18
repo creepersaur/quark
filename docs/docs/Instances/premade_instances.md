@@ -32,4 +32,4 @@ local object = New(PremadeFrame) {
 
 ---
 
-<!NextPage|Entries>(#New/entries)
+<!NextPage|Entries>(#Instances/entries)

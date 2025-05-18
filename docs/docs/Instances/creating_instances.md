@@ -105,4 +105,4 @@ local x = New ("Frame" :: Frame) {
 
 ---
 
-<!NextPage|Properties and Methods>(#New/properties_and_methods)
+<!NextPage|Properties>(#Instances/properties)

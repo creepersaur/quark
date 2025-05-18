@@ -41,6 +41,7 @@ body {
 }
 
 .DescriptionContent h1 {
+	display: inline-block;
 	font-size: 60px;
 	margin-bottom: 30px;
 	background: var(--button_primary);
@@ -48,11 +49,12 @@ body {
 	background-clip: text;
   	-webkit-text-fill-color: transparent;
 
-	transition: 0.1s;
+	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .DescriptionContent h1:hover {
 	filter: brightness(1.2);
+	scale: 1.1;
 }
 
 .HeaderButtons {
@@ -62,17 +64,19 @@ body {
 	translate: 0 -75px;
 }
 
+
 a {
 	color: white;
 	text-decoration: none;
 }
 
 .HeaderButtons a {
+	display: inline-block;
 	padding: 0.5rem;
 	padding-left: 2rem;
 	padding-right: 2rem;
 	width: auto;
-	border-radius: 100rem;
+	border-radius: 0.4rem;
 	font-weight: 900;
 	font-size: 15px;
 	border: none;
@@ -80,7 +84,7 @@ a {
 	background: white;
 	color: black;
 
-	transition: 0.1s;
+	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .HeaderButtons a[active] {
@@ -92,8 +96,6 @@ a {
 
 .HeaderButtons a:hover {
 	filter: brightness(0.85);
-
-	transition: 0.1s;
 }
 
 .HeaderButtons a[active]:hover {
@@ -102,11 +104,14 @@ a {
 
 .HeaderButtons a:active {
 	filter: brightness(1);
-	transition: 0s;
 }
 
 .HeaderButtons a[active]:active {
 	filter: hue-rotate(5deg) brightness(1.1);
+}
+
+.HeaderButtons a:hover {
+	scale: 1.05;
 }
 
 .Footer {
