@@ -208,8 +208,16 @@ Prism.hooks.add("complete", (env) => {
 			}, 1000);
 		});
 
+		const pre = env.element.parentNode;
+		const codeHolder = document.createElement("div");
+		codeHolder.className = 'code_holder';
+
+		pre.parentNode.appendChild(codeHolder);
+		pre.parentNode.insertBefore(codeHolder, pre);
+
 		button.appendChild(btnText);
-		env.element.parentNode.appendChild(button);
+		codeHolder.appendChild(pre);
+		codeHolder.appendChild(button);
 	}
 });
 

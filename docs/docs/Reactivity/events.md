@@ -8,7 +8,7 @@ Using the `Hook` function, you can bind `RBXScriptSignal` connections to an obje
 local Hook = Quark.Hook
 ```
 
-In other words, connect to an event using `Hook` followed by the name of the event, and the callback function you want to connect to it.s
+In other words, connect to an event using `Hook` followed by the name of the event, and the callback function you want to connect to it.
 
 ```luau
 New "TextButton" {

@@ -1,5 +1,11 @@
 /* CODE STUFF */
 
+.code_holder {
+	position: relative;
+	margin-bottom: -10px !important;
+	padding-bottom: 0 !important;
+}
+
 pre {
 	position: relative;
 	border: 1px solid var(--code_block_border);
@@ -8,7 +14,6 @@ pre {
 	) !important; /* Dark background (VS Code style) */
 	padding: 12px !important;
 	padding-left: 20px !important;
-	overflow: visible;
 	font-family: JetBrains Mono !important;
 	border-radius: 6.3px;
 }
@@ -33,6 +38,7 @@ code {
 code:not(pre code):hover {
 	cursor: pointer;
 	filter: brightness(0.8);
+	overflow: hidden;
 }
 
 code:not(pre code):active {
@@ -157,7 +163,7 @@ pre code {
 	transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-pre:hover .copy_btn:not(:hover):not([copied]) {
+.code_holder:hover .copy_btn:not(:hover):not([copied]) {
 	opacity: 1;
 }
 
@@ -189,6 +195,7 @@ pre:hover .copy_btn:not(:hover):not([copied]) {
 
 .copy_btn[copied] {
 	opacity: 1;
+	filter: brightness(1);
 	background-color: var(--button_primary_single);
 	color: white;
 	scale: 1.01;
