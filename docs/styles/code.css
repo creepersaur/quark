@@ -131,6 +131,9 @@ pre code {
 
 
 .copy_btn {
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
+	backdrop-filter: blur(10px);
+	z-index: 5;
 	contain: layout;
 	border-radius: 7px;
 	position: absolute;
@@ -140,13 +143,14 @@ pre code {
 	width: 35px;
 	aspect-ratio: 1;
 	padding-top: 2px;
-	background: var(--code_block_border);
+	background: #31302f9f;
 	text-align: center;
 	align-content: center;
 	font-size: 20px !important;
 	text-underline-position: below;
 	outline: 2px solid rgba(0, 0, 0, 0);
 	cursor: pointer;
+	filter: brightness(.8);
 	opacity: 0;
 	border: 1px solid var(--brighter_line);;
 
@@ -154,11 +158,12 @@ pre code {
 }
 
 pre:hover .copy_btn:not(:hover):not([copied]) {
-	opacity: 0.4;
+	opacity: 1;
 }
 
 .copy_btn:hover {
 	opacity: 1;
+	filter: brightness(1);
 }
 
 .copy_btn:not([copied]):active {

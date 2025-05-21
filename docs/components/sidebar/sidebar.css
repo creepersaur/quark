@@ -12,17 +12,25 @@
 
 @media (max-width: 750px) {
 	:has(#Main[empty]) #Sidebar {
-		width: 100vw;
+		width: calc(100vw - 45px);
 		left: 0 !important;
-		align-items: center !important;
+		align-items: flex-end !important;
 		display: flex;
 		flex-direction: column;
+		padding-right: 40px;
 	}
 
 	:has(#Main[empty]) #Sidebar div {
-		width: 90%;
-		float: left !important;
-		translate: -10px;
+		width: calc(100vw - 40px) !important;
+		/* border: 1px red solid; */
+		text-align: center;
+	}
+
+	:has(#Main[empty]) #Sidebar .Fold li {
+		border: 0;
+		width: 100%;
+		outline: 1px solid var(--middle_line);
+		border-radius: 5px;
 	}
 
 	#sidebar_toggle {

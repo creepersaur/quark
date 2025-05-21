@@ -198,7 +198,7 @@ Prism.hooks.add("complete", (env) => {
 		button.innerText = "content_copy";
 
 		const btnText = document.createElement("p");
-		btnText.innerHTML = "copied!";
+		btnText.innerHTML = "Copied!";
 
 		button.addEventListener("click", () => {
 			navigator.clipboard.writeText(env.code);

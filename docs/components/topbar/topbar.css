@@ -112,7 +112,30 @@
 	}
 
 	.TopBar strong {
-		display: none;
+		visibility: hidden;
+	}
+
+	.TopBar strong::after {
+		visibility: visible;
+		content: "";
+		display:flex;
+		/* background: rgba(255, 0, 0, 0.315); */
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		top: 0;
+		left: 5px;
+		filter: brightness(0.8);
+
+		background-image: url(../../assets/QuarkIcon.svg);
+		background-size: 30px;
+		background-repeat: no-repeat;
+
+		transition: 0.1s;
+	}
+
+	.TopBar strong:hover::after {
+		filter: brightness(1);
 	}
 
 	.TopBar li {
