@@ -184,6 +184,9 @@ function fileMarkdown(file_path) {
 			setup_tabs();
 			setup_codespans();
 			Prism.highlightAll();
+
+			Main.scrollTop = 0;
+			Main.removeAttribute("empty");
 		})
 		.catch((error) => console.error("Error loading markdown file:", error));
 }
@@ -274,6 +277,10 @@ function setup_codespans() {
 	const code = document.querySelectorAll("code")
 
 	code.forEach((e) => {
+		if (e.closest('pre')) {
+			return
+		}
+
 		e.addEventListener('click', () => {
 			navigator.clipboard.writeText(e.innerHTML);
 
@@ -294,3 +301,14 @@ function setup_codespans() {
 		})
 	})
 }
+
+function setup_sidebar_toggle() {
+	const button = document.getElementById("sidebar_toggle");
+	const Main = document.getElementById("Main");
+
+	button.addEventListener("click", () => {
+		Main.setAttribute("empty", true)
+	})
+}
+
+setup_sidebar_toggle()

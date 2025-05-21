@@ -131,26 +131,30 @@ pre code {
 
 
 .copy_btn {
+	contain: layout;
 	border-radius: 7px;
 	position: absolute;
 	top: 3.2px;
 	right: 2px;
 	display: block;
-	width: 40px;
+	width: 35px;
 	aspect-ratio: 1;
+	padding-top: 2px;
 	background: var(--code_block_border);
 	text-align: center;
 	align-content: center;
-	font-size: 22px !important;
+	font-size: 20px !important;
+	text-underline-position: below;
 	outline: 2px solid rgba(0, 0, 0, 0);
 	cursor: pointer;
 	opacity: 0;
+	border: 1px solid var(--brighter_line);;
 
-	transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 pre:hover .copy_btn:not(:hover):not([copied]) {
-	opacity: 0.2;
+	opacity: 0.4;
 }
 
 .copy_btn:hover {
@@ -160,7 +164,22 @@ pre:hover .copy_btn:not(:hover):not([copied]) {
 .copy_btn:not([copied]):active {
 	opacity: 1;
 	background: var(--brighter_line);
-	filter: brightness(1.5);
+	filter: brightness(1);
+}
+
+@keyframes CopyButtonRotate {
+	0% {	
+		rotate: 0deg;
+	}
+	33% {	
+		rotate: 5deg;
+	}
+	66% {	
+		rotate: -5deg;
+	}
+	100% {
+		rotate: 0deg;
+	}
 }
 
 .copy_btn[copied] {
@@ -168,6 +187,8 @@ pre:hover .copy_btn:not(:hover):not([copied]) {
 	background-color: var(--button_primary_single);
 	color: white;
 	scale: 1.01;
+
+	animation: CopyButtonRotate .5s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
 .copy_btn p {
@@ -175,12 +196,14 @@ pre:hover .copy_btn:not(:hover):not([copied]) {
 	position: absolute;
 	translate: -8px;
 	font-size: 15px;
+	scale: 0.8;
 
 	transition: 0.2s;
 }
 
 .copy_btn[copied] p {
 	opacity: 1;
+	scale: 1;
 	color: var(--button_primary_single);
 	translate: calc(-100% - 10px);
 

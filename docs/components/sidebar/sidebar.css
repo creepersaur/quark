@@ -1,6 +1,61 @@
 @keyframes SidebarOpacity {
-	0% {opacity: 0; rotate: 10deg; translate: -100%;}
-	100% {opacity: 1;}
+	0% {
+		opacity: 0;
+		rotate: 10deg;
+		translate: -100%;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@media (max-width: 750px) {
+	:has(#Main[empty]) #Sidebar {
+		width: 100vw;
+		left: 0 !important;
+		align-items: center !important;
+		display: flex;
+		flex-direction: column;
+	}
+
+	:has(#Main[empty]) #Sidebar div {
+		width: 90%;
+		float: left !important;
+		translate: -10px;
+	}
+
+	#sidebar_toggle {
+		display: block !important;
+	}
+
+	:has(#Main[empty]) #sidebar_toggle {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	@keyframes Hide {
+		from {opacity: 1;}
+		to {opacity: 0;}
+	}
+
+	#Main[empty] {
+		pointer-events: none;
+		animation: Hide 0.6s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+	}
+
+	#Main[empty] .Default {
+		animation: Hide 1s forwards;
+	}
+
+	:has(#Main:not([empty])) #Sidebar {
+		display: none;
+	}
+
+	#Main {
+		left: 0;
+		max-width: calc(100vw - 45px);
+	}
 }
 
 #Sidebar {
@@ -11,6 +66,7 @@
 	padding: 20px;
 	justify-items: right;
 	overflow: auto;
+	z-index: 100;
 
 	animation: SidebarOpacity 1s forwards
 }
@@ -63,8 +119,6 @@
 	display: block;
 	width: 100%;
 	font-weight: 500;
-
-	transition: 0.2s;
 }
 
 .Fold li {
@@ -78,9 +132,9 @@
 
 @keyframes revealClip {
 	from {
-		opacity: 0;
 		clip-path: inset(0 100% 0 0);
 	}
+
 	to {
 		clip-path: inset(0 0 0 0);
 	}
@@ -89,9 +143,9 @@
 .FoldItem {
 	font-size: 13.5px;
 	color: white;
-	opacity: 0.5;
 	display: inline-block;
 	width: 100%;
+	opacity: 0.5;
 	padding-top: 8px;
 	padding-bottom: 8px;
 	text-indent: 10px;
@@ -102,10 +156,19 @@
 	background-clip: text;
 	position: relative;
 	border-left: 2px solid rgba(11, 207, 109, 0);
-
-	clip-path: inset(0 100% 0 0); /* initially hidden from right */
+	transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+	clip-path: inset(0 100% 0 0);
+	/* initially hidden from right */
 	animation: revealClip 2s forwards;
-	transition: 0.2s;
+}
+
+@keyframes FoldOpacity {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+.Fold {
+	animation: FoldOpacity 2s forwards;
 }
 
 .FoldItem:hover {
@@ -127,6 +190,8 @@
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 	translate: -2px 2px;
+	
+	transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .FoldItem::before {
@@ -141,6 +206,7 @@
 	border-radius: 5px;
 	background: var(--line);
 	opacity: 0.5;
+	transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .FoldItem[active]::before {
@@ -159,4 +225,41 @@
 
 .FoldItem[active] .material-symbols-outlined {
 	-webkit-text-fill-color: var(--button_primary_single);
+}
+
+#sidebar_toggle {
+	z-index: 1;
+	position: absolute;
+	top: 80px;
+	right: 40px;
+	aspect-ratio: 1;
+	width: 50px;
+	border: 2px solid white;
+	background: var(--middle_line);
+	color: white;
+	border-radius: 8px;
+	font-size: 30px;
+	padding-bottom: 4.5px;
+	opacity: 0.4;
+	scale: 0.9;
+	cursor: pointer;
+	display: none;
+	
+	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#sidebar_toggle:hover {
+	opacity: 0.6;
+	scale: 1;
+}
+
+#sidebar_toggle:active {
+	opacity: 1;
+	color: var(--button_primary_single);
+	border-color: var(--button_primary_single);
+	background: rgba(20, 100, 75, 0.5);
+	filter: brightness(1.2);
+	scale: 1.1;
+
+	transition: .1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }

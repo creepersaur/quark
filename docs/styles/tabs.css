@@ -20,7 +20,6 @@
 	width: calc(100% - 2px);
 	height: 100%;
 	z-index: -1;
-	background: rgba(0, 0, 0, 0.2);
 	border: 1px solid var(--brighter_line);
 	border-radius: 10px;
 	padding-bottom: 5px;
@@ -83,7 +82,7 @@
 }
 
 .tab_holder[title] .tab_buttons {
-    right: 0;
+    right: 2px;
 }
 
 .tab_holder[code_only] .holder_buttons {
@@ -93,7 +92,8 @@
 .holder_buttons button {
 	position: relative;
 	border: none;
-	background: var(--line);
+	opacity: 0.8;
+	background: #424141;
 	color: white;
 	height: calc(100% - 2px);
 	cursor: pointer;
@@ -107,7 +107,7 @@
 }
 
 .holder_buttons button:not([active]):hover {
-	filter: brightness(1.5);
+	filter: brightness(1.2);
 }
 
 .holder_buttons button:not([active]):active {
@@ -118,8 +118,9 @@
 }
 
 .holder_buttons button[active] {
-	background: var(--middle_line);
-	outline: 1px solid var(--brighter_line);
+	opacity: 1;
+	background: rgba(255, 255, 255, 0.226);
+	outline: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .holder_buttons button::after {
