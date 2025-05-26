@@ -90,11 +90,44 @@ function Style:Push(name: string)
 	end
 end
 
+-- [[ Handle custom properties ]]
+function HandleCustomProperties(obj: any, prop: string, value: any)
+    local is_custom = true
+    local item = nil
+
+    if prop == "corner_radius" or prop == "corner" then
+        item = Instance.new("UICorner")
+        if type(value) == "number" then
+            item.CornerRadius = UDim.new(0, value)
+        else
+            item.CornerRadius = value
+        end
+    elseif prop == "aspect_ratio" or prop == "aspect" then
+        item = Instance.new("UIAspectRatioConstraint")
+        item.AspectRatio = value
+    elseif prop == "stroke" or prop == "border" then
+        item = Instance.new("UIStroke")
+        item.Thickness = value.Thickness or 1
+        item.Color = value.Color or Color3.new()
+        item.ApplyStrokeMode = value.ApplyStrokeMode or Enum.ApplyStrokeMode.Contextual
+    else
+        is_custom = false
+    end
+
+    if item then
+        item.Parent = obj
+    end
+
+    return is_custom
+end
+
 --[[ Write properties to an object ]]
 function WriteObjectProperties(obj: any, style_properties: { [string]: any })
-	for i, v in style_properties do
-		obj[i] = v
-	end
+    for i, v in style_properties do
+		if not HandleCustomProperties(obj, i, v) then
+            obj[i] = v
+		end
+    end
 end
 
 function module.GetStyle(name: string)
