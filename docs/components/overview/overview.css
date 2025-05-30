@@ -40,14 +40,21 @@
 }
 
 .H2 {
+    border-left: 1px solid rgba(255, 255, 255, 0.493);
     font-size: 16px;
-    margin-left: 20px;
+    margin-left: 10px;
+    padding-left: 10px;
     cursor: pointer;
-    margin-bottom: 5px !important;
+    padding-top: 5px !important;
     opacity: 0.5;
 }
 
 .H2:hover {
     opacity: 0.9;
     scale: 1.02;
+}
+
+.H2:active {
+    border-left: 1px solid var(--button_primary_single);
+    transition: 0;
 }

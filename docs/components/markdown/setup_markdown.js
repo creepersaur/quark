@@ -15,9 +15,11 @@ Prism.languages["luau"] = {
 		/\b(workspace|Axes|BrickColor|CatalogSearchParams|CFrame|Color3|ColorSequence|ColorSequenceKeypoint|DateTime|DockWidgetPluginGuiInfo|Enum|EnumItem|Enums|Faces|Instance|NumberRange|NumberSequence|NumberSequenceKeypoint|PathWaypoint|PhysicalProperties|Random|Ray|RaycastParams|RaycastResult|RBXScriptConnection|RBXScriptSignal|Rect|Region3|Region3int16|TweenInfo|UDim2|UDim|Vector2|Vector2int16|Vector3|Vector3int16)\b/,
 	function: [
 		/(?!\d)\w+(?=\s*(?:[({]))/,
-		/\bNew\b(?!<)/,
 		/\bprint\b/,
 		/\bscript\b/,
+		/\bNew\b(?!<)/,
+		/\bState\b(?!<)/,
+		/\bHook\b(?!<)/,
 	],
 	operator: [
 		/[-+*%^&|#]|\/\/?|< [<=]?| >[>=]?|[=~]|(\.\.\.)=?/,
@@ -127,9 +129,7 @@ const headerExtension = {
 	},
 	renderer(token) {
 		// Render comment as a faded span
-		return `<span class="file_header">${
-			token.text
-		}</span>`;
+		return `<span class="file_header">${token.text}</span>`;
 	},
 };
 
@@ -181,10 +181,10 @@ function fileMarkdown(file_path) {
 			}
 		})
 		.then(() => {
-			setup_tabs();
 			setup_codespans();
 			LoadOverview();
 			Prism.highlightAll();
+			setup_tabs();
 
 			Main.scrollTop = 0;
 			Main.removeAttribute("empty");
@@ -193,33 +193,35 @@ function fileMarkdown(file_path) {
 }
 
 Prism.hooks.add("complete", (env) => {
-	if (!env.element.parentNode.querySelector(".copy_btn")) {
-		const button = document.createElement("span");
-		button.className = "copy_btn material-symbols-outlined";
-		button.innerText = "content_copy";
-
-		const btnText = document.createElement("p");
-		btnText.innerHTML = "Copied!";
-
-		button.addEventListener("click", () => {
-			navigator.clipboard.writeText(env.code);
-			button.setAttribute("copied", true);
-			setTimeout(() => {
-				button.removeAttribute("copied");
-			}, 1000);
-		});
-
-		const pre = env.element.parentNode;
-		const codeHolder = document.createElement("div");
-		codeHolder.className = 'code_holder';
-
-		pre.parentNode.appendChild(codeHolder);
-		pre.parentNode.insertBefore(codeHolder, pre);
-
-		button.appendChild(btnText);
-		codeHolder.appendChild(pre);
-		codeHolder.appendChild(button);
+	if (env.element.parentNode.querySelector(".copy_btn")) {
+		return;
 	}
+
+	const button = document.createElement("span");
+	button.className = "copy_btn material-symbols-outlined";
+	button.innerText = "content_copy";
+
+	const btnText = document.createElement("p");
+	btnText.innerHTML = "Copied!";
+
+	button.addEventListener("click", () => {
+		navigator.clipboard.writeText(env.code);
+		button.setAttribute("copied", true);
+		setTimeout(() => {
+			button.removeAttribute("copied");
+		}, 1000);
+	});
+
+	const pre = env.element.parentNode;
+	const codeHolder = document.createElement("div");
+	codeHolder.className = "code_holder";
+
+	pre.parentNode.appendChild(codeHolder);
+	pre.parentNode.insertBefore(codeHolder, pre);
+
+	button.appendChild(btnText);
+	codeHolder.appendChild(pre);
+	codeHolder.appendChild(button);
 });
 
 function setup_tabs() {
@@ -232,11 +234,11 @@ function setup_tabs() {
 
 		// Apply title to holder_buttons
 		if (holder.hasAttribute("title")) {
-			holder_buttons.setAttribute("title", holder.getAttribute("title"))
+			holder_buttons.setAttribute("title", holder.getAttribute("title"));
 		}
 
 		const tab_buttons = document.createElement("div");
-		tab_buttons.className = "tab_buttons"; 
+		tab_buttons.className = "tab_buttons";
 
 		let buttons = [];
 		const content_holder = document.createElement("div");
@@ -268,8 +270,6 @@ function setup_tabs() {
 
 				content_holder.innerHTML = tab_html;
 				button.setAttribute("active", "yes");
-
-				Prism.highlightAll();
 			});
 
 			buttons.push(button);
@@ -283,32 +283,32 @@ function setup_tabs() {
 }
 
 function setup_codespans() {
-	const code = document.querySelectorAll("code")
+	const code = document.querySelectorAll("code");
 
 	code.forEach((e) => {
-		if (e.closest('pre')) {
-			return
+		if (e.closest("pre")) {
+			return;
 		}
 
-		e.addEventListener('click', () => {
+		e.addEventListener("click", () => {
 			navigator.clipboard.writeText(e.innerHTML);
 
 			// SPAWN "Copied" TEXT
 			const copy_text = document.createElement("div");
 			copy_text.innerHTML = "Copied Successfully";
-			copy_text.className = "copy_text"
+			copy_text.className = "copy_text";
 
 			document.querySelector("body").appendChild(copy_text);
-		
+
 			setTimeout(
 				() => {
-					copy_text.setAttribute("fade", 1)
-					console.log('fading')
+					copy_text.setAttribute("fade", 1);
+					console.log("fading");
 				},
-				1000
-			)
-		})
-	})
+				1000,
+			);
+		});
+	});
 }
 
 function setup_sidebar_toggle() {
@@ -316,8 +316,8 @@ function setup_sidebar_toggle() {
 	const Main = document.getElementById("Main");
 
 	button.addEventListener("click", () => {
-		Main.setAttribute("empty", true)
-	})
+		Main.setAttribute("empty", true);
+	});
 }
 
-setup_sidebar_toggle()
+setup_sidebar_toggle();

@@ -69,6 +69,8 @@ print( Counter(123) )  -- Prints `123`
 
 You can also use a State to change the State:
 
+<div class="tab_holder" title="Incrementing a State" code_only>
+
 ```luau
 local Counter = State(0)
 
@@ -76,6 +78,8 @@ Counter( Counter() + 10 ) -- Counter is now `10`
 Counter( Counter() + 10 ) -- Counter is now `20`
 Counter( Counter() + 10 ) -- Counter is now `30`
 ```
+
+</div>
 
 In the above example we use the counter's current value, and set it to **10 plus the current value**.
 
@@ -126,12 +130,37 @@ local MyLabel = New "TextLabel" {
 
 The property will automatically update upon setting the State.
 
+<div class="tab_holder" title="Change property using State" code_only>
+
+<tab name="short" active='yes'>
+
 ```luau
 TextState("Goodbye!") -- Setting the value to `Goodbye!`
 -- The text of the label changes instantly.
 
 print(MyLabel.Text) -- prints `Goodbye!`
 ```
+</tab>
+
+<tab name = "Full Code">
+
+```luau
+local New = Quark.New
+local State = Quark.State
+
+local TextState = State("Hello")
+local MyLabel = New "TextLabel" {
+	Text = TextState
+}
+
+print(MyLabel.Text) -- prints `Hello`
+
+TextState("Goodbye!") -- Setting the value to `Goodbye!`
+print(MyLabel.Text) -- prints `Goodbye!`
+```
+</tab>
+
+</div>
 
 ---
 
