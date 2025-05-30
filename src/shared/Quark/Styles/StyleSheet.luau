@@ -1,3 +1,4 @@
+local all_properties = require(script.Parent.Parent.Misc.all_properties)
 local Types = require(script.Parent.Parent.Types)
 
 local module = {
@@ -23,7 +24,7 @@ Style.__index = Style
 
 --[[ Create a new Style object ]]
 function module.new(name: string)
-	return function(Styles: { [string]: { [string]: any } }): Types.Style
+	return function(Styles: { [string]: all_properties.ALL_PROPERTIES }): Types.Style
 		local self = setmetatable({
 			Properties = Styles or {},
 		}, Style)
@@ -102,14 +103,43 @@ function HandleCustomProperties(obj: any, prop: string, value: any)
         else
             item.CornerRadius = value
         end
-    elseif prop == "aspect_ratio" or prop == "aspect" then
+    
+        elseif prop == "aspect_ratio" or prop == "aspect" then
         item = Instance.new("UIAspectRatioConstraint")
         item.AspectRatio = value
+
     elseif prop == "stroke" or prop == "border" then
         item = Instance.new("UIStroke")
         item.Thickness = value.Thickness or 1
         item.Color = value.Color or Color3.new()
         item.ApplyStrokeMode = value.ApplyStrokeMode or Enum.ApplyStrokeMode.Contextual
+    
+    elseif prop == "padding" then
+        item = Instance.new("UIPadding")
+        if type(value) == "number" then
+            item.PaddingLeft = UDim.new(0, value)
+        elseif typeof(value) == "UDim2" then
+            item.PaddingLeft = value
+        else
+            for i, v in value do
+                if i == "left" then
+                    i = "PaddingLeft"
+                elseif i == "right" then
+                    i = "PaddingRight"
+                elseif i == "top" then
+                    i = "PaddingTop"
+                elseif i == "bottom" then
+                    i = "PaddingBottom"
+                end
+
+                if type(v) == "number" then
+                    item[i] = UDim.new(0, v)
+                else
+                    item[i] = v
+                end
+            end
+        end
+    
     else
         is_custom = false
     end
