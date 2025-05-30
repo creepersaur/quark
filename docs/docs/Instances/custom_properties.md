@@ -52,7 +52,7 @@ New "TextButton" {
 
 ---
 
-## <hidden>class <#Stylesheet|rgb(55, 143, 102)></hidden>
+## <hidden>style <#Stylesheet|rgb(55, 143, 102)></hidden>
 
 - ### `style` <#Stylesheet|rgb(55, 143, 102)>
 
