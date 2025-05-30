@@ -119,14 +119,14 @@ newline {
 
 blockquote {
 	margin: 10px 0;
-	/* Space between blockquotes */
 	padding: 10px 15px;
-	/* Inner spacing */
-	padding-top: 15px;
+	padding-bottom: 0px !important;
 	border-left: 4px solid var(--brighter_line);
-	/* Left border for a classic blockquote look */
 	background: var(--primary_bg);
-	/* Light gray background */
+}
+
+blockquote :last-child:not(code) {
+	padding-bottom: 12px !important;
 }
 
 /* BLOCK QUOTE TYPES */
