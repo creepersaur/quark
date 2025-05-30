@@ -153,7 +153,7 @@ export type Quark = {
 	Hook: (EventName: all_events.ALL_EVENTS | string, EventCallback: (New<GuiObject>, ...any) -> ()) -> Hook,
 	State: <T>(default: T? | (use: <R>(State<R>) -> R) -> T?, strict: boolean?) -> State<T>,
 	Signal: <T>(state: | { State<T> }, func: (value: T, old: T) -> ()) -> Signal<T>,
-	StyleSheet: (name: string) -> (Styles: { [string]: { [string]: any } }) -> Style,
+	StyleSheet: (name: string) -> (Styles: { [string]: all_properties.ALL_PROPERTIES&custom_properties.StyleProperties }) -> Style,
 	CanBeState: CanBeState<any>,
 	Spring: Spring<any>,
 	Tween: Tween<any>,

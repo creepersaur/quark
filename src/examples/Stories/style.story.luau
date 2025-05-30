@@ -13,6 +13,9 @@ Quark.StyleSheet "Hello" {
 		BackgroundColor3 = Color3.new(1, 1, 1),
 		Text = "class: BIG",
 	},
+	[Quark.Class("Hello")] = {
+		
+	}
 }
 
 return function(parent: Instance)

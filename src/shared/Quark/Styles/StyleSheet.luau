@@ -1,4 +1,5 @@
 local all_properties = require(script.Parent.Parent.Misc.all_properties)
+local custom_properties = require(script.Parent.Parent.Misc.custom_properties)
 local Types = require(script.Parent.Parent.Types)
 
 local module = {
@@ -24,7 +25,7 @@ Style.__index = Style
 
 --[[ Create a new Style object ]]
 function module.new(name: string)
-	return function(Styles: { [string]: all_properties.ALL_PROPERTIES }): Types.Style
+	return function(Styles: { [string]: all_properties.ALL_PROPERTIES&custom_properties.StyleProperties }): Types.Style
 		local self = setmetatable({
 			Properties = Styles or {},
 		}, Style)
@@ -112,6 +113,7 @@ function HandleCustomProperties(obj: any, prop: string, value: any)
         item = Instance.new("UIStroke")
         item.Thickness = value.Thickness or 1
         item.Color = value.Color or Color3.new()
+        item.Transparency = value.Transparency or 0
         item.ApplyStrokeMode = value.ApplyStrokeMode or Enum.ApplyStrokeMode.Contextual
     
     elseif prop == "padding" then
