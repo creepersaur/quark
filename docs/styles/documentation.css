@@ -2,6 +2,10 @@ body {
 	overflow: hidden;
 }
 
+#content_container {
+	display: flex;
+}
+
 @keyframes MainReveal {
 	0% {
 		filter: blur(0.5rem);
@@ -24,30 +28,24 @@ body {
 	opacity: 0;
 	padding: 20px;
 	color: var(--doc_text);
-	position: absolute;
-	width: 50vw !important;
+	width: 100%;
 	height: calc(93vh - 40px);
-	left: calc(15vw + 140px);
 	top: 60px;
 	display: block;
-	max-width: 50vw;
 	overflow-y: scroll;
+	max-width: calc(50vw);
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1200px) {
 	#Main {
-		width: 100% !important;
-		max-width: calc(100vw - 24vw - 120px);
+		max-width: none;
 	}
 }
 
 #Main * {
 	margin-bottom: 22px;
-	/* Adds spacing between elements */
 	padding-top: 2pxx;
-	/* Adds internal spacing */
 	padding-bottom: 2px;
-	/* Adds internal spacing */
 }
 
 #Main h1 {
@@ -283,6 +281,17 @@ details {
 	border-left: 5px solid var(--line);
 	border-bottom: 5px solid var(--line);
 	padding-bottom: -100px !important;
+}
+
+hidden {
+	display: none;
+}
+
+h2:has(hidden) {
+	background: red;
+	height: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
 }
 
 summary {

@@ -12,6 +12,7 @@
 
 @media (max-width: 750px) {
 	:has(#Main[empty]) #Sidebar {
+		max-width: calc(100vw - 45px);
 		width: calc(100vw - 45px);
 		left: 0 !important;
 		align-items: flex-end !important;
@@ -67,16 +68,22 @@
 }
 
 #Sidebar {
-	width: calc(15vw + 100px);
-	height: 89vh;
+	min-width: 25vw;
+	height: calc(100vh - 100px);
 	background: var(--secondary_bg);
 	border-right: 1px solid var(--line);
 	padding: 20px;
 	justify-items: right;
-	overflow: auto;
+	overflow-y: scroll;
 	z-index: 100;
 
 	animation: SidebarOpacity 1s forwards
+}
+
+#Sidebar #SidebarContainer {
+	width: 230px;
+	float: right;
+	height: 100%;
 }
 
 @-moz-document url-prefix() {
@@ -110,8 +117,6 @@
 }
 
 #Sidebar .Fold {
-	width: 230px;
-	float: right;
 	padding: 10px;
 	padding-left: 15px;
 	margin-bottom: -5px;

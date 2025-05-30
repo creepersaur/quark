@@ -183,6 +183,7 @@ function fileMarkdown(file_path) {
 		.then(() => {
 			setup_tabs();
 			setup_codespans();
+			LoadOverview();
 			Prism.highlightAll();
 
 			Main.scrollTop = 0;

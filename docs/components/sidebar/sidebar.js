@@ -1,4 +1,4 @@
-const sidebar = document.getElementById("Sidebar");
+const sidebar = document.getElementById("SidebarContainer");
 
 function connect_items() {
 	const items = document.querySelectorAll(".FoldItem");

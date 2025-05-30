@@ -1,0 +1,53 @@
+#overview {
+    color: white;
+    padding-top: 40px;
+    padding-left: 40px;
+    display: block;
+    flex-grow: 1;
+    max-width: 100vw;
+}
+
+#overview b {
+    display: block;
+    font-size: 22px;
+}
+
+@media (max-width: 1200px) {
+	#overview {
+		display: none;
+	}
+}
+
+#overview .Header {
+    transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    color: white;
+}
+
+#overview .Header:active {
+    color: var(--button_primary_single);
+}
+
+.H1 {
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px !important;
+    opacity: 0.8;
+}
+
+.H1:hover {
+    opacity: 1;
+    scale: 1.02;
+}
+
+.H2 {
+    font-size: 16px;
+    margin-left: 20px;
+    cursor: pointer;
+    margin-bottom: 5px !important;
+    opacity: 0.5;
+}
+
+.H2:hover {
+    opacity: 0.9;
+    scale: 1.02;
+}
