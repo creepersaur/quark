@@ -8,20 +8,18 @@ body {
 
 @keyframes MainReveal {
 	0% {
-		filter: blur(0.5rem);
+		filter: blur(0.2rem);
 		opacity: 0;
-		scale: 0.8;
-		clip-path: inset(0 0 100% 0);
+		scale: 0.9;
 	}
 
 	100% {
 		opacity: 1;
-		clip-path: inset(0 0 0 0);
 	}
 }
 
 .reveal-animation {
-	animation: MainReveal 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+	animation: MainReveal .5s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
 
 #Main {
