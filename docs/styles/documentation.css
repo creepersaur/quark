@@ -8,9 +8,8 @@ body {
 
 @keyframes MainReveal {
 	0% {
-		filter: blur(0.2rem);
 		opacity: 0;
-		scale: 0.9;
+		scale: 0.95;
 	}
 
 	100% {
