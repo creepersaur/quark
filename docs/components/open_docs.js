@@ -1,5 +1,6 @@
 function load_docs() {
-	if (window.location.hash.length)
+	let [page, link] = getPageLocation();
+	if (page)
 		window.location.href = "docs.html"
 }
 

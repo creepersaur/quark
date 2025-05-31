@@ -11,10 +11,16 @@ function connect_items() {
 			fileMarkdown(i.getAttribute("path"));
 			document.title = `Quark - ${i.getAttribute("name")}`;
 
-			let split = window.location.href.split("#");
 			let path = i.getAttribute("path");
-			window.location.href =
-				split[0] + "#" + path.substring(0, path.length - 3);
+			let [page, link] = getPageLocation();
+			if (page != path.substring(0, path.length - 3)) {
+				history.pushState(
+					{},
+					"",
+					window.location.pathname + "?" +
+						path.substring(0, path.length - 3),
+				);
+			}
 		});
 	});
 }
@@ -64,7 +70,8 @@ function setup_sidebar() {
 					}
 
 					if (icon.length > 0) {
-						item.innerHTML = `<span class="material-symbols-outlined">
+						item.innerHTML =
+							`<span class="material-symbols-outlined">
 						${icon}
 					</span> ${name}`;
 					}
@@ -80,10 +87,21 @@ function setup_sidebar() {
 }
 
 function promptPageUpdate() {
-	let split = window.location.href.split("#");
-	if (split.length > 1) {
-		open_page(split[1]);
+	let [page, link] = getPageLocation();
+	if (page) {
+		console.log("UPDATING: ", page);
+		open_page(page);
 	}
 }
 
 setup_sidebar().then(promptPageUpdate);
+
+function getPageLocation() {
+	const params = new URLSearchParams(window.location.search);
+	const page = params.keys().next().value;
+	const link = params.get(page);
+
+	return [page, link];
+}
+
+console.log(getPageLocation());

@@ -20,6 +20,8 @@
 		display: flex;
 		flex-direction: column;
 		padding-right: 40px;
+
+		animation: SidebarOpacity 1s forwards
 	}
 
 	:has(#Main[empty]) #Sidebar div {
@@ -46,8 +48,13 @@
 	}
 
 	@keyframes Hide {
-		from {opacity: 1;}
-		to {opacity: 0;}
+		from {
+			opacity: 1;
+		}
+
+		to {
+			opacity: 0;
+		}
 	}
 
 	#Main[empty] {
@@ -78,21 +85,12 @@
 	justify-items: right;
 	overflow-y: scroll;
 	z-index: 100;
-
-	animation: SidebarOpacity 1s forwards
 }
 
 #Sidebar #SidebarContainer {
 	width: 230px;
 	float: right;
 	height: 100%;
-}
-
-@-moz-document url-prefix() {
-	#Sidebar {
-		scrollbar-width: 10px;
-		scrollbar-color: var(--brighter_line) var(--line);
-	}
 }
 
 /* width */
@@ -172,18 +170,27 @@
 	position: relative;
 	border-left: 2px solid rgba(11, 207, 109, 0);
 	transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-	clip-path: inset(0 100% 0 0);
-	/* initially hidden from right */
-	animation: revealClip 2s forwards;
 }
 
 @keyframes FoldOpacity {
-	from { opacity: 0; }
-	to { opacity: 1; }
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
 }
 
-.Fold {
-	animation: FoldOpacity 2s forwards;
+@media (max-width: 750px) {
+	.FoldItem {
+	clip-path: inset(0 100% 0 0);
+		animation: revealClip 2s forwards;
+	}
+
+	.Fold {
+		animation: FoldOpacity 2s forwards;
+	}
 }
 
 .FoldItem:hover {
@@ -205,7 +212,7 @@
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 	translate: -2px 2px;
-	
+
 	transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -259,7 +266,7 @@
 	cursor: pointer;
 	display: none;
 	backdrop-filter: blur(10px);
-	
+
 	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
