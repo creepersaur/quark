@@ -10,7 +10,7 @@
 		"tune|Properties": "Instances/properties.md",
 		"edit|Custom Properties": "Instances/custom_properties.md",
 		"data_object|Premade Instances": "Instances/premade_instances.md",
-		"event_list|Entries": ""
+		"event_list|Entries": "Instances/entries.md"
 	},
 
 	"Reactivity": {

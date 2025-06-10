@@ -61,6 +61,12 @@ New "Frame" {
 
 ---
 
+## Connecting to Events
+
+Learn more about connecting to instance events and `RBXScriptSignals` on the [Events](?Reactivity/events) page. Read it later though.
+
+---
+
 ## Types
 
 ##### (Optional)
