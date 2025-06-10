@@ -77,14 +77,12 @@ mySignal:Disconnect()
 
 ## Connecting Multiple Signals to a State
 
-States can have many conenctions all at once. You can create multiple signals, or call `.connect()` more than once for each state.
+States can have many connections all at once. You can create multiple signals, or call `.connect()` more than once for each state. Good if you want to connect different functions to the same state.
 
 ```luau
 local s1 = myState.connect(function)
 local s2 = myState.connect(function)
 ```
-
-These don't serve a huge purpose though.
 
 ## Connecting Multiple States to a Signal
 
