@@ -65,6 +65,8 @@ myState("foobar")
 
 As you can see, the bottom method is more concise. You can still use the above method for more clarity if necessary.
 
+---
+
 ## Disconnecting from a State
 
 To disconnect from a State's updates, you can call the `:Disconnect()` method on it.
@@ -83,6 +85,8 @@ States can have many connections all at once. You can create multiple signals, o
 local s1 = myState.connect(function)
 local s2 = myState.connect(function)
 ```
+
+---
 
 ## Connecting Multiple States to a Signal
 
