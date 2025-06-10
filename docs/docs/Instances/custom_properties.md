@@ -14,7 +14,7 @@ Quark has custom properties (lowercase) which are not in normal instances.
 
 ## <hidden>children</hidden>
 
-- ### `children`
+- ### `children` <#table <‎Instances>|crimson>
 
 Add new children to an object. Does not remove previous ones when calling multiple times.
 
