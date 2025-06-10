@@ -55,4 +55,4 @@ local Quark = require(game.ReplicatedStorage.Shared.Quark)
 
 ---
 
-<!NextPage|Hello Quark>(#GettingStarted/hello_quark)
+<!NextPage|Hello Quark>(?GettingStarted/hello_quark)

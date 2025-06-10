@@ -63,10 +63,11 @@
 	border-radius: 10px 10px 0 0;
 }
 
-.tab_holder[title] .holder_buttons::before {
-    content: attr(title);
+.tab_holder[title] .holder_buttons .title {
     top: 50%;
-    translate: 10px -50%;
+    translate: 10px -25%;
+    justify-self: center;
+    align-self: center;
     position: absolute;
     color: white;
 }

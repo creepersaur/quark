@@ -215,4 +215,4 @@ print( TextState() ) -- Prints "Counter: 5"
 
 To connect to State updates, please check out Signals:
 
-<!NextPage|Signal>(#Reactivity/signal)
+<!NextPage|Signal>(?Reactivity/signal)

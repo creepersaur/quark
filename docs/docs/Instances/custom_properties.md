@@ -70,4 +70,4 @@ New "TextButton" {
 
 ---
 
-<!NextPage|Premade Instances>(#Instances/premade_instances)
+<!NextPage|Premade Instances>(?Instances/premade_instances)

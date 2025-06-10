@@ -25,4 +25,4 @@ It provides a simple syntax for UI creation, Reactivity, Animations, and Compone
 
 **Ready to get started?** Check out how to install Quark:
 
-<!NextPage|Installation>(#GettingStarted/installation)
+<!NextPage|Installation>(?GettingStarted/installation)
