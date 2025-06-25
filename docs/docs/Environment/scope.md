@@ -10,7 +10,7 @@ local Scope = Quark.Scope
 
 Think of scopes as branches in a tree — each can have child scopes, and cleaning up a parent scope will automatically clean up all its children. This makes cleanup simple and consistent across your project.
 
-![Branches](assets/branches.png)
+![Branches](assets/screenshots/branches.png)
 
 ---
 

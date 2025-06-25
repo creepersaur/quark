@@ -8,6 +8,8 @@ Signals are used to connect to updates or changes in a `State`. They too are qua
 local Signal = Quark.Signal
 ```
 
+![Signals Gif](assets/gifs/signal.gif)
+
 ---
 
 ## Creating a Signal
