@@ -21,6 +21,7 @@ Prism.languages["luau"] = {
         /\bState\b(?!<)/,
         /\bSignal\b(?!<)/,
         /\bHook\b(?!<)/,
+        /\bScope\b(?!<)/,
     ],
     operator: [
         /[-+*%^&|#]|\/\/?|< [<=]?| >[>=]?|[=~]|(\.\.\.)=?/,

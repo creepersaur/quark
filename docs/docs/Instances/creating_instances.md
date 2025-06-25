@@ -18,7 +18,7 @@ x:Destroy()
 ```
 
 > If you want to pass in the **actual instance** to a method, use the `.Object` property.
->
+
 > <note>
 >
 > All UI objects have default properties applied to them to show them correctly. (e.g. Size changes and removing the border).

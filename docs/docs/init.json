@@ -20,7 +20,7 @@
 	},
 
 	"Environment": {
-		"globe|Scope": "",
+		"globe|Scope": "Environment/scope.md",
 		"cleaning_services|Cleanup": "",
 		"style|Stylesheets": ""
 	},
