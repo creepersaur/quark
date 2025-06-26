@@ -293,16 +293,18 @@ function setup_tabs() {
 		holder.appendChild(content_holder);
 
 		let copy_btn = content_holder.querySelector(".copy_btn");
-		let code = content_holder.querySelector("code");
+		if (copy_btn) {
+			let code = content_holder.querySelector("code");
 
-		copy_btn.addEventListener("click", () => {
-			console.log("Copied code!");
-			navigator.clipboard.writeText(code.innerText);
-			copy_btn.setAttribute("copied", true);
-			setTimeout(() => {
-				copy_btn.removeAttribute("copied");
-			}, 1000);
-		});
+			copy_btn.addEventListener("click", () => {
+				console.log("Copied code!");
+				navigator.clipboard.writeText(code.innerText);
+				copy_btn.setAttribute("copied", true);
+				setTimeout(() => {
+					copy_btn.removeAttribute("copied");
+				}, 1000);
+			});
+		}
 	});
 }
 

@@ -114,6 +114,45 @@ print(Counter()) -- prints 500
 
 ---
 
+## Lambda Setters
+
+For *Quality of Life* purposes, there's a `.setLambda()` function that returns a function wrapper for setting the value of the state.
+Useful for having one-liner state setters.
+
+<div class="tab_holder" title="Example" code_only>
+
+<tab name="setLambda" active="yes">
+
+```luau
+local myState = State("Click me!")
+
+New "TextButton" {
+	Text = myState,
+	
+	Hook("Activated", myState.setLambda("You clicked me."))
+}
+```
+</tab>
+
+<tab name="Equivalent">
+
+```luau
+local myState = State("Click me!")
+
+New "TextButton" {
+	Text = myState,
+	
+	Hook("Activated", function()
+		myState("You clicked me.")
+	end)
+}
+```
+</tab>
+
+</div>
+
+---
+
 # Using States as Properties
 
 Just put the state object as the value of a property in a `New`
