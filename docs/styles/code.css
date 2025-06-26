@@ -120,10 +120,6 @@ pre code {
 	color: rgb(233, 233, 233);
 }
 
-.comment {
-	color: var(--comment);
-}
-
 .token:hover {
 	background: rgba(255, 255, 255, 0.08) !important;
 	outline: 2px solid rgba(255, 255, 255, 0.08);

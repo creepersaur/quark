@@ -276,6 +276,11 @@ blockquote img {
 	translate: -50% -50%;
 }
 
+.comment {
+	color: var(--comment);
+	margin-bottom: 0 !important;
+}
+
 hr {
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -376,4 +381,11 @@ tagged {
 			100% 50%,
 			calc(100% - var(--sharpness)) 100%,
 			0 100%);
+}
+
+center {
+	padding: 0px !important;
+	padding-bottom: -50px !important;
+	margin-top: -25px !important;
+	margin-bottom: -10px !important;
 }

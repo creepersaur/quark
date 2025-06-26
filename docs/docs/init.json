@@ -21,8 +21,7 @@
 
 	"Environment": {
 		"globe|Scope": "Environment/scope.md",
-		"cleaning_services|Cleanup": "",
-		"style|Stylesheets": ""
+		"style|Stylesheets": "Environment/stylesheets.md"
 	},
 
 	"Animations": {

@@ -11,7 +11,7 @@ You can install Quark by three methods
 
 If one isn't working, try the other installation methods.
 
--# Sometimes Roblox moderation falsely reports an asset. This is a Roblox bug if I'm sure. Use the Github release.
+-# Sometimes Roblox moderation falsely reports an asset. This is a Roblox bug. Use the Github release.
 
 ---
 
@@ -19,7 +19,11 @@ If one isn't working, try the other installation methods.
 
 1. Go to the releases page on the github. And click the latest release version. Or use the link from the top.
 
+<center>
+
 -# (In this image it's *v0.0.13*)
+</center>
+
 ![releases_image](assets/screenshots/zen_7DFoYxFaUe.png)
 
 2. Go to the latest release and download the `Quark.rbxm` file.
