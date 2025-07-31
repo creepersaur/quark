@@ -120,8 +120,14 @@ function HandleCustomProperties(obj: any, prop: string, value: any)
         item = Instance.new("UIPadding")
         if type(value) == "number" then
             item.PaddingLeft = UDim.new(0, value)
-        elseif typeof(value) == "UDim2" then
+            item.PaddingRight = UDim.new(0, value)
+            item.PaddingTop = UDim.new(0, value)
+            item.PaddingBottom = UDim.new(0, value)
+        elseif typeof(value) == "UDim" then
             item.PaddingLeft = value
+            item.PaddingRight = value
+            item.PaddingTop = value
+            item.PaddingBottom = value
         else
             for i, v in value do
                 if i == "left" then
