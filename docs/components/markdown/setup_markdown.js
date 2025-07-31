@@ -22,6 +22,7 @@ Prism.languages["luau"] = {
 		/\bSignal\b(?!<)/,
 		/\bHook\b(?!<)/,
 		/\bScope\b(?!<)/,
+		/\bClass\b/
 	],
 	operator: [
 		/[-+*%^&|#]|\/\/?|< [<=]?| >[>=]?|[=~]|(\.\.\.)=?/,
@@ -63,11 +64,9 @@ const commentExtension = {
 	},
 	renderer(token) {
 		// Render comment as a faded span
-		return `${
-			marked.parseInline(token.prev)
-		} <span style="display: block" class="comment">${
-			marked.parseInline(token.text)
-		}</span>`;
+		return `${marked.parseInline(token.prev)
+			} <span style="display: block" class="comment">${marked.parseInline(token.text)
+			}</span>`;
 	},
 };
 
@@ -281,6 +280,21 @@ function setup_tabs() {
 				});
 
 				content_holder.innerHTML = tab_html;
+
+				let copy_btn = content_holder.querySelector(".copy_btn");
+				if (copy_btn) {
+					let code = content_holder.querySelector("code");
+
+					copy_btn.addEventListener("click", () => {
+						console.log("Copied code!");
+						navigator.clipboard.writeText(code.innerText);
+						copy_btn.setAttribute("copied", true);
+						setTimeout(() => {
+							copy_btn.removeAttribute("copied");
+						}, 1000);
+					});
+				}
+
 				button.setAttribute("active", "yes");
 			});
 

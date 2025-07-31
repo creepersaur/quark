@@ -25,7 +25,7 @@
 	},
 
 	"Animations": {
-		"animation|Spring": "",
+		"animation|Spring": "Animations/spring.md",
 		"move_up|Tween": "",
 		"all_inclusive|Loop": ""
 	},
