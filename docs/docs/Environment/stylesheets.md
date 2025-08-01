@@ -56,6 +56,11 @@ local StyledFrame = New "Frame" {
 }
 ```
 
+> <warning>
+>
+> When a style is applied to a UI object all children of the object will automatically have that style applied to them respectively. (You don't have to put the `style` property for each child.)
+> </warning>
+
 ---
 
 # Classes
@@ -102,36 +107,39 @@ These are only available in Stylesheets as of now. (They may come to New in the 
 As of writing these properties are as listed below.
 (Names separated by pipes are aliases/shortforms)
 
-> ### corner_radius | corner
->
-> - Setting this to a number will add a UICorner into the object and set it's CornerRadius = number.
-> - Setting it to a `UDim` will set the CornerRadius = UDim.
+## corner_radius | corner
 
-> ### aspect_ratio | aspect
->
-> Adds a UIAspectRatioConstraint to the object and sets its AspectRatio = number.
+Setting this to a number will add a UICorner into the object and set it's CornerRadius = number.
 
-> ### stroke | border
->
-> stroke adds a UIStroke object into the object.
-> stroke takes in a dictionary table that has these optional values:
->
-> - `Thickness` (default=1)
-> - `Color` (default=black)
-> - `Transparency` (default=0)
-> - `ApplyStrokeMode` (default=Enum.ApplyStrokeMode.Contextual)
+Setting it to a `UDim` will set the CornerRadius = UDim.
 
-> ### padding
->
-> Adds a UIPadding object and sets the PaddingLeft/Right/Top/Bottom accordingly:
-> If it's a number, then all padding directions are set to offset of that number.
-> If it's a UDim, then all padding directions are set to the UDim.
-> If it's a dictionary table then:
->
-> - left | PaddingLeft -> set to PaddingLeft
-> - right | PaddingRight -> set to PaddingRight
-> - top | PaddingTop -> set to PaddingTop
-> - bottom | PaddingBottom -> set to PaddingBottom
+## aspect_ratio | aspect
+
+Adds a UIAspectRatioConstraint to the object and sets its AspectRatio = number.
+
+## stroke | border
+
+Adds a UIStroke object into the object. Takes in a dictionary table that has these optional values:
+
+- `Thickness` (default=1)
+- `Color` (default=black)
+- `Transparency` (default=0)
+- `ApplyStrokeMode` (default=Enum.ApplyStrokeMode.Contextual)
+
+## padding
+
+Adds a UIPadding object and sets the PaddingLeft/Right/Top/Bottom accordingly:
+
+If it's a number, then all padding directions are set to offset of that number.
+
+If it's a UDim, then all padding directions are set to the UDim.
+
+If it's a dictionary table then:
+
+- `left` | `PaddingLeft` ---> set to PaddingLeft
+- `right` | `PaddingRight` ---> set to PaddingRight
+- `top` | `PaddingTop` ---> set to PaddingTop
+- `bottom` | `PaddingBottom` ---> set to PaddingBottom
 
 ---
 
