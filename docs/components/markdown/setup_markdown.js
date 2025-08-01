@@ -22,7 +22,8 @@ Prism.languages["luau"] = {
 		/\bSignal\b(?!<)/,
 		/\bHook\b(?!<)/,
 		/\bScope\b(?!<)/,
-		/\bClass\b/
+		/\bClass\b/,
+		/\bSpring\b/,
 	],
 	operator: [
 		/[-+*%^&|#]|\/\/?|< [<=]?| >[>=]?|[=~]|(\.\.\.)=?/,
@@ -32,7 +33,7 @@ Prism.languages["luau"] = {
 			lookbehind: true,
 		},
 	],
-	type: [/(?<=:)\s?(\w*)/gim, /(?<=<)(.*)(?=>)/gim, /(New)(?=<)/],
+	type: [/(?<=:)[\s|\.]?(\w*)/gim, /(?<=<)(.*)(?=>)/gim, /(New)(?=<)/],
 	property: /(?<=\.)\w*/,
 	punctuation: /[\[\](),;]|\.+|:+/,
 };
