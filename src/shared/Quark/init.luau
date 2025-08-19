@@ -1,4 +1,7 @@
-local Quark = {}
+local Quark = {
+	ScopeDepth = 0,
+	ScopeList = {}
+}
 
 --[[ SCOPES ]]
 local Scope = require(script.Components.Scope)
