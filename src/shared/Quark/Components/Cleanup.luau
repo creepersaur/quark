@@ -28,6 +28,7 @@ local Cleanup = function()
 end
 
 local SetCreated = function(...)
+	table.clear(Created)
 	for _, v in { ... } do
 		table.insert(Created, v)
 	end
