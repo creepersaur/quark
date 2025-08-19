@@ -83,7 +83,7 @@ Quark.Cleanup()
 
 # Example
 
-If I were to create 5 buttons which may need to be deleted later, or are made in a separate script, I would use a `Scope` that a Scope that contains everything related to them.
+If I were to create 5 buttons which may need to be deleted later, or are made in a separate script, I would use a `Scope` that contains everything related to them.
 
 ### Main Script
 
@@ -107,6 +107,8 @@ function ButtonsModule.CreateButtons(Scope)
 		New "TextButton" { ... }
 	end
 end
+
+return ButtonsModule
 ```
 
 ---
