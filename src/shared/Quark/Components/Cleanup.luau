@@ -20,6 +20,7 @@ local Cleanup = function()
 				end)
 			end
 		end
+		table.clear(list)
 	end
 
 	for _, v in Scopes do
