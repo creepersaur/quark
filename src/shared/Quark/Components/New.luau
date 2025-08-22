@@ -77,7 +77,7 @@ function New<T>(
 	local self = {
 		Object = obj,
 		Children = {},
-		__id = "x" .. math.random(-9_223_372_036_854_774_4, 9_223_372_036_854_774_4),
+		__id = game:GetService("HttpService"):GenerateGUID(false),
 		Style = nil,
 		Class = State.new "",
 		_is_new = true,
