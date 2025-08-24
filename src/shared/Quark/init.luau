@@ -36,6 +36,7 @@ Quark.Class = StyleSheet.Class
 --[[ CLEANUP ]]
 local Cleanup = require(script.Components.Cleanup)
 Quark.Cleanup = Cleanup[1]
+Quark.OnCleanup = Cleanup[4]
 Cleanup[2](New.Created, Animations._Created, Reactive.Created, Styles.Created)
 Cleanup[3](Scope.ScopeList)
 

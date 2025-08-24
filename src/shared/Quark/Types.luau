@@ -173,6 +173,7 @@ export type Quark = {
 	},
 	GetStyle: (name: string) -> { [string]: any },
 	Cleanup: () -> (),
+	OnCleanup: (func: () -> (), runBeforeCleanup: boolean?) -> (),
 	Scope: () -> Quark,
 	CreateStory: ((Target: Instance) -> Instance | New<any> | { Instance | New<any> }) -> (Instance) -> (),
 }

@@ -21,6 +21,7 @@ function Scope.new()
 	local QuarkClone = script.Parent.Parent:Clone()
 	local Scoped = require(QuarkClone)
 	QuarkClone:Destroy()
+	QuarkClone = nil
 
 	Scoped.ScopeDepth = Scope.QuarkModule.ScopeDepth + 1
 	table.insert(Scope.ScopeList, Scoped)

@@ -1,7 +1,15 @@
 local Created = {}
 local Scopes = {}
+local CleanupQueued = {
+	PostCleanup = {},
+	PreCleanup = {}
+}
 
-local Cleanup = function()
+function Cleanup()
+	for _, v in CleanupQueued.PreCleanup do
+		task.spawn(v)
+	end
+
 	for _, list in Created do
 		for _, v in list do
 			if typeof(v) == "Instance" then
@@ -25,6 +33,10 @@ local Cleanup = function()
 	for _, v in Scopes do
 		v.Cleanup()
 	end
+
+	for _, v in CleanupQueued.PostCleanup do
+		task.spawn(v)
+	end
 end
 
 local SetCreated = function(...)
@@ -38,8 +50,22 @@ local SetScopes = function(ScopeList)
 	Scopes = ScopeList
 end
 
+function OnCleanup(func: () -> (), runBeforeCleanup: boolean?)
+	assert(
+		type(func) == "function",
+		"OnCleanup only takes function as the first argument. Got `" .. typeof(func) .. "`."
+	)
+
+	if runBeforeCleanup then
+		table.insert(CleanupQueued.PreCleanup, func)
+	else
+		table.insert(CleanupQueued.PostCleanup, func)
+	end
+end
+
 return {
 	Cleanup,
 	SetCreated,
 	SetScopes,
+	OnCleanup
 }

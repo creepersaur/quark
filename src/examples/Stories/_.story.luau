@@ -8,6 +8,16 @@ local State = Quark.State
 return Quark.CreateStory(function()
 	local bg_color = State(Color3.new(0.5, 0.5, 0.5))
 
+	Quark.OnCleanup(function()
+		task.wait(1)
+		print("Should be before")
+	end, true)
+
+	Quark.OnCleanup(function()
+		task.wait(1)
+		print("after")
+	end)
+
 	return New "Frame" {
 		BackgroundColor3 = bg_color,
 		
