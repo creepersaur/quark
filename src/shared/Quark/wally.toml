@@ -3,7 +3,7 @@
 name = "creepersaur/quark"
 
 description = "Reactive UI library"
-version = "0.0.17"
+version = "0.0.18"
 license = "MIT"
 authors = ["creepersaur"]
 realm = "shared"
