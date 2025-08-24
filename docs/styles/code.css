@@ -71,6 +71,10 @@ pre code {
 	font-weight: 500 !important;
 }
 
+.token.boolean {
+	color: #ffb067 !important;
+}
+
 .token.function {
 	color: #61aeee !important;
 }

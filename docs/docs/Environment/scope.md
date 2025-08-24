@@ -77,7 +77,35 @@ Quark.Cleanup()
 > **Any ex-Quark connections or objects will not be disconnected / deleted.**
 >
 > Especially important to know when creating UI using storybook plugins as they do not disconnect or destroy all created instances unless explicitly deleted.
+>
+> Please read the next topic "**Connecting to Cleanup**" to help solve this issue.
 > </warning>
+
+---
+
+## Connecting to Cleanup
+
+Quark and Scopes have an `OnCleanup` method which allows you to bind a function(s) to either run before, or after cleanup has taken place.
+
+```luau
+Quark.OnCleanup(function, runBeforeCleanup: boolean?)
+```
+
+If `runBeforeCleanup` is set to *true*, then the function will be queued for before Cleanup (before all Quark connections/instances/etc. are deleted). Otherwise it will run after all of them have been deleted.
+
+This is good for Stories/Storybooks since they will not disconnect or destroy any ex-Quark objects. You will have to manually Destroy/Disconnect them in the function.
+
+```luau
+-- true => runBeforeCleanup
+Quark.OnCleanup(function()
+	print("Quark will clean up after this function.")
+end, true)
+
+-- nil / false => runAfterCleanup
+Quark.OnCleanup(function()
+	print("Quark has been cleaned up")
+end)
+```
 
 ---
 
