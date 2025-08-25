@@ -7,15 +7,49 @@
 }
 
 pre {
+	border: 1px solid rgba(255, 255, 255, 0.24) !important;
 	position: relative;
 	border: 1px solid var(--code_block_border);
 	background: var(
 		--code_block
 	) !important; /* Dark background (VS Code style) */
 	padding: 12px !important;
-	padding-left: 20px !important;
-	font-family: JetBrains Mono !important;
+	padding-left: 50px !important;
 	border-radius: 6.3px;
+}
+
+pre::before {
+	content: "luau";
+	display: block;
+	padding-bottom: 10px;
+	opacity: 0.8;
+	scale: 0.95;
+	translate: calc(-3% - 30px);
+	font-family: Inter !important;
+}
+
+pre {
+	counter-reset: line;
+}
+
+pre code .line {
+	counter-increment: line;
+	font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+	tab-size: 6 !important;
+	-moz-tab-size: 6 !important;
+}
+
+code .line::before {
+	display: inline-block;
+	content: counter(line);
+	border-right: 1px solid rgba(255, 255, 255, 0.253);
+	width: 30px;
+	translate: -40px;
+	margin-left: 10px;
+	height: 21px;
+	margin-right: -30px;
+	font-weight: 200;
+	opacity: .5;
 }
 
 .tab_holder[code_only] pre {
@@ -29,7 +63,7 @@ code {
 	padding-left: 5px !important;
 	background: var(--code_span);
 	outline: 1px solid var(--code_span_border);
-	font-family: JetBrains Mono !important;
+	font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
 	font-size: 14px !important;
 
 	transition: 0.2s;
@@ -62,13 +96,20 @@ pre code {
 .token {
 	font-family: JetBrains Mono !important;
 	font-weight: 300 !important;
-	outline: 2px solid rgba(255, 255, 255, 0);
-	
+	outline: 2px solid rgba(255, 255, 255, 0);	
+}
+
+@keyframes curline_show {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 .token.keyword {
-	color: #c776db !important;
-	font-weight: 500 !important;
+	color: #e375ff !important;
 }
 
 .token.boolean {
@@ -76,7 +117,7 @@ pre code {
 }
 
 .token.function {
-	color: #61aeee !important;
+	color: #57aff7 !important;
 }
 
 .token.property {
@@ -108,7 +149,7 @@ pre code {
 }
 
 .token.builtin {
-	color: rgb(109, 206, 161) !important;
+	color: rgb(255, 173, 96) !important;
 }
 
 /* Operators (=, +, -, etc.) */
