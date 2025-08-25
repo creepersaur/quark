@@ -6,6 +6,7 @@ local Quark = {
 --[[ SCOPES ]]
 local Scope = require(script.Components.Scope)
 Scope.QuarkModule = Quark
+Scope.QuarkObject = script
 Quark.Scope = Scope.new
 
 --[[ REACTIVE ]]

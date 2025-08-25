@@ -1,5 +1,8 @@
+local ReplicatedFirst = game:GetService("ReplicatedFirst")
+local RunService = game:GetService("RunService")
 local Scope = {
 	QuarkModule = nil,
+	QuarkObject = nil,
 	ScopeList = {}
 }
 
@@ -18,10 +21,14 @@ end
 function Scope.new()
 	-- Avoid cyclic by cloning quark :(
 	-- Require Quark again and add it to the scopes list
-	local QuarkClone = script.Parent.Parent:Clone()
+	local QuarkClone: ModuleScript = Scope.QuarkObject:Clone()
+	QuarkClone.Parent = ReplicatedFirst
+	
 	local Scoped = require(QuarkClone)
+	RunService.RenderStepped:Wait()
+	
 	QuarkClone:Destroy()
-	QuarkClone = nil
+	QuarkClone = nil::any
 
 	Scoped.ScopeDepth = Scope.QuarkModule.ScopeDepth + 1
 	table.insert(Scope.ScopeList, Scoped)
