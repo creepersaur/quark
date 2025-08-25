@@ -193,6 +193,11 @@ function fileMarkdown(file_path) {
 			setup_codespans();
 			LoadOverview();
 			Prism.highlightAll();
+			document.querySelectorAll("pre code").forEach(block => {
+				const lines = block.innerHTML.split("\n");
+				lines.splice(lines.length - 1, 1);
+				block.innerHTML = lines.map(line => `<span class="line">${line}</span>`).join("\n");
+			});
 			setup_tabs();
 
 			Main.scrollTop = 0;
