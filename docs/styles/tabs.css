@@ -10,6 +10,7 @@
 
 .tab_holder[code_only] pre {
 	border-radius: 0 0 10px 10px;
+	border: transparent 1px solid !important;
 }
 
 .tab_holder::before {
@@ -20,7 +21,7 @@
 	width: calc(100% - 2px);
 	height: 100%;
 	z-index: -1;
-	border: 1px solid var(--brighter_line);
+	border: 1px solid rgba(255, 255, 255, 0.24) !important;
 	border-radius: 10px;
 	padding-bottom: 5px;
 }

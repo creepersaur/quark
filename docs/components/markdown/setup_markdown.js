@@ -12,6 +12,7 @@ Prism.languages["luau"] = {
 		/\b(?:type|self|and|break|do|else|elseif|end|for|function|goto|if|in|local|not|or|repeat|return|then|until|while)\b/,
 	boolean:
 		/\b(?:true|false|nil)\b/,
+	type: [/(?<=:)[\s|\.]?(.*)\b/gim, /(?<=<)(.*)(?=>)/gim, /(New)(?=<)/],
 	builtin:
 		/\b(workspace|Axes|BrickColor|CatalogSearchParams|CFrame|Color3|ColorSequence|ColorSequenceKeypoint|DateTime|DockWidgetPluginGuiInfo|Enum|EnumItem|Enums|Faces|Instance|NumberRange|NumberSequence|NumberSequenceKeypoint|PathWaypoint|PhysicalProperties|Random|Ray|RaycastParams|RaycastResult|RBXScriptConnection|RBXScriptSignal|Rect|Region3|Region3int16|TweenInfo|UDim2|UDim|Vector2|Vector2int16|Vector3|Vector3int16)\b/,
 	function: [
@@ -22,7 +23,6 @@ Prism.languages["luau"] = {
 		/\bState\b(?!<)/,
 		/\bSignal\b(?!<)/,
 		/\bHook\b(?!<)/,
-		/\bScope\b(?!<)/,
 		/\bClass\b/,
 		/\bSpring\b/,
 	],
@@ -40,7 +40,6 @@ Prism.languages["luau"] = {
 			lookbehind: true,
 		},
 	],
-	type: [/(?<=:)[\s|\.]?(\w*)/gim, /(?<=<)(.*)(?=>)/gim, /(New)(?=<)/],
 	property: /(?<=\.)\w*/,
 	punctuation: /[\[\](),;]|\.+|:+/,
 };

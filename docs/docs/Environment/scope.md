@@ -5,7 +5,7 @@
 A `Scope` in Quark is an **isolated environment** that allows you to create and manage elements with their own memory. Scopes help organize parts of your UI, especially when working across multiple scripts or modules.
 
 ```luau
-local Scope = Quark.Scope
+local Scope = Quark.Scope()
 ```
 
 Think of scopes as branches in a tree — each can have child scopes, and cleaning up a parent scope will automatically clean up all its children. This makes cleanup simple and consistent across your project.

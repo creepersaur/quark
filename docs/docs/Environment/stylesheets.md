@@ -89,7 +89,7 @@ Objects can have multiple classes attached to them. Just use the Quark `class` c
 local BigRedFrame = New "Frame" {
 	Parent = script.Parent,
 	
-	style = myStyle
+	style = myStyle,
 	class = "Big Red",
 	-- class names should be separated by spaces.
 }
