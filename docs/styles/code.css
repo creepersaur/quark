@@ -107,6 +107,10 @@ pre code {
 	}
 }
 
+.token.indent:not(:first-child) {
+	border-left: rgba(255, 255, 255, 0.103) 1px solid;
+}
+
 .token.keyword {
 	color: #e375ff !important;
 }
@@ -161,19 +165,11 @@ pre code {
 }
 
 .token.type {
-	color: rgb(165, 255, 187);
+	color: #ff7d76;
 }
 
 #Main strong {
 	color: rgb(233, 233, 233);
-}
-
-.token:hover {
-	background: rgba(255, 255, 255, 0.08) !important;
-	outline: 2px solid rgba(255, 255, 255, 0.08);
-	scale: 2 !important;
-	
-	transition: 0.2s;
 }
 
 

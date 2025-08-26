@@ -23,7 +23,7 @@ Calling the wrapped New with a table will let you set properties of the instance
 
 ```luau
 local object = New(PremadeFrame) {
-    BackgroundColor3 = Color3.new(1),
+	BackgroundColor3 = Color3.new(1),
 	
 	children = New "UIPadding"
 }

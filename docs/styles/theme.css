@@ -32,6 +32,11 @@
 	margin: 0;
 }
 
+::selection {
+	background: rgba(46, 136, 209, 0.397);
+	color: white;
+}
+
 body {
 	background: var(--dark_bg);
 }
