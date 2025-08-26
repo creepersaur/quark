@@ -181,11 +181,10 @@ pre code {
 
 
 .copy_btn {
-	box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
 	backdrop-filter: blur(10px);
 	z-index: 5;
 	contain: layout;
-	border-radius: 7px;
+	border-radius: 5px;
 	position: absolute;
 	top: 3.2px;
 	right: 2px;
@@ -199,12 +198,13 @@ pre code {
 	font-size: 20px !important;
 	text-underline-position: below;
 	outline: 2px solid rgba(0, 0, 0, 0);
+	translate: -7px 1px !important;
 	cursor: pointer;
 	filter: brightness(.8);
 	opacity: 0;
 	border: 1px solid var(--brighter_line);;
 
-	transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .code_holder:hover .copy_btn:not(:hover):not([copied]) {
@@ -213,14 +213,18 @@ pre code {
 
 .copy_btn:hover {
 	opacity: 1;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
+	translate: -7px -2px !important;
+	scale: 0.95 !important;
 	filter: brightness(1);
 }
 
 .copy_btn:not([copied]):active {
 	opacity: 1;
 	background: var(--brighter_line);
+	translate: -7px 1px !important;
 	filter: brightness(1);
-	scale: 0.85;
+	scale: 0.9 !important;
 	transition: 0.1s;
 }
 
