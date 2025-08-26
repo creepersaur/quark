@@ -1,7 +1,6 @@
 Prism.languages["luau"] = {
 	danger_comment: /^#!.+|--!(?:\[(=*)\[[\s\S]*?\]\1\]|.*)/m,
 	comment: /^#!.+|--(?:\[(=*)\[[\s\S]*?\]\1\]|.*)/m,
-	// \z may be used to skip the following space
 	string: {
 		pattern:
 			/(["'`])(?:(?!\1)[^\\\r\n]|\\z(?:\r\n|\s)|\\(?:\r\n|[^z]))*\1|\[(=*)\[[\s\S]*?\]\2\]/,
@@ -27,10 +26,16 @@ Prism.languages["luau"] = {
 		/\bClass\b/,
 		/\bSpring\b/,
 	],
+
+	dict_key: {
+		// matches identifiers followed by =
+		pattern: /(?<=[\{|,][\s\S]*?)([A-Za-z_]\w*)(?=\s*=)/,
+		lookbehind: false,
+	},
+
 	operator: [
-		/[-+*%^&|#]|\/\/?|< [<=]?| >[>=]?|[=~]|(\.\.\.)=?/,
+		/[-+*%^&|#]|\/\/?|<[<=]?|>[>=]?|[=~]|(\.\.\.)=?/,
 		{
-			// Match ".." but don't break "..."
 			pattern: /(^|[^.])\.\.(?!\.)/,
 			lookbehind: true,
 		},

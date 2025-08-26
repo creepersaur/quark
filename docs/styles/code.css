@@ -16,20 +16,19 @@ pre {
 	padding: 12px !important;
 	padding-left: 50px !important;
 	border-radius: 6.3px;
+	counter-reset: line;
+	padding-top: 40px !important;
 }
 
-pre::before {
+.code_holder::before {
 	content: "luau";
 	display: block;
+	position: absolute;
 	padding-bottom: 10px;
 	opacity: 0.8;
-	scale: 0.95;
-	translate: calc(-3% - 30px);
+	scale: 0.8;
+	translate: 15px 10px;
 	font-family: Inter !important;
-}
-
-pre {
-	counter-reset: line;
 }
 
 pre code .line {
@@ -124,13 +123,17 @@ pre code {
 	color: rgb(216, 216, 216) !important;
 }
 
+.token.dict_key {
+	color: #dd645e !important;
+}
+
 .token.string {
 	color: #98c379 !important;
 }
 
 /* Numbers (123, 3.14) */
 .token.number {
-	color: #c6e4a5 !important; /* Orange */
+	color: #ffb067 !important; /* Orange */
 }
 
 /* Comments */
