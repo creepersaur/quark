@@ -30,7 +30,6 @@ Prism.languages["luau"] = {
 	],
 
 	dict_key: {
-		// matches identifiers followed by =
 		pattern: /(?<=[\{|,][\s\S]*?)([A-Za-z_]\w*)(?=\s*=)/,
 		lookbehind: false,
 	},

@@ -112,7 +112,7 @@ pre code {
 }
 
 .token.keyword {
-	color: #e375ff !important;
+	color: #e57dff !important;
 }
 
 .token.boolean {
@@ -124,11 +124,11 @@ pre code {
 }
 
 .token.property {
-	color: rgb(216, 216, 216) !important;
+	color: rgb(255, 225, 177) !important;
 }
 
 .token.dict_key {
-	color: #dd645e !important;
+	color: #ff746d !important;
 }
 
 .token.string {
