@@ -104,6 +104,7 @@ body {
 /* Handle */
 ::-webkit-scrollbar-thumb {
 	background: var(--brighter_line);
+	border-radius: 3px;
 }
 
 /* Handle on hover */
