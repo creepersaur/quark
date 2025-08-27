@@ -1,11 +1,7 @@
 Prism.languages["luau"] = {
 	danger_comment: /^#!.+|--!(?:\[(=*)\[[\s\S]*?\]\1\]|.*)/m,
 	comment: /^#!.+|--(?:\[(=*)\[[\s\S]*?\]\1\]|.*)/m,
-	string: {
-		pattern:
-			/(["'`])(?:(?!\1)[^\\\r\n]|\\z(?:\r\n|\s)|\\(?:\r\n|[^z]))*\1|\[(=*)\[[\s\S]*?\]\2\]/,
-		greedy: true,
-	},
+	
 	number:
 		/\b0x[a-f\d]+(?:\.[a-f\d]*)?(?:p[+-]?\d+)?\b|\b\d+(?:\.\B|(?:\.\d*)?(?:e[+-]?\d+)?\b)|\B\.\d+(?:e[+-]?\d+)?\b/i,
 	keyword:
@@ -18,16 +14,16 @@ Prism.languages["luau"] = {
 	builtin:
 		/\b(workspace|Axes|BrickColor|CatalogSearchParams|CFrame|Color3|ColorSequence|ColorSequenceKeypoint|DateTime|DockWidgetPluginGuiInfo|Enum|EnumItem|Enums|Faces|Instance|NumberRange|NumberSequence|NumberSequenceKeypoint|PathWaypoint|PhysicalProperties|Random|Ray|RaycastParams|RaycastResult|RBXScriptConnection|RBXScriptSignal|Rect|Region3|Region3int16|TweenInfo|UDim2|UDim|Vector2|Vector2int16|Vector3|Vector3int16)\b/,
 	function: [
-		/(?!\d)\w+(?=\s*(?:[({]))/,
+		/(?!\d)\w+(?=\s*(?:[({"']))/,
+		/([\w\d_]*?)?=\s?".*?"/,
 		/\bprint\b/,
 		/\bscript\b/,
-		/\bNew\b(?!<)/,
-		/\bState\b(?!<)/,
-		/\bSignal\b(?!<)/,
-		/\bHook\b(?!<)/,
-		/\bClass\b/,
-		/\bSpring\b/,
 	],
+	string: {
+		pattern:
+			/(["'`])(?:(?!\1)[^\\\r\n]|\\z(?:\r\n|\s)|\\(?:\r\n|[^z]))*\1|\[(=*)\[[\s\S]*?\]\2\]/,
+		greedy: true,
+	},
 
 	dict_key: {
 		pattern: /(?<=[\{|,][\s\S]*?)([A-Za-z_]\w*)(?=\s*=)/,
