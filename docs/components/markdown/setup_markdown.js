@@ -13,17 +13,7 @@ Prism.languages["luau"] = {
 	
 	builtin:
 		/\b(workspace|Axes|BrickColor|CatalogSearchParams|CFrame|Color3|ColorSequence|ColorSequenceKeypoint|DateTime|DockWidgetPluginGuiInfo|Enum|EnumItem|Enums|Faces|Instance|NumberRange|NumberSequence|NumberSequenceKeypoint|PathWaypoint|PhysicalProperties|Random|Ray|RaycastParams|RaycastResult|RBXScriptConnection|RBXScriptSignal|Rect|Region3|Region3int16|TweenInfo|UDim2|UDim|Vector2|Vector2int16|Vector3|Vector3int16)\b/,
-	function: [
-		/(?!\d)\w+(?=\s*(?:[({"']))/,
-		/([\w\d_]*?)?=\s?".*?"/,
-		/\bprint\b/,
-		/\bscript\b/,
-	],
-	string: {
-		pattern:
-			/(["'`])(?:(?!\1)[^\\\r\n]|\\z(?:\r\n|\s)|\\(?:\r\n|[^z]))*\1|\[(=*)\[[\s\S]*?\]\2\]/,
-		greedy: true,
-	},
+	
 
 	dict_key: {
 		pattern: /(?<=[\{|,][\s\S]*?)([A-Za-z_]\w*)(?=\s*=)/,
@@ -37,6 +27,18 @@ Prism.languages["luau"] = {
 			lookbehind: true,
 		},
 	],
+	
+	function: [
+		/(?!\d)\w+(?=\s*(?:[({"']))/,
+		/([\w\d_]*?)?=\s?".*?"/,
+		/\bprint\b/,
+		/\bscript\b/,
+	],
+	string: {
+		pattern:
+			/(["'`])(?:(?!\1)[^\\\r\n]|\\z(?:\r\n|\s)|\\(?:\r\n|[^z]))*\1|\[(=*)\[[\s\S]*?\]\2\]/,
+		greedy: true,
+	},
 	property: /(?<=\.)\w*/,
 	punctuation: /[\[\](),;]|\.+|:+/,
 	indent: /\t/,
