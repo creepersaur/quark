@@ -12,7 +12,7 @@ pre {
 	border: 1px solid var(--code_block_border);
 	background: var(
 		--code_block
-	) !important; /* Dark background (VS Code style) */
+	) !important;
 	padding: 12px !important;
 	padding-left: 50px !important;
 	border-radius: 6.3px;
