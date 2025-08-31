@@ -123,10 +123,6 @@ pre code {
 	color: #57aff7 !important;
 }
 
-.token.property {
-	color: rgb(255, 225, 177) !important;
-}
-
 .token.dict_key {
 	color: #ff746d !important;
 }
