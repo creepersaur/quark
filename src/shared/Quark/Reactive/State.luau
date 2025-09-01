@@ -49,7 +49,7 @@ function module.new<T>(default: T? | (use: <R>(Types.State<R>) -> R) -> T?, stri
 
 	function self.reset()
 		if not HandleComputedState(default, self) then
-			self.value = default
+			self(default)
 		end
 	end
 
