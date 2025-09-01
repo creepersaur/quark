@@ -5,7 +5,7 @@
 Quark has a custom `Spring` object which is a reactive animation handler for values.
 
 ```luau
-local Spring = Quark.Spring
+local Spring = Quark.Animations.Spring
 ```
 
 Springs can be created by calling the `Spring()` method and passing in the following arguments:

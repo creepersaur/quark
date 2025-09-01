@@ -142,7 +142,7 @@ const headerExtension = {
 	},
 	renderer(token) {
 		// Render comment as a faded span
-		return `<span class="file_header">${token.text}</span>`;
+		return `<span class="file_header" header="${token.text}">${token.text}</span>`;
 	},
 };
 

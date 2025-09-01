@@ -112,21 +112,6 @@ body {
 	background: var(--button_primary_single);
 }
 
-.file_header {
-	color: rgba(109, 255, 199, 0.685);
-	font-weight: 500;
-	font-size: 14px;
-	margin-bottom: 10px !important;
-	display: block;
-	user-select: none;
-	background: rgba(0, 255, 157, 0.178);
-	width: max-content;
-	padding: 5px !important;
-	padding-left: 10px !important;
-	padding-right: 10px !important;
-	border-radius: 50px;
-}
-
 newline {
 	display: block;
 }
