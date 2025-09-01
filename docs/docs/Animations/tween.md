@@ -88,7 +88,8 @@ local my_target = State(UDim2.fromScale(0, 0))
 
 local tween = Tween(
 	UDim2.fromScale(0, 0),
-	my_target
+	my_target,
+	TweenInfo.new(1, Enum.EasingStyle.Exponential)
 )
 ```
 
