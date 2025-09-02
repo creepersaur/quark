@@ -59,12 +59,6 @@ function Loop:DisconnectAll<T>()
 	return self
 end
 
-function Loop:SetValue(value)
-	self.Value(value)
-
-	return self
-end
-
 function Loop:Update(dt)
 	self.Value(dt)
 
