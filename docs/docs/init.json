@@ -27,11 +27,11 @@
 	"Animations": {
 		"animation|Spring": "Animations/spring.md",
 		"move_up|Tween": "Animations/tween.md",
-		"all_inclusive|Loop": ""
+		"all_inclusive|Loop": "Animations/loop.md"
 	},
 
 	"Stories": {
-		"web_stories|Basic Stories": "",
-		"auto_stories|Advanced Stories": ""
+		"web_stories|Basic Stories": "Stories/basic_stories.md",
+		"auto_stories|Advanced Stories": "Stories/advanced_stories.md"
 	}
 }

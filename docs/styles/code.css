@@ -63,9 +63,19 @@ code {
 	background: var(--code_span);
 	outline: 1px solid var(--code_span_border);
 	font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
-	font-size: 14px !important;
 
 	transition: 0.2s;
+}
+
+h2 code {
+	color: rgb(230, 230, 230) !important;
+	background: var(--code_span_header) !important;
+	outline: 1px solid gray;
+	font-size: 20px !important;
+}
+
+code:not(h2 code) {
+	font-size: 14px !important;
 }
 
 code:not(pre code):hover {

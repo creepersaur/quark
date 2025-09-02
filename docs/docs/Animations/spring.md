@@ -129,6 +129,11 @@ Stop the spring forever and resets it back to the Start value.
 
 Restart the spring from the start. (If the start is a State then it will use the state's current value.)
 
+## :SetValue(x)
+
+Sets the current value of the spring, and spring will continue to move
+towards target.
+
 ## :BindToUpdate(f)
 
 The function passed in will run each time the spring updates (each frame).
