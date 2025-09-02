@@ -73,7 +73,7 @@ tween:SetValue(value)
 
 > fixed_start: boolean?
 
-When creating a tween, there is a feature called `FixedStart` which lets the spring restart from it's original starting point instead of tweening directly to the next target.
+When creating a tween, there is a feature called `FixedStart` which lets the tween restart from it's original starting point instead of tweening directly to the next target.
 
 It is not required and may never need to be used, but restarting from a given starting point is a feature nonetheless.
 
