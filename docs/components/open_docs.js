@@ -4,4 +4,6 @@ function load_docs() {
 		window.location.href = "docs.html"
 }
 
+// entries icon:  event_list
+
 setTimeout(load_docs(), 0);

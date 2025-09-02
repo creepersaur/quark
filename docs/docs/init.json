@@ -9,8 +9,7 @@
 		"add_circle|Creating Instances": "Instances/creating_instances.md",
 		"tune|Properties": "Instances/properties.md",
 		"edit|Custom Properties": "Instances/custom_properties.md",
-		"data_object|Premade Instances": "Instances/premade_instances.md",
-		"event_list|Entries": "Instances/entries.md"
+		"data_object|Premade Instances": "Instances/premade_instances.md"
 	},
 
 	"Reactivity": {
