@@ -1,5 +1,7 @@
 body {
-	overflow: hidden;
+	overflow: hidden !important;
+	background: url("assets/index_background.png") no-repeat center center;
+	background-size: cover; /* fills screen, no scroll */
 }
 
 #content_container {
@@ -23,8 +25,9 @@ body {
 
 .index_bg {
 	z-index: -1;
-	position: absolute;
+	position: fixed; /* pin it */
 	display: block;
+	object-fit: cover;
 	top: 50%;
 	left: 50%;
 	translate: -50% -50%;
