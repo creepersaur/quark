@@ -21,6 +21,19 @@ body {
 	animation: MainReveal .5s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
 
+.index_bg {
+	z-index: -1;
+	position: absolute;
+	display: block;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	width: auto;
+	height: 110vh;
+	opacity: .2;
+	filter: brightness(.6)
+}
+
 #Main {
 	opacity: 0;
 	padding: 20px;

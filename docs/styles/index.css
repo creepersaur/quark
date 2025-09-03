@@ -6,7 +6,6 @@ body {
 	position: absolute;
 	top: 60px;
 	left: 50%;
-	background: var(--dark_bg);
 	translate: -50% 0;
 	width: max(100%, 500px);
 	height: 100vh;
@@ -14,12 +13,12 @@ body {
 	align-content: center;
 }
 
-.Header img {
+.Header .quark_icon {
 	position: absolute;
 	top: 50%;
 	left: 65%;
 	transform: translate(-20%, -85%);
-	width: 200px; /* Set a reasonable size */
+	width: 700px; /* Set a reasonable size */
 	height: auto;
 	max-width: 30vw; /* Keeps it responsive */
 	max-height: 30vh;
@@ -33,7 +32,7 @@ body {
 }
 
 .DescriptionContent p {
-	color: var(--primary_text);
+	color: rgba(230, 255, 238, 0.863);
 	margin-top: 10px;
 	width: 40vw;
 	font-weight: 500;
@@ -42,9 +41,8 @@ body {
 
 .DescriptionContent h1 {
 	display: inline-block;
-	font-size: 60px;
-	margin-bottom: 30px;
-	background: var(--button_primary);
+	font-size: 80px;
+	background: white;
 	-webkit-background-clip: text;
 	background-clip: text;
   	-webkit-text-fill-color: transparent;
@@ -73,33 +71,39 @@ a {
 .HeaderButtons a {
 	display: inline-block;
 	padding: 0.5rem;
-	padding-left: 2rem;
-	padding-right: 2rem;
+	padding-inline: 2rem;
 	width: auto;
-	border-radius: 0.4rem;
 	font-weight: 800;
-	font-size: 15px;
+	font-size: 18px;
 	border: none;
 	cursor: pointer;
-	background: white;
-	color: black;
+	color: rgba(255, 255, 255, 0.8);
+	border: 5px solid rgba(255, 255, 255, 0.8);
 
-	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+	transition: .13s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .HeaderButtons a[active] {
 	font-weight: 700;
-	background: var(--button_primary);
-	color: white;
+	background: rgba(255, 255, 255, 0.8);
+	color: rgb(24, 29, 27);
+	border: none;
+	padding: calc(0.5rem + 5px);
 	margin-right: 10px;
+	padding-inline: calc(2rem + 5px);
+	backdrop-filter: blur(5px);
 }
 
 .HeaderButtons a:hover {
-	filter: brightness(0.85);
+	filter: brightness(2);
+	border-color: white;
+	color: white;
 }
 
 .HeaderButtons a[active]:hover {
 	filter: hue-rotate(0deg) brightness(0.9);
+	background: white;
+	color: black;
 }
 
 .HeaderButtons a:active {
@@ -108,6 +112,10 @@ a {
 
 .HeaderButtons a[active]:active {
 	filter: hue-rotate(5deg) brightness(1.1);
+}
+
+.HeaderButtons a:active {
+	scale: .9 !important;
 }
 
 .HeaderButtons a:hover {
@@ -130,8 +138,35 @@ a {
 	color: var(--primary_text);
 }
 
+.index_bg {
+	z-index: -1;
+	position: absolute;
+	display: block;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	width: auto;
+	height: 110vh;
+	opacity: .5;
+	filter: brightness(.6)
+}
+
+.TopBar {
+	background: rgba(111, 170, 152, 0.1) !important;
+	backdrop-filter: blur(5px);
+	position: absolute !important;
+	top: 50px !important;
+	left: 50% !important;
+	translate: -50%;
+	border-radius: 10px;
+	width: 70%;
+
+	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+
 @media (max-width: 700px) {
-	.Header img {
+	.Header .quark_icon {
 		position: relative;
 		left: auto;
 		top: auto;
@@ -139,21 +174,33 @@ a {
 		transform: none;
 		display: block;
 		margin: 0 auto 20px auto; /* Centers above the header */
+
+	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	.Header {
 		width: 100%;
+
+	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	.DescriptionContent {
 		width: 100%;
 		text-align: center;
 		margin: 0;
+
+	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	.DescriptionContent p {
 		width: 100%;
 		translate: 0 -20px;
+
+	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+
+	.DescriptionContent h1 {
+		margin-bottom: 10px;
 	}
 
 	.HeaderButtons {
@@ -161,5 +208,13 @@ a {
 		margin-left: 0;
 		text-align: center;
 		translate: 0 -105px;
+
+	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+}
+
+@media (max-width: 600px) {
+	.TopBar {
+		width: 90%;
 	}
 }

@@ -17,6 +17,7 @@
 	color: rgb(224, 224, 224);
 	cursor: pointer;
 	position: relative;
+	translate: 50px -50px !important;
 
 	transition: 0.1s;
 }
