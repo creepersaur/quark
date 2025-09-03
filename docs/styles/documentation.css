@@ -29,7 +29,9 @@ body {
 	left: 50%;
 	translate: -50% -50%;
 	width: auto;
-	height: 110vh;
+	border-radius: 0 !important;
+	min-height: 100vh;
+	scale: 1.05;
 	opacity: .2;
 	filter: brightness(.6)
 }

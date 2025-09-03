@@ -30,35 +30,6 @@ function LoadOverview() {
 }
 
 function scrollToElement(e) {
-    const start = main.scrollTop;
     const end = e.offsetTop - 50;
-
-    const anim = main.animate([
-        { scrollTop: start },
-        { scrollTop: end },
-    ], {
-        duration: 500,
-        easing: "ease-out",
-        fill: "forwards",
-    });
-
-    // Animate manually using requestAnimationFrame
-    const startTime = performance.now();
-
-    function animateScroll(currentTime) {
-        const elapsed = currentTime - startTime;
-        const duration = 500;
-        const progress = Math.min(elapsed / duration, 1);
-        const ease = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-
-        const newPos = start + (end - start) * ease;
-        main.scrollTop = newPos;
-        main.scrollTop = newPos; // for Safari
-
-        if (progress < 1) {
-            requestAnimationFrame(animateScroll);
-        }
-    }
-
-    requestAnimationFrame(animateScroll);
+	main.scrollTop = end;
 }

@@ -1,5 +1,7 @@
 body {
-	overflow: hidden;
+	overflow: hidden !important;
+	background: url("assets/index_background.png") no-repeat center center;
+	background-size: cover; /* fills screen, no scroll */
 }
 
 .Header {
@@ -17,7 +19,7 @@ body {
 	position: absolute;
 	top: 50%;
 	left: 65%;
-	transform: translate(-20%, -85%);
+	transform: translate(-20%, -78%);
 	width: 700px; /* Set a reasonable size */
 	height: auto;
 	max-width: 30vw; /* Keeps it responsive */
@@ -75,6 +77,7 @@ a {
 	width: auto;
 	font-weight: 800;
 	font-size: 18px;
+	border-radius: 5px;
 	border: none;
 	cursor: pointer;
 	color: rgba(255, 255, 255, 0.8);
@@ -140,13 +143,16 @@ a {
 
 .index_bg {
 	z-index: -1;
-	position: absolute;
+	position: fixed; /* pin it */
 	display: block;
+	object-fit: cover;
 	top: 50%;
 	left: 50%;
 	translate: -50% -50%;
 	width: auto;
-	height: 110vh;
+	border-radius: 0 !important;
+	min-height: 100vh;
+	scale: 1.05;
 	opacity: .5;
 	filter: brightness(.6)
 }

@@ -30,6 +30,7 @@
 * {
 	font-family: Inter;
 	margin: 0;
+	scroll-behavior: smooth;
 }
 
 ::selection {

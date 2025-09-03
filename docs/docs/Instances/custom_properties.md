@@ -56,7 +56,7 @@ New "TextButton" {
 
 - ### `style` <#Stylesheet|rgb(55, 143, 102)>
 
-Set the stylesheet to be used by objects. Must be a stylesheet object.
+Set the stylesheet to be used by objects. Must be a stylesheet object. Stylesheets have their own custom properties (You'll learn more about this in [stylesheets](?Environment/stylesheets))
 `class` implies that `style` is set.
 
 ```luau
