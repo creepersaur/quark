@@ -161,7 +161,7 @@ a {
 	background: rgba(111, 170, 152, 0.1) !important;
 	backdrop-filter: blur(5px);
 	position: absolute !important;
-	top: 50px !important;
+	top: 2% !important;
 	left: 50% !important;
 	translate: -50%;
 	border-radius: 10px;
