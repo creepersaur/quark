@@ -38,6 +38,8 @@ body {
 	scale: 1.05;
 	opacity: .2;
 	filter: brightness(.6);
+	pointer-events: none;
+	user-select: none;
 }
 
 #Main {
