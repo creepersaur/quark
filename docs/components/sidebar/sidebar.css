@@ -169,7 +169,7 @@
 	background-clip: text;
 	position: relative;
 	border-left: 2px solid rgba(11, 207, 109, 0);
-	transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 @keyframes FoldOpacity {
@@ -194,12 +194,21 @@
 }
 
 .FoldItem:hover {
-	opacity: 0.9;
+	opacity: 1;
+	transition: 0s;
+	translate: 1.5% 5%;
 }
 
 .FoldItem:not([active]):active {
 	opacity: 1;
 	background: var(--line);
+}
+
+.FoldItem:active {
+	scale: .9;
+	transition: .1s cubic-bezier(0.075, 0.82, 0.165, 1);
+	translate: -5% 7%;
+	border-radius: 8px;
 }
 
 .FoldItem[active] {
@@ -213,7 +222,7 @@
 	-webkit-text-fill-color: transparent;
 	translate: -2px 2px;
 
-	transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .FoldItem::before {
