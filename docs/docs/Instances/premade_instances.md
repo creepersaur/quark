@@ -32,4 +32,4 @@ local object = New(PremadeFrame) {
 
 ---
 
-<!NextPage|Entries>(?Instances/entries)
+<!NextPage|Events>(?Reactivity/events)

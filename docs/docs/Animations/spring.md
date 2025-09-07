@@ -101,7 +101,7 @@ New "TextButton" {
 	Size = Spring(
 		TargetSize(),  -- Get current fixed value of the state UDim2(0.5, 0.2)
 		TargetSize     -- Use a reference to the state for auto update
-	):Play()
+	):Play(),
 
 	Hook("MouseEnter", TargetSize.setLambda(UDim2.fromScale(0.5, 0.3))),
 	Hook("MouseLeave", TargetSize.setLambda(TargetSize()))
