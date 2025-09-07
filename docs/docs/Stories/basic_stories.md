@@ -50,7 +50,7 @@ local New = Quark.New
 
 return Quark.CreateStory(function(_target)
 	return New "Frame" {
-		Color = Color3.new(1, 0, 0)
+		BackgroundColor3 = Color3.new(1, 0, 0)
 	}
 end)
 ```
@@ -68,7 +68,7 @@ local New = Quark.New
 return function(target: Instance)
     New "Frame" {
         Parent = target,
-        Color = Color3.new(1, 0, 0)
+        BackgroundColor3 = Color3.new(1, 0, 0)
     }
 
     -- Cleanup everything that was made
