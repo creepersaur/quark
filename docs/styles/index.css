@@ -15,15 +15,39 @@ body {
 	align-content: center;
 }
 
+@keyframes IconSpin {
+	from {
+		rotate: 0deg;
+	}
+	
+	99% {
+		rotate: 360deg;
+	}
+
+	100% {
+		rotate: 0deg;
+	}
+}
+
 .Header .quark_icon {
+	z-index: 500;
 	position: absolute;
-	top: 50%;
-	left: 65%;
-	transform: translate(-20%, -78%);
+	top: calc(33% - 5vw);
+	right: 10%;
 	width: 700px; /* Set a reasonable size */
 	height: auto;
 	max-width: 30vw; /* Keeps it responsive */
 	max-height: 30vh;
+	aspect-ratio: 1;
+	border-radius: 10000px;
+
+	transition: .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.Header .quark_icon:hover {
+	animation: IconSpin 1s forwards;
+	scale: 1.1;
+	filter: brightness(1.5);
 }
 
 .DescriptionContent {
@@ -139,6 +163,8 @@ a {
 	text-align: center;
 	align-content: center;
 	color: var(--primary_text);
+
+	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .index_bg {
@@ -176,20 +202,25 @@ a {
 @media (max-width: 700px) {
 	.Header .quark_icon {
 		position: relative;
-		left: auto;
+		right: auto;
 		top: auto;
 		translate: 0 -60px;
 		transform: none;
 		display: block;
 		margin: 0 auto 20px auto; /* Centers above the header */
 
-	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+		transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 
 	.Header {
 		width: 100%;
+		transform: translateY(-5%);
 
-	transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+		transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+
+	.Footer {
+		transform: translateY(-50%);
 	}
 
 	.DescriptionContent {
