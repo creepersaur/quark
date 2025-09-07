@@ -103,7 +103,7 @@ body {
 	filter: brightness(1.5);
 }
 
-#Main img {
+#Main img:not(.DefaultImage) {
 	max-width: 60%;
 	margin-left: auto;
 	margin-right: auto;
