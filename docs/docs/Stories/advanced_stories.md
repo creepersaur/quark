@@ -1,6 +1,12 @@
+[header: Stories]
+
 # Advanced Stories
 
 Advanced stories are used for parameters and custom features that UI Labs (or plugin of choice) might give.
+
+These parameters are called [Controls](https://ui-labs.luau.page/docs/controls/adding):
+
+![Controls](assets/screenshots/zen_2xechIx8U1.png)
 
 This all depends on the plugin, but I suggest reading up on how to make stuff like this on UILabs' [Documentation](https://pepeeltoro41.github.io/ui-labs/docs/stories/advanced/generic.html). (Quark uses what UI Labs calls generic stories.)
 

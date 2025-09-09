@@ -28,3 +28,8 @@
 	color: rgba(255, 216, 109, 0.993);
 	background: rgba(255, 102, 0, 0.24);
 }
+
+.file_header[header="Stories"] {
+	color: rgba(198, 136, 255, 0.993);
+	background: rgba(103, 22, 255, 0.24);
+}
