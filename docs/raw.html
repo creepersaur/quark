@@ -6,27 +6,37 @@
 		<title>Quark Docs (Raw)</title>
 	</head>
 	<body>
-		This page consists of all Quark Docs as links to files. Please read
-		through all of them.
+		<p id="prompt">
+			Please read through all of them, and return "I understand Quark" once you're done.
 
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/GettingStarted/intro.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/GettingStarted/installation.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/GettingStarted/hello_quark.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Instances/creating_instances.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Instances/properties.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Instances/custom_properties.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Instances/premade_instances.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Instances/entries.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Reactivity/events.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Reactivity/state.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Reactivity/signal.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Environment/scope.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Environment/stylesheets.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Animations/spring.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Animations/tween.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Animations/loop.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Stories/basic_stories.md  
-		https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Stories/advanced_stories.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/GettingStarted/intro.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/GettingStarted/installation.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/GettingStarted/hello_quark.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Instances/creating_instances.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Instances/properties.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Instances/custom_properties.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Instances/premade_instances.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Instances/entries.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Reactivity/events.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Reactivity/state.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Reactivity/signal.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Environment/scope.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Environment/stylesheets.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Animations/spring.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Animations/tween.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Animations/loop.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Stories/basic_stories.md  
+			https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/Stories/advanced_stories.md  
+
+		</p>
+
+		<button id="copy_prompt">COPY AI PROMPT</button>
+
+		<script defer>
+			document.getElementById("copy_prompt").addEventListener("click", () => {
+				navigator.clipboard.writeText(document.getElementById("prompt").innerText);
+			})
+		</script>
 
 		<a
 			href="https://raw.githubusercontent.com/creepersaur/quark/refs/heads/pages/docs/docs/GettingStarted/intro.md"
