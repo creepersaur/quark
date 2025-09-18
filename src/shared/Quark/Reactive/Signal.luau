@@ -23,7 +23,7 @@ end
 
 function module.new<T>(state:  | { Types.State<T> }, func: (value: T, old: T) -> ()): Types.Signal<T>
 	local self = setmetatable({
-		id = "signal_" .. math.random(0, 1000000),
+		id = "signal_" .. game:GetService("HttpService"):GenerateGUID(false),
 		state_object = state,
 		_is_signal = true,
 	}, Signal)
