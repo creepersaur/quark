@@ -2,9 +2,9 @@
 
 <img width="400" alt="Quark_creepersaur" src="https://github.com/user-attachments/assets/02d6c90d-dcde-4ccd-be88-a5daa9b53058" />
 
-</div>
-
 _A simple and easy to use reactive UI library for Roblox._
+
+</div>
 
 It's great for making UI quickly and easily. Still in development, bugs may occur. Especially useful in Stories/Storybooks, with UI Labs. Feel free to make a Github Issue on it for bugs/improvements.
 
