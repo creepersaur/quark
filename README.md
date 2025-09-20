@@ -17,19 +17,9 @@ If you want the latest code update, just clone this repository. If you cloned th
 
 If you want a more "stable" release, download the `Quark.rbxm` file from the [Releases](https://github.com/creepersaur/Quark/releases/latest). (Releases are more stable.)
 
-# Documentation
+# [Documentation](https://creepersaur.github.io/quark)
 
-Check out the [Docs](./docs/) for more info. It also serves as a tutorial for beginners.
-
-1. [Getting Started](./docs/1.GettingStarted.md)
-2. [New](./docs/2.New.md)
-3. [Reactivity](./docs/3.Reactivity.md)
-4. [Animations/Springs](./docs/4.Animations.Springs.md)
-4. [Animations/Tweens](./docs/5.Animations.Tweens.md)
-5. [StyleSheets](./docs/6.StyleSheets.md)
-6. [Stories](./docs/7.Stories.md)
-7. [Scopes](./docs/8.Scopes.md)
-8. [Premade UI](./docs/9.PremadeUI.md)
+Check out the documentation ^^^ for more info. It also serves as a tutorial for beginners.
 
 # Examples
 
