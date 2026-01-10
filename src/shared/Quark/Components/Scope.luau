@@ -3,7 +3,9 @@ local Scope = {}
 function Scope.new(created)
 	local base = require(script.Parent.Parent.QuarkBase)()
 	
-	base.Scope = Scope.new
+	base.Scope = function()
+		return Scope.new(base)
+	end
 
 	table.insert(created, base)
 

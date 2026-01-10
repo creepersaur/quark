@@ -1,5 +1,5 @@
 return function()
-	local StyleSheet = require(script.StyleSheet)
+	local StyleSheet = require(script.StyleSheet)()
 	local Styles = {
 		Created = {},
 	}

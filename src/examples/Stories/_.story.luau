@@ -4,8 +4,9 @@ local Quark = require(ReplicatedStorage.Shared.Quark)
 local New = Quark.New
 
 return Quark.CreateStory(function()
-	local ScopeA = Quark.Scope()
-	local ScopeB = Quark.Scope()
+	local baseSCOPE = Quark.Scope()
+	local ScopeA = baseSCOPE.Scope()
+	local ScopeB = baseSCOPE.Scope()
 
 	print(Quark._CreatedScopes)
 

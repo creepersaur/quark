@@ -4,6 +4,8 @@ return function()
 		Quark = nil,
 	}
 
+	-- takes in a function which returns an Instance (or state)
+	-- returns a function that returns a Cleanup function
 	function module.CreateStory(
 		StoryFunc: (Target: Instance) -> Instance | Types.New<any> | { Instance | Types.New<any> }
 	): (Instance) -> ()
@@ -27,9 +29,6 @@ return function()
 			return module.Quark.Cleanup
 		end
 	end
-
-	-- takes in a function which returns an Instance (or state)
-	-- returns a function that returns a Cleanup function
 
 	return module
 end

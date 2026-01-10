@@ -6,6 +6,7 @@ return function()
 		PreCleanup = {},
 	}
 
+	-- Cleans up the current Quark scope
 	local function Cleanup()
 		for _, v in CleanupQueued.PreCleanup do
 			task.spawn(v)

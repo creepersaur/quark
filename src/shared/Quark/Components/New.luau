@@ -1,7 +1,7 @@
 return function()
 	local all_events = require(script.Parent.Parent.Misc.all_events)
 	local custom_properties = require(script.Parent.Parent.Misc.custom_properties)
-	local State = require(script.Parent.Parent.Reactive.State)
+	local State = require(script.Parent.Parent.Reactive.State)()
 	local Types = require(script.Parent.Parent.Types)
 	local all_instances = require(script.Parent.Parent.Misc.all_instances)
 	local all_properties = require(script.Parent.Parent.Misc.all_properties)

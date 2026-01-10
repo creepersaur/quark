@@ -1,7 +1,7 @@
 return function()
-	local State = require(script.State)
-	local Signal = require(script.Signal)
-	local Entries = require(script.Entries)
+	local State = require(script.State)()
+	local Signal = require(script.Signal)()
+	local Entries = require(script.Entries)()
 	local Reactive = {
 		Created = {},
 	}
