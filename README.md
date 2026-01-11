@@ -25,12 +25,18 @@ Examples for stories are given in the [examples](./src/examples/) folder. For sm
 
 ```lua
 local New = Quark.New
+local Hook = Quark.Hook
 
-New "Frame" {
+New "TextButton" {
     -- Set properties
     Parent = script.parent,
     Size = UDim2.fromOffset(100, 100),
     BackgroundColor3 = Color3.new(1,0,0),
+
+    -- Events
+    Hook("Activated", function(self, ...)
+        print("Button clicked")
+    end),
 
     -- Set children
     children = {
@@ -38,13 +44,6 @@ New "Frame" {
             Size = UDim2.fromOffset(75, 30)
         }
     }
-}
--- EVENTS
-{
-    -- Events are function callbacks
-    MouseEnter = function(self, ...)
-        
-    end,
 }
 ```
 
