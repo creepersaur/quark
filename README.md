@@ -10,12 +10,8 @@ It's great for making UI quickly and easily. Still in development, bugs may occu
 
 ## Installation
 
-You can get Quark from the [Roblox Creator Store](https://create.roblox.com/store/asset/105183088809550).
+You can get Quark from the `Quark.rbxm` file in the [Github Releases](https://github.com/creepersaur/Quark/releases/latest).
 It's adviced to put the Quark module in ReplicatedStorage.
-
-If you want the latest code update, just clone this repository. If you cloned this repo, you can use Rojo (or another linker) to build the place file (or use it without building).
-
-If you want a more "stable" release, download the `Quark.rbxm` file from the [Releases](https://github.com/creepersaur/Quark/releases/latest). (Releases are more stable.)
 
 # [Documentation](https://creepersaur.github.io/quark)
 
