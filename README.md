@@ -58,7 +58,7 @@ print(Counter()) -- print counter value
 ```
 
 
-## [GUI Converter Plugin](https://github.com/creepersaur/GUI_To_Quark)
+## [GUI Converter Plugin](https://github.com/Kvil-git/Roblox-gui-to-quark-code-plugin)
 
 **GUI To Quark** is a Roblox Studio plugin that aims to convert existing Roblox GUI instances into Quark's declarative style code.
 
@@ -67,3 +67,7 @@ This plugin helps you:
 - Save time when converting complex GUI hierarchies
 - Learn Quark's syntax by seeing your existing GUI converted
 - Allow for making UI using visual tools beforehand
+
+> [!NOTE]
+> I do not create or update the plugin. For any plugin inqueries or bugfixes please send an issue to @Kvil-git in their github repo. 
+> If there is a problem with Quark you can send those issues [here](https://github.com/creepersaur/quark/issues).
