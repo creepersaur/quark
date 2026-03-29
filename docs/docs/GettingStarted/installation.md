@@ -59,4 +59,12 @@ local Quark = require(game.ReplicatedStorage.Shared.Quark)
 
 ---
 
-<!NextPage|Hello Quark>(?GettingStarted/hello_quark)
+## GUI to Quark Plugin
+
+If you have existing Roblox GUIs that you want to convert to Quark, install the [GUI to Quark Plugin](https://create.roblox.com/store/asset/102437671741293/GUI-to-Quark) from the Roblox Creator Store. This plugin converts your existing GUI instances into Quark declarative code.
+
+Learn more about using the plugin on the next page.
+
+---
+
+<!NextPage|GUI to Quark Plugin>(?GettingStarted/gui_to_quark_plugin)
