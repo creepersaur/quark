@@ -1,11 +1,11 @@
 return function()
-	local StyleSheet = require(script.StyleSheet)()
+	local Stylesheet = require(script.Stylesheet)()
 	local Styles = {
 		Created = {},
 	}
 
-	Styles.StyleSheet = StyleSheet
-	Styles.Created = StyleSheet.Created
+	Styles.Stylesheet = Stylesheet
+	Styles.Created = Stylesheet.Created
 
 	return Styles
 end

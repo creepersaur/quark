@@ -26,10 +26,10 @@ function new()
 	--[[ Styles ]]
 	local Styles = require(script.Parent.Styles)()
 
-	local StyleSheet = Styles.StyleSheet
-	Quark.StyleSheet = StyleSheet.new
-	Quark.GetStyle = StyleSheet.GetStyle
-	Quark.Class = StyleSheet.Class
+	local Stylesheet = Styles.Stylesheet
+	Quark.Stylesheet = Stylesheet.new
+	Quark.GetStyle = Stylesheet.GetStyle
+	Quark.Class = Stylesheet.Class
 
 	--[[ CLEANUP ]]
 	local Cleanup = require(script.Parent.Components.Cleanup)()
