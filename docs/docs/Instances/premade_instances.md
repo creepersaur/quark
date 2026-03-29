@@ -13,7 +13,7 @@ local PremadeFrame = script.Parent.Frame
 local Wrapped = New(PremadeFrame)
 ```
 
-calling `:Cleanup()` on the wrapped New will Destroy the PremadeFrame and disconnect any Quark-connections.
+Calling `:Cleanup()` on the wrapped New will Destroy the PremadeFrame and disconnect any Quark-connections.
 
 > <note>
 >
