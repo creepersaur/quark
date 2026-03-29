@@ -3,7 +3,7 @@ local ReplicatedStorage = game:GetService "ReplicatedStorage"
 local Quark = require(ReplicatedStorage.Shared.Quark)
 local New = Quark.New
 
-Quark.StyleSheet "Hello" {
+Quark.Stylesheet "Hello" {
 	TextLabel = {
 		BackgroundColor3 = Color3.new(0.2, 0.5, 1),
 		Text = "Instance: TextLabel",
@@ -58,7 +58,7 @@ return function(parent: Instance)
 	}
 
 	-- You can get styles using their names
-	-- (Or just use the StyleSheet() return value)
+	-- (Or just use the Stylesheet() return value)
 	Quark.GetStyle("Hello"):ApplyRecursive(x)
 
 	return Quark.Cleanup
