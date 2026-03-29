@@ -13,6 +13,14 @@ It's great for making UI quickly and easily. Still in development, bugs may occu
 You can get Quark from the `Quark.rbxm` file in the [Github Releases](https://github.com/creepersaur/Quark/releases/latest).
 It's adviced to put the Quark module in ReplicatedStorage.
 
+## [GUI Converter Plugin](https://github.com/creepersaur/GUI_To_Quark)
+**^^^ GUI To Quark** is a Roblox Studio plugin that converts existing Roblox GUI instances into Quark's declarative style code.
+
+This plugin helps you:
+- Quickly migrate existing UIs to Quark's declarative syntax
+- Save time when converting complex GUI hierarchies
+- Learn Quark's syntax by seeing your existing GUI converted
+
 # [Documentation](https://creepersaur.github.io/quark)
 
 Check out the documentation ^^^ for more info. It also serves as a tutorial for beginners.
