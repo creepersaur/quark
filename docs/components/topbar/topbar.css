@@ -11,29 +11,32 @@
 	box-shadow: 0px 5px 15px rgb(0, 0, 0);
 }
 
-.TopBar strong {
+.TopBar #HomeButton {
 	user-select: none;
 	font-size: 25px;
 	color: rgb(224, 224, 224);
 	cursor: pointer;
-	position: relative;
-	translate: 50px -50px !important;
+	display: inline-block;
 
 	transition: 0.1s;
 }
 
-.TopBar strong:hover {
+.TopBar #HomeButton div {
+	display: inline;
+}
+
+.TopBar #HomeButton:hover {
 	font-size: 25px;
 	color: white;
 }
 
-.TopBar strong:hover > img {
+.TopBar #HomeButton:hover > img {
 	filter: brightness(1);
 
 	transition: 0.1s;
 }
 
-.TopBar strong img {
+.TopBar #HomeButton img {
 	margin-left: 5px;
 	filter: brightness(0.8);
 	translate: 0 20%;

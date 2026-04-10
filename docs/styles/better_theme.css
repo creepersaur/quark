@@ -1,0 +1,38 @@
+.index_bg {
+	display: none;
+}
+
+body {
+	background: #1b1b1f !important;
+}
+
+.TopBar {
+	background: #17171a !important;
+	box-shadow: none;
+}
+
+:has(.Header):has(.Footer) .TopBar {
+	background: #00000049 !important;
+}
+
+.TopBar #HomeButton {
+	translate: 0 -2px !important
+}
+
+.HeaderButtons a[active] {
+	background: #49ff9d !important;
+}
+
+pre {
+	background-color: #141419 !important;
+}
+
+.code_holder::before {
+	opacity: 0.7;
+	z-index: 100;
+}
+
+.copy_btn {
+	background: #1b1b1ff0;
+	border-color: transparent;
+}
